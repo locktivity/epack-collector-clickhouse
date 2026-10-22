@@ -36,7 +36,7 @@ make test
 
 ### Recording the sandbox
 
-`internal/collector/record_test.go` runs the collector once against the ClickHouse sandbox in [epack-collector-sandboxes](https://github.com/locktivity/epack-collector-sandboxes) and writes the responses to `internal/collector/testdata/recordings/clickhouse.json`, which the suite loads as one more scenario. It reads the sandbox's organization ID, service host, and mailbox from `SANDBOX_CLICKHOUSE_ORG_ID`, `SANDBOX_CLICKHOUSE_SERVICE_HOST`, and `SANDBOX_CLICKHOUSE_MAILBOX`, and the credentials from the three variables the collector reads:
+`internal/collector/record_test.go` runs the collector once against a sandbox, a ClickHouse Cloud organization kept with known settings, and writes the responses to `internal/collector/testdata/recordings/clickhouse.json`, which the suite loads as one more scenario. It reads the sandbox's organization ID, service host, and mailbox from `SANDBOX_CLICKHOUSE_ORG_ID`, `SANDBOX_CLICKHOUSE_SERVICE_HOST`, and `SANDBOX_CLICKHOUSE_MAILBOX`, and the credentials from the three variables the collector reads:
 
 ```bash
 make record
