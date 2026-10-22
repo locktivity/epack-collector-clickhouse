@@ -1,0 +1,969 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/locktivity/epack-collector-clickhouse/docs/schema/v1.0.0.json",
+  "title": "ClickHouse Cloud access",
+  "description": "The artifact epack-collector-clickhouse emits at artifacts/clickhouse.json: who can reach a ClickHouse Cloud organization through its console and API, and each configured service's database access settings. A value the collector could not read is null or absent, and the collector result records a gap for it. The collector checks its output against this schema when it emits.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "collected_at", "collected_at_level", "organization", "services"],
+  "properties": {
+    "schema_version": {"type": "string", "const": "1.0.0", "description": "The version of this schema."},
+    "collected_at": {"type": "string", "format": "date-time", "description": "When the collector ran."},
+    "collected_at_level": {
+      "type": "string",
+      "enum": ["trust", "audit", "internal"],
+      "description": "The collection level the artifact was made at. audit adds the inventories to trust's counts, and internal adds nothing more."
+    },
+    "organization": {
+      "type": "object",
+      "description": "The organization the API key belongs to.",
+      "additionalProperties": false,
+      "required": ["id", "name", "created_at", "sso_enabled"],
+      "properties": {
+        "id": {"type": "string", "description": "The organization's ID."},
+        "name": {"type": "string", "description": "The organization's name."},
+        "created_at": {
+          "type": ["string", "null"],
+          "format": "date-time",
+          "description": "When the organization was created. Null when the API does not say."
+        },
+        "sso_enabled": {
+          "type": ["boolean", "null"],
+          "description": "Whether members sign in with SAML SSO. Always null, with a gap: ClickHouse Cloud has no API that reports it."
+        }
+      }
+    },
+    "members": {
+      "type": "object",
+      "description": "The organization's members. The Cloud API lists them only for a key with control-plane:organization:manage. Without it, or when the list fails, they are left out with a gap.",
+      "additionalProperties": false,
+      "required": ["total_count", "admin_count", "mfa_enabled_count"],
+      "properties": {
+        "total_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Members of the organization.",
+          "x-epack-rollup": {"rows": "inventory", "as": "count"}
+        },
+        "admin_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Members who hold the Admin role.",
+          "x-epack-rollup": {"rows": "inventory", "where": "/admin", "as": "count"}
+        },
+        "mfa_enabled_count": {
+          "type": ["integer", "null"],
+          "minimum": 0,
+          "description": "Members who sign in with MFA. Always null, with a gap: ClickHouse Cloud has no API that reports it."
+        },
+        "inventory": {
+          "type": "array",
+          "description": "Every member, sorted by email.",
+          "x-epack-level": "audit",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["email", "roles", "admin", "joined_at"],
+            "properties": {
+              "email": {"type": "string", "description": "The member's email address."},
+              "roles": {
+                "type": "array",
+                "description": "The console roles assigned to the member.",
+                "items": {"$ref": "#/$defs/role_ref"}
+              },
+              "admin": {"type": "boolean", "description": "Whether the member holds the Admin role."},
+              "joined_at": {
+                "type": ["string", "null"],
+                "format": "date-time",
+                "description": "When the member joined the organization. Null when the API does not say."
+              }
+            }
+          }
+        }
+      }
+    },
+    "invitations": {
+      "type": "object",
+      "description": "Invitations to join the organization that have not been accepted. Left out, with a gap, when they could not be listed.",
+      "additionalProperties": false,
+      "required": ["total_count", "pending_count", "expired_count"],
+      "properties": {
+        "total_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Invitations that have not been accepted.",
+          "x-epack-rollup": {"rows": "inventory", "as": "count"}
+        },
+        "pending_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Invitations that have not been accepted and have not expired.",
+          "x-epack-rollup": {"rows": "inventory", "where": "/expired", "equals": false, "as": "count"}
+        },
+        "expired_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Invitations that expired before anyone accepted them.",
+          "x-epack-rollup": {"rows": "inventory", "where": "/expired", "as": "count"}
+        },
+        "inventory": {
+          "type": "array",
+          "description": "Every invitation, sorted by email.",
+          "x-epack-level": "audit",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["email", "roles", "created_at", "expires_at", "expired"],
+            "properties": {
+              "email": {"type": "string", "description": "The address the invitation was sent to."},
+              "roles": {
+                "type": "array",
+                "description": "The console roles the invitation assigns.",
+                "items": {"$ref": "#/$defs/role_ref"}
+              },
+              "created_at": {
+                "type": ["string", "null"],
+                "format": "date-time",
+                "description": "When the invitation was sent. Null when the API does not say."
+              },
+              "expires_at": {"type": "string", "format": "date-time", "description": "When the invitation expires."},
+              "expired": {"type": "boolean", "description": "Whether the invitation had expired when the collector ran."}
+            }
+          }
+        }
+      }
+    },
+    "api_keys": {
+      "type": "object",
+      "description": "The organization's API keys. Left out, with a gap, when they could not be listed.",
+      "additionalProperties": false,
+      "required": [
+        "total_count",
+        "enabled_count",
+        "admin_count",
+        "never_expires_count",
+        "any_address_count",
+        "never_used_count"
+      ],
+      "properties": {
+        "total_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "API keys, enabled or not.",
+          "x-epack-rollup": {"rows": "inventory", "as": "count"}
+        },
+        "enabled_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Enabled API keys.",
+          "x-epack-rollup": {"rows": "inventory", "where": "/state", "equals": "enabled", "as": "count"}
+        },
+        "admin_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "API keys that hold the Admin role, enabled or not.",
+          "x-epack-rollup": {"rows": "inventory", "where": "/admin", "as": "count"}
+        },
+        "never_expires_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "API keys with no expiry date, enabled or not.",
+          "x-epack-rollup": {"rows": "inventory", "where": "/never_expires", "as": "count"}
+        },
+        "any_address_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "API keys whose IP access list admits any address, enabled or not.",
+          "x-epack-rollup": {"rows": "inventory", "where": "/any_address", "as": "count"}
+        },
+        "never_used_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "API keys that have never been used, enabled or not.",
+          "x-epack-rollup": {"rows": "inventory", "where": "/never_used", "as": "count"}
+        },
+        "inventory": {
+          "type": "array",
+          "description": "Every API key, sorted by name.",
+          "x-epack-level": "audit",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "name",
+              "state",
+              "roles",
+              "admin",
+              "created_at",
+              "expires_at",
+              "never_expires",
+              "ip_access_list",
+              "any_address",
+              "last_used_at",
+              "never_used"
+            ],
+            "properties": {
+              "name": {"type": "string", "description": "The key's name."},
+              "state": {
+                "type": "string",
+                "enum": ["enabled", "disabled"],
+                "description": "Whether the key is enabled."
+              },
+              "roles": {
+                "type": "array",
+                "description": "The console roles assigned to the key.",
+                "items": {"$ref": "#/$defs/role_ref"}
+              },
+              "admin": {"type": "boolean", "description": "Whether the key holds the Admin role."},
+              "created_at": {
+                "type": ["string", "null"],
+                "format": "date-time",
+                "description": "When the key was created. Null when the API does not say."
+              },
+              "expires_at": {
+                "type": ["string", "null"],
+                "format": "date-time",
+                "description": "When the key expires. Null when it never expires."
+              },
+              "never_expires": {"type": "boolean", "description": "Whether the key has no expiry date."},
+              "ip_access_list": {
+                "type": "array",
+                "description": "The addresses and ranges the key may be used from. 0.0.0.0/0 admits any address.",
+                "items": {"type": "string"}
+              },
+              "any_address": {"type": "boolean", "description": "Whether the key's IP access list holds 0.0.0.0/0."},
+              "last_used_at": {
+                "type": ["string", "null"],
+                "format": "date-time",
+                "description": "When the key was last used, to the minute. Null when it has never been used."
+              },
+              "never_used": {"type": "boolean", "description": "Whether the key has never been used."}
+            }
+          }
+        }
+      }
+    },
+    "console_roles": {
+      "type": "object",
+      "description": "The organization's console roles and what each one grants. The Cloud API lists them only for a key with control-plane:organization:manage. Without it they are left out with a permission_denied gap.",
+      "additionalProperties": false,
+      "required": ["total_count", "custom_count"],
+      "properties": {
+        "total_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Console roles, system and custom.",
+          "x-epack-rollup": {"rows": "inventory", "as": "count"}
+        },
+        "custom_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Custom console roles.",
+          "x-epack-rollup": {"rows": "inventory", "where": "/type", "equals": "custom", "as": "count"}
+        },
+        "inventory": {
+          "type": "array",
+          "description": "Every console role, sorted by name.",
+          "x-epack-level": "audit",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "type", "member_count", "api_key_count", "policies"],
+            "properties": {
+              "name": {"type": "string", "description": "The role's name."},
+              "type": {
+                "type": "string",
+                "enum": ["system", "custom"],
+                "description": "system or custom."
+              },
+              "member_count": {"type": "integer", "minimum": 0, "description": "Members who hold the role."},
+              "api_key_count": {"type": "integer", "minimum": 0, "description": "API keys that hold the role."},
+              "policies": {
+                "type": "array",
+                "description": "What the role allows or denies.",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["allow_deny", "permissions", "resources"],
+                  "properties": {
+                    "allow_deny": {"type": "string", "description": "ALLOW or DENY."},
+                    "permissions": {
+                      "type": "array",
+                      "description": "The permissions the policy allows or denies, such as control-plane:organization:view.",
+                      "items": {"type": "string"}
+                    },
+                    "resources": {
+                      "type": "array",
+                      "description": "What the permissions apply to, such as organization/<id> or instance/*.",
+                      "items": {"type": "string"}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "services": {
+      "type": "array",
+      "description": "One entry for each service the configuration lists, in its order. An empty list means the configuration lists no services, not that the organization has none.",
+      "items": {"$ref": "#/$defs/service"}
+    }
+  },
+  "$defs": {
+    "role_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "type"],
+      "properties": {
+        "name": {"type": "string", "description": "The role's name, such as Admin or a custom role's name."},
+        "type": {
+          "type": "string",
+          "enum": ["system", "custom"],
+          "description": "system for a role ClickHouse Cloud defines, custom for one the organization made."
+        }
+      }
+    },
+    "database_user": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "storage",
+        "auth_methods",
+        "no_password",
+        "plaintext_password",
+        "host_ip",
+        "host_names",
+        "host_names_regexp",
+        "host_names_like",
+        "any_host"
+      ],
+      "properties": {
+        "name": {"type": "string", "description": "The user's name."},
+        "storage": {
+          "type": "string",
+          "description": "Where the server keeps the user, such as replicated or users_xml."
+        },
+        "auth_methods": {
+          "type": "array",
+          "description": "Each way the user can sign in. Any one of them is enough.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["type", "valid_until", "second_factor"],
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "The sign-in method, as system.users names it, such as sha256_password, ssh_key, or no_password."
+              },
+              "valid_until": {
+                "type": ["string", "null"],
+                "format": "date-time",
+                "description": "When the method stops working, in UTC. Null when it never expires."
+              },
+              "second_factor": {
+                "type": ["string", "null"],
+                "description": "The second factor the method also asks for, such as one_time_password. Null when it asks for none."
+              }
+            }
+          }
+        },
+        "no_password": {
+          "type": "boolean",
+          "description": "Whether one of the user's sign-in methods is no_password, so anyone who reaches the service can sign in as the user."
+        },
+        "plaintext_password": {
+          "type": "boolean",
+          "description": "Whether one of the user's sign-in methods keeps its password in plain text."
+        },
+        "host_ip": {
+          "type": "array",
+          "description": "The addresses and ranges the user may connect from. ::/0 means any address.",
+          "items": {"type": "string"}
+        },
+        "host_names": {
+          "type": "array",
+          "description": "The host names the user may connect from.",
+          "items": {"type": "string"}
+        },
+        "host_names_regexp": {
+          "type": "array",
+          "description": "Regular expressions for the host names the user may connect from.",
+          "items": {"type": "string"}
+        },
+        "host_names_like": {
+          "type": "array",
+          "description": "LIKE patterns for the host names the user may connect from.",
+          "items": {"type": "string"}
+        },
+        "any_host": {"type": "boolean", "description": "Whether the user may connect from any address."}
+      }
+    },
+    "database_role": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "storage"],
+      "properties": {
+        "name": {"type": "string", "description": "The role's name."},
+        "storage": {"type": "string", "description": "Where the server keeps the role."}
+      }
+    },
+    "role_grant": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["user_name", "role_name", "granted_role_name", "granted_role_is_default", "with_admin_option"],
+      "properties": {
+        "user_name": {
+          "type": ["string", "null"],
+          "description": "The user the role is granted to. Null when it is granted to a role."
+        },
+        "role_name": {
+          "type": ["string", "null"],
+          "description": "The role the role is granted to. Null when it is granted to a user."
+        },
+        "granted_role_name": {"type": "string", "description": "The role granted."},
+        "granted_role_is_default": {"type": "boolean", "description": "Whether the role is active when the grantee signs in."},
+        "with_admin_option": {"type": "boolean", "description": "Whether the grantee may grant the role to others."}
+      }
+    },
+    "grant": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "user_name",
+        "role_name",
+        "access_type",
+        "database",
+        "table",
+        "column",
+        "is_partial_revoke",
+        "grant_option"
+      ],
+      "properties": {
+        "user_name": {
+          "type": ["string", "null"],
+          "description": "The user the privilege is granted to. Null when it is granted to a role."
+        },
+        "role_name": {
+          "type": ["string", "null"],
+          "description": "The role the privilege is granted to. Null when it is granted to a user."
+        },
+        "access_type": {"type": "string", "description": "The privilege, such as SELECT or CREATE USER."},
+        "database": {
+          "type": ["string", "null"],
+          "description": "The database it applies to. Null for every database."
+        },
+        "table": {
+          "type": ["string", "null"],
+          "description": "The table it applies to. Null for every table."
+        },
+        "column": {
+          "type": ["string", "null"],
+          "description": "The column it applies to. Null for every column."
+        },
+        "is_partial_revoke": {"type": "boolean", "description": "Whether the row revokes part of a broader grant."},
+        "grant_option": {"type": "boolean", "description": "Whether the grantee may grant the privilege to others."}
+      }
+    },
+    "settings_profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "storage", "apply_to_all", "apply_to_list", "apply_to_except"],
+      "properties": {
+        "name": {"type": "string", "description": "The profile's name."},
+        "storage": {"type": "string", "description": "Where the server keeps the profile."},
+        "apply_to_all": {
+          "type": "boolean",
+          "description": "Whether it applies to every user and role, apart from those in apply_to_except."
+        },
+        "apply_to_list": {
+          "type": "array",
+          "description": "The users and roles it applies to, when apply_to_all is false.",
+          "items": {"type": "string"}
+        },
+        "apply_to_except": {
+          "type": "array",
+          "description": "The users and roles it does not apply to, when apply_to_all is true.",
+          "items": {"type": "string"}
+        }
+      }
+    },
+    "settings_profile_element": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "profile_name",
+        "user_name",
+        "role_name",
+        "setting_name",
+        "value",
+        "min",
+        "max",
+        "writability",
+        "inherit_profile"
+      ],
+      "properties": {
+        "profile_name": {
+          "type": ["string", "null"],
+          "description": "The profile the element belongs to, or null."
+        },
+        "user_name": {
+          "type": ["string", "null"],
+          "description": "The user the element is set on, or null."
+        },
+        "role_name": {
+          "type": ["string", "null"],
+          "description": "The role the element is set on, or null."
+        },
+        "setting_name": {
+          "type": ["string", "null"],
+          "description": "The setting, such as readonly. Null when the element only inherits a profile."
+        },
+        "value": {
+          "type": ["string", "null"],
+          "description": "The setting's value, or null when the element sets none."
+        },
+        "min": {
+          "type": ["string", "null"],
+          "description": "The lowest value the setting may be changed to, or null."
+        },
+        "max": {
+          "type": ["string", "null"],
+          "description": "The highest value the setting may be changed to, or null."
+        },
+        "writability": {
+          "type": ["string", "null"],
+          "description": "WRITABLE, CONST, or CHANGEABLE_IN_READONLY, or null when the element sets no constraint."
+        },
+        "inherit_profile": {
+          "type": ["string", "null"],
+          "description": "The profile the element inherits, or null."
+        }
+      }
+    },
+    "quota": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "storage", "keys", "durations", "apply_to_all", "apply_to_list", "apply_to_except"],
+      "properties": {
+        "name": {"type": "string", "description": "The quota's name."},
+        "storage": {"type": "string", "description": "Where the server keeps the quota."},
+        "keys": {
+          "type": "array",
+          "description": "What usage is counted by, such as user_name. Empty when it is counted for everyone together.",
+          "items": {"type": "string"}
+        },
+        "durations": {
+          "type": "array",
+          "description": "The length of each interval, in seconds.",
+          "items": {"type": "integer", "minimum": 0}
+        },
+        "apply_to_all": {
+          "type": "boolean",
+          "description": "Whether it applies to every user and role, apart from those in apply_to_except."
+        },
+        "apply_to_list": {
+          "type": "array",
+          "description": "The users and roles it applies to, when apply_to_all is false.",
+          "items": {"type": "string"}
+        },
+        "apply_to_except": {
+          "type": "array",
+          "description": "The users and roles it does not apply to, when apply_to_all is true.",
+          "items": {"type": "string"}
+        }
+      }
+    },
+    "quota_limit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["quota_name", "duration", "is_randomized_interval", "limits"],
+      "properties": {
+        "quota_name": {"type": "string", "description": "The quota."},
+        "duration": {"type": "integer", "minimum": 0, "description": "The interval's length, in seconds."},
+        "is_randomized_interval": {"type": "boolean", "description": "Whether the interval starts at a random offset."},
+        "limits": {
+          "type": "object",
+          "description": "The limits that are set, keyed by their name in system.quota_limits without max_, such as queries or failed_sequential_authentications.",
+          "additionalProperties": {"type": "number", "minimum": 0}
+        }
+      }
+    },
+    "row_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "short_name",
+        "database",
+        "table",
+        "storage",
+        "is_restrictive",
+        "apply_to_all",
+        "apply_to_list",
+        "apply_to_except"
+      ],
+      "properties": {
+        "name": {"type": "string", "description": "The policy's full name, such as tenant_a ON app.events."},
+        "short_name": {"type": "string", "description": "The policy's name."},
+        "database": {"type": "string", "description": "The database the policy applies to."},
+        "table": {
+          "type": "string",
+          "description": "The table the policy applies to, or empty for the whole database."
+        },
+        "storage": {"type": "string", "description": "Where the server keeps the policy."},
+        "is_restrictive": {"type": "boolean", "description": "Whether the policy is restrictive rather than permissive."},
+        "apply_to_all": {
+          "type": "boolean",
+          "description": "Whether it applies to every user and role, apart from those in apply_to_except."
+        },
+        "apply_to_list": {
+          "type": "array",
+          "description": "The users and roles it applies to, when apply_to_all is false.",
+          "items": {"type": "string"}
+        },
+        "apply_to_except": {
+          "type": "array",
+          "description": "The users and roles it does not apply to, when apply_to_all is true.",
+          "items": {"type": "string"}
+        }
+      }
+    },
+    "service": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["host", "user"],
+      "properties": {
+        "host": {"type": "string", "description": "The service's host, as the configuration names it."},
+        "user": {"type": "string", "description": "The database user the collector read the service as."},
+        "version": {"type": "string", "description": "The server's ClickHouse version."},
+        "users": {
+          "type": "object",
+          "description": "The service's database users, from system.users.",
+          "additionalProperties": false,
+          "required": [
+            "customer_count",
+            "cloud_managed_count",
+            "no_password_count",
+            "plaintext_password_count",
+            "any_host_count"
+          ],
+          "properties": {
+            "customer_count": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "The customer's database users: every user apart from ClickHouse Cloud's own.",
+              "x-epack-rollup": {"rows": "inventory", "as": "count"}
+            },
+            "cloud_managed_count": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "ClickHouse Cloud's own database users, the ones stored in users_xml.",
+              "x-epack-rollup": {"rows": "cloud_managed", "as": "count"}
+            },
+            "no_password_count": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "The customer's users who can sign in with no password.",
+              "x-epack-rollup": {"rows": "inventory", "where": "/no_password", "as": "count"}
+            },
+            "plaintext_password_count": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "The customer's users with a password kept in plain text.",
+              "x-epack-rollup": {"rows": "inventory", "where": "/plaintext_password", "as": "count"}
+            },
+            "any_host_count": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "The customer's users who may connect from any address.",
+              "x-epack-rollup": {"rows": "inventory", "where": "/any_host", "as": "count"}
+            },
+            "inventory": {
+              "type": "array",
+              "description": "The customer's database users, sorted by name, with the default and sql-console users ClickHouse Cloud creates.",
+              "x-epack-level": "audit",
+              "items": {"$ref": "#/$defs/database_user"}
+            },
+            "cloud_managed": {
+              "type": "array",
+              "description": "ClickHouse Cloud's own database users, sorted by name.",
+              "x-epack-level": "audit",
+              "items": {"$ref": "#/$defs/database_user"}
+            }
+          }
+        },
+        "roles": {
+          "type": "object",
+          "description": "The service's database roles, from system.roles.",
+          "additionalProperties": false,
+          "required": ["customer_count", "cloud_managed_count"],
+          "properties": {
+            "customer_count": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "The customer's database roles.",
+              "x-epack-rollup": {"rows": "inventory", "as": "count"}
+            },
+            "cloud_managed_count": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "The roles ClickHouse Cloud creates in every service: clickpipes_system, default_role, sql_console_admin, and sql_console_read_only.",
+              "x-epack-rollup": {"rows": "cloud_managed", "as": "count"}
+            },
+            "inventory": {
+              "type": "array",
+              "description": "The customer's database roles, sorted by name.",
+              "x-epack-level": "audit",
+              "items": {"$ref": "#/$defs/database_role"}
+            },
+            "cloud_managed": {
+              "type": "array",
+              "description": "The roles ClickHouse Cloud creates, sorted by name.",
+              "x-epack-level": "audit",
+              "items": {"$ref": "#/$defs/database_role"}
+            }
+          }
+        },
+        "role_grants": {
+          "type": "object",
+          "description": "The roles granted to users and roles, from system.role_grants. A grant to ClickHouse Cloud's own user or role is in cloud_managed.",
+          "additionalProperties": false,
+          "required": ["customer_count", "cloud_managed_count", "with_admin_option_count"],
+          "properties": {
+            "customer_count": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "The customer's role grants.",
+              "x-epack-rollup": {"rows": "inventory", "as": "count"}
+            },
+            "cloud_managed_count": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "ClickHouse Cloud's own role grants.",
+              "x-epack-rollup": {"rows": "cloud_managed", "as": "count"}
+            },
+            "with_admin_option_count": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Role grants to the customer's users and roles that let the grantee grant the role to others.",
+              "x-epack-rollup": {"rows": "inventory", "where": "/with_admin_option", "as": "count"}
+            },
+            "inventory": {
+              "type": "array",
+              "description": "The roles granted to the customer's users and roles.",
+              "x-epack-level": "audit",
+              "items": {"$ref": "#/$defs/role_grant"}
+            },
+            "cloud_managed": {
+              "type": "array",
+              "description": "The roles granted to ClickHouse Cloud's own users and roles.",
+              "x-epack-level": "audit",
+              "items": {"$ref": "#/$defs/role_grant"}
+            }
+          }
+        },
+        "grants": {
+          "type": "object",
+          "description": "The privileges granted to users and roles, from system.grants. A grant to ClickHouse Cloud's own user or role is in cloud_managed.",
+          "additionalProperties": false,
+          "required": ["customer_count", "cloud_managed_count", "grant_option_count"],
+          "properties": {
+            "customer_count": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "The customer's grants.",
+              "x-epack-rollup": {"rows": "inventory", "as": "count"}
+            },
+            "cloud_managed_count": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "ClickHouse Cloud's own grants.",
+              "x-epack-rollup": {"rows": "cloud_managed", "as": "count"}
+            },
+            "grant_option_count": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Grants to the customer's users and roles that let the grantee grant the privilege to others.",
+              "x-epack-rollup": {"rows": "inventory", "where": "/grant_option", "as": "count"}
+            },
+            "inventory": {
+              "type": "array",
+              "description": "The privileges of the customer's users and roles, and each part of one revoked again.",
+              "x-epack-level": "audit",
+              "items": {"$ref": "#/$defs/grant"}
+            },
+            "cloud_managed": {
+              "type": "array",
+              "description": "The privileges of ClickHouse Cloud's own users and roles.",
+              "x-epack-level": "audit",
+              "items": {"$ref": "#/$defs/grant"}
+            }
+          }
+        },
+        "settings_profiles": {
+          "type": "object",
+          "description": "The settings profiles, from system.settings_profiles.",
+          "additionalProperties": false,
+          "required": ["customer_count", "cloud_managed_count"],
+          "properties": {
+            "customer_count": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "The customer's settings profiles.",
+              "x-epack-rollup": {"rows": "inventory", "as": "count"}
+            },
+            "cloud_managed_count": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "ClickHouse Cloud's own settings profiles.",
+              "x-epack-rollup": {"rows": "cloud_managed", "as": "count"}
+            },
+            "inventory": {
+              "type": "array",
+              "description": "The customer's settings profiles, sorted by name.",
+              "x-epack-level": "audit",
+              "items": {"$ref": "#/$defs/settings_profile"}
+            },
+            "cloud_managed": {
+              "type": "array",
+              "description": "ClickHouse Cloud's own settings profiles, the ones stored in users_xml, sorted by name.",
+              "x-epack-level": "audit",
+              "items": {"$ref": "#/$defs/settings_profile"}
+            }
+          }
+        },
+        "settings_profile_elements": {
+          "type": "object",
+          "description": "What each settings profile, user, and role sets, from system.settings_profile_elements. An element of ClickHouse Cloud's own profile, user, or role is in cloud_managed.",
+          "additionalProperties": false,
+          "required": ["customer_count", "cloud_managed_count"],
+          "properties": {
+            "customer_count": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "The customer's settings profile elements.",
+              "x-epack-rollup": {"rows": "inventory", "as": "count"}
+            },
+            "cloud_managed_count": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "ClickHouse Cloud's own settings profile elements.",
+              "x-epack-rollup": {"rows": "cloud_managed", "as": "count"}
+            },
+            "inventory": {
+              "type": "array",
+              "description": "What the customer's profiles, users, and roles set. Each element belongs to one profile, user, or role.",
+              "x-epack-level": "audit",
+              "items": {"$ref": "#/$defs/settings_profile_element"}
+            },
+            "cloud_managed": {
+              "type": "array",
+              "description": "What ClickHouse Cloud's own profiles, users, and roles set.",
+              "x-epack-level": "audit",
+              "items": {"$ref": "#/$defs/settings_profile_element"}
+            }
+          }
+        },
+        "quotas": {
+          "type": "object",
+          "description": "The quotas, from system.quotas.",
+          "additionalProperties": false,
+          "required": ["customer_count", "cloud_managed_count"],
+          "properties": {
+            "customer_count": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "The customer's quotas.",
+              "x-epack-rollup": {"rows": "inventory", "as": "count"}
+            },
+            "cloud_managed_count": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "ClickHouse Cloud's own quotas.",
+              "x-epack-rollup": {"rows": "cloud_managed", "as": "count"}
+            },
+            "inventory": {
+              "type": "array",
+              "description": "The customer's quotas, sorted by name.",
+              "x-epack-level": "audit",
+              "items": {"$ref": "#/$defs/quota"}
+            },
+            "cloud_managed": {
+              "type": "array",
+              "description": "ClickHouse Cloud's own quotas, the ones stored in users_xml, sorted by name.",
+              "x-epack-level": "audit",
+              "items": {"$ref": "#/$defs/quota"}
+            }
+          }
+        },
+        "quota_limits": {
+          "type": "object",
+          "description": "The limit each quota sets for each interval, from system.quota_limits. A limit of ClickHouse Cloud's own quota is in cloud_managed.",
+          "additionalProperties": false,
+          "required": ["customer_count", "cloud_managed_count"],
+          "properties": {
+            "customer_count": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "The customer's quota limits.",
+              "x-epack-rollup": {"rows": "inventory", "as": "count"}
+            },
+            "cloud_managed_count": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "ClickHouse Cloud's own quota limits.",
+              "x-epack-rollup": {"rows": "cloud_managed", "as": "count"}
+            },
+            "inventory": {
+              "type": "array",
+              "description": "The limits of the customer's quotas, for each interval.",
+              "x-epack-level": "audit",
+              "items": {"$ref": "#/$defs/quota_limit"}
+            },
+            "cloud_managed": {
+              "type": "array",
+              "description": "The limits of ClickHouse Cloud's own quotas, for each interval.",
+              "x-epack-level": "audit",
+              "items": {"$ref": "#/$defs/quota_limit"}
+            }
+          }
+        },
+        "row_policies": {
+          "type": "object",
+          "description": "The row policies, from system.row_policies.",
+          "additionalProperties": false,
+          "required": ["customer_count", "cloud_managed_count"],
+          "properties": {
+            "customer_count": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "The customer's row policies.",
+              "x-epack-rollup": {"rows": "inventory", "as": "count"}
+            },
+            "cloud_managed_count": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "ClickHouse Cloud's own row policies.",
+              "x-epack-rollup": {"rows": "cloud_managed", "as": "count"}
+            },
+            "inventory": {
+              "type": "array",
+              "description": "The customer's row policies, sorted by name, without their filter expressions, which can hold the customer's data.",
+              "x-epack-level": "audit",
+              "items": {"$ref": "#/$defs/row_policy"}
+            },
+            "cloud_managed": {
+              "type": "array",
+              "description": "ClickHouse Cloud's own row policies, the ones stored in users_xml.",
+              "x-epack-level": "audit",
+              "items": {"$ref": "#/$defs/row_policy"}
+            }
+          }
+        }
+      }
+    }
+  }
+}

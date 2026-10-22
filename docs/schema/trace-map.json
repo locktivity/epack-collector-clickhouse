@@ -1,0 +1,5940 @@
+{
+  "artifacts": {
+    "artifacts/clickhouse.json": {
+      "/api_keys": {
+        "operations": [
+          "clickhouse.keys.list"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/collector.go:23"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/collector.go:26"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/collector.go:33"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/collector.go:50"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/collector.go:51"
+          },
+          {
+            "role": "helper",
+            "line": "internal/collector/console.go:90",
+            "end": 134
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:93"
+        ]
+      },
+      "/api_keys/admin_count": {
+        "operations": [
+          "clickhouse.keys.list"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:91"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:92"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:98"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:99"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:104"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:124"
+          },
+          {
+            "role": "helper",
+            "line": "internal/collector/console.go:209",
+            "end": 214
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:93"
+        ]
+      },
+      "/api_keys/any_address_count": {
+        "operations": [
+          "clickhouse.keys.list"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:91"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:92"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:98"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:112"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:114"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:115"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:126"
+          },
+          {
+            "role": "helper",
+            "line": "internal/collector/console.go:209",
+            "end": 214
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:93"
+        ]
+      },
+      "/api_keys/enabled_count": {
+        "operations": [
+          "clickhouse.keys.list"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:91"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:92"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:98"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:102"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:123"
+          },
+          {
+            "role": "helper",
+            "line": "internal/collector/console.go:209",
+            "end": 214
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:93"
+        ]
+      },
+      "/api_keys/inventory/*/admin": {
+        "operations": [
+          "clickhouse.keys.list"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:91"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:92"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:98"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:99"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:104"
+          },
+          {
+            "role": "helper",
+            "line": "internal/collector/console.go:189",
+            "end": 196
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:93"
+        ]
+      },
+      "/api_keys/inventory/*/any_address": {
+        "operations": [
+          "clickhouse.keys.list"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:91"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:92"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:98"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:112"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:114"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:115"
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:93"
+        ]
+      },
+      "/api_keys/inventory/*/created_at": {
+        "operations": [
+          "clickhouse.keys.list"
+        ],
+        "code": [
+          {
+            "role": "helper",
+            "line": "internal/collector/collector.go:89",
+            "end": 99
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:91"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:92"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:98"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:105"
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:93"
+        ]
+      },
+      "/api_keys/inventory/*/expires_at": {
+        "operations": [
+          "clickhouse.keys.list"
+        ],
+        "code": [
+          {
+            "role": "helper",
+            "line": "internal/collector/collector.go:89",
+            "end": 99
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:91"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:92"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:98"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:108"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:109"
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:93"
+        ]
+      },
+      "/api_keys/inventory/*/ip_access_list": {
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:91"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:92"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:98"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:106"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:112"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:113"
+          }
+        ]
+      },
+      "/api_keys/inventory/*/ip_access_list/*": {
+        "operations": [
+          "clickhouse.keys.list"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:91"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:92"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:98"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:106"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:112"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:113"
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:93"
+        ]
+      },
+      "/api_keys/inventory/*/last_used_at": {
+        "operations": [
+          "clickhouse.keys.list"
+        ],
+        "code": [
+          {
+            "role": "helper",
+            "line": "internal/collector/collector.go:89",
+            "end": 99
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:91"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:92"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:98"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:118"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:119"
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:93"
+        ]
+      },
+      "/api_keys/inventory/*/name": {
+        "operations": [
+          "clickhouse.keys.list"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:91"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:92"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:98"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:101"
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:93"
+        ]
+      },
+      "/api_keys/inventory/*/never_expires": {
+        "operations": [
+          "clickhouse.keys.list"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:91"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:92"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:98"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:108"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:109"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:111"
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:93"
+        ]
+      },
+      "/api_keys/inventory/*/never_used": {
+        "operations": [
+          "clickhouse.keys.list"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:91"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:92"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:98"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:118"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:119"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:121"
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:93"
+        ]
+      },
+      "/api_keys/inventory/*/roles": {
+        "operations": [
+          "clickhouse.keys.list"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:91"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:92"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:98"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:99"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:103"
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:93"
+        ]
+      },
+      "/api_keys/inventory/*/roles/*/name": {
+        "operations": [
+          "clickhouse.keys.list"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:182"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:183"
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:93"
+        ]
+      },
+      "/api_keys/inventory/*/roles/*/type": {
+        "operations": [
+          "clickhouse.keys.list"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:182"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:183"
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:93"
+        ]
+      },
+      "/api_keys/inventory/*/state": {
+        "operations": [
+          "clickhouse.keys.list"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:91"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:92"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:98"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:102"
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:93"
+        ]
+      },
+      "/api_keys/never_expires_count": {
+        "operations": [
+          "clickhouse.keys.list"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:91"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:92"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:98"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:108"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:109"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:111"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:125"
+          },
+          {
+            "role": "helper",
+            "line": "internal/collector/console.go:209",
+            "end": 214
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:93"
+        ]
+      },
+      "/api_keys/never_used_count": {
+        "operations": [
+          "clickhouse.keys.list"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:91"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:92"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:98"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:118"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:119"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:121"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:127"
+          },
+          {
+            "role": "helper",
+            "line": "internal/collector/console.go:209",
+            "end": 214
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:93"
+        ]
+      },
+      "/api_keys/total_count": {
+        "operations": [
+          "clickhouse.keys.list"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:91"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:92"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:97"
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:93"
+        ]
+      },
+      "/collected_at": {
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/collector.go:23"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/collector.go:38"
+          }
+        ]
+      },
+      "/collected_at_level": {
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/collector.go:23"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/collector.go:39"
+          }
+        ]
+      },
+      "/console_roles": {
+        "operations": [
+          "clickhouse.roles.list"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/collector.go:23"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/collector.go:26"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/collector.go:33"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/collector.go:54"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/collector.go:55"
+          },
+          {
+            "role": "helper",
+            "line": "internal/collector/console.go:140",
+            "end": 168
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:143"
+        ]
+      },
+      "/console_roles/custom_count": {
+        "operations": [
+          "clickhouse.roles.list"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:141"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:142"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:147"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:161"
+          },
+          {
+            "role": "helper",
+            "line": "internal/collector/console.go:209",
+            "end": 214
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:143"
+        ]
+      },
+      "/console_roles/inventory/*/api_key_count": {
+        "operations": [
+          "clickhouse.roles.list"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:141"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:142"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:147"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:149"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:150"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:153"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:154"
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:143"
+        ]
+      },
+      "/console_roles/inventory/*/member_count": {
+        "operations": [
+          "clickhouse.roles.list"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:141"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:142"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:147"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:149"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:150"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:151"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:152"
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:143"
+        ]
+      },
+      "/console_roles/inventory/*/name": {
+        "operations": [
+          "clickhouse.roles.list"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:141"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:142"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:147"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:148"
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:143"
+        ]
+      },
+      "/console_roles/inventory/*/policies": {
+        "operations": [
+          "clickhouse.roles.list"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:141"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:142"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:147"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:148"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:157"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:158"
+          },
+          {
+            "role": "helper",
+            "line": "internal/collector/console.go:216",
+            "end": 221
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:143"
+        ]
+      },
+      "/console_roles/inventory/*/policies/*/allow_deny": {
+        "operations": [
+          "clickhouse.roles.list"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:141"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:142"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:147"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:157"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:158"
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:143"
+        ]
+      },
+      "/console_roles/inventory/*/policies/*/permissions/*": {
+        "operations": [
+          "clickhouse.roles.list"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:141"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:142"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:147"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:157"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:158"
+          },
+          {
+            "role": "helper",
+            "line": "internal/collector/console.go:216",
+            "end": 221
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:143"
+        ]
+      },
+      "/console_roles/inventory/*/policies/*/resources/*": {
+        "operations": [
+          "clickhouse.roles.list"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:141"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:142"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:147"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:157"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:158"
+          },
+          {
+            "role": "helper",
+            "line": "internal/collector/console.go:216",
+            "end": 221
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:143"
+        ]
+      },
+      "/console_roles/inventory/*/type": {
+        "operations": [
+          "clickhouse.roles.list"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:141"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:142"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:147"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:148"
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:143"
+        ]
+      },
+      "/console_roles/total_count": {
+        "operations": [
+          "clickhouse.roles.list"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:141"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:142"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:146"
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:143"
+        ]
+      },
+      "/invitations": {
+        "operations": [
+          "clickhouse.invitations.list"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/collector.go:23"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/collector.go:26"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/collector.go:33"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/collector.go:35"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/collector.go:45"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/collector.go:47"
+          },
+          {
+            "role": "helper",
+            "line": "internal/collector/console.go:58",
+            "end": 86
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:61"
+        ]
+      },
+      "/invitations/expired_count": {
+        "operations": [
+          "clickhouse.invitations.list"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:59"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:60"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:66"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:67"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:73"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:75"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:76"
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:61"
+        ]
+      },
+      "/invitations/inventory": {
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:59"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:60"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:64"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:66"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:67"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:68"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:82"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:83"
+          }
+        ]
+      },
+      "/invitations/inventory/*/created_at": {
+        "operations": [
+          "clickhouse.invitations.list"
+        ],
+        "code": [
+          {
+            "role": "helper",
+            "line": "internal/collector/collector.go:89",
+            "end": 99
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:59"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:60"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:66"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:71"
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:61"
+        ]
+      },
+      "/invitations/inventory/*/email": {
+        "operations": [
+          "clickhouse.invitations.list"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:59"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:60"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:66"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:69"
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:61"
+        ]
+      },
+      "/invitations/inventory/*/expired": {
+        "operations": [
+          "clickhouse.invitations.list"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:59"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:60"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:66"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:67"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:73"
+          },
+          {
+            "role": "helper",
+            "line": "internal/collector/console.go:200",
+            "end": 203
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:61"
+        ]
+      },
+      "/invitations/inventory/*/expires_at": {
+        "operations": [
+          "clickhouse.invitations.list"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:59"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:60"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:66"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:67"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:72"
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:61"
+        ]
+      },
+      "/invitations/inventory/*/roles/*/name": {
+        "operations": [
+          "clickhouse.invitations.list"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:182"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:183"
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:61"
+        ]
+      },
+      "/invitations/inventory/*/roles/*/type": {
+        "operations": [
+          "clickhouse.invitations.list"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:182"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:183"
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:61"
+        ]
+      },
+      "/invitations/pending_count": {
+        "operations": [
+          "clickhouse.invitations.list"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:59"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:60"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:66"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:67"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:73"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:75"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:78"
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:61"
+        ]
+      },
+      "/invitations/total_count": {
+        "operations": [
+          "clickhouse.invitations.list"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:59"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:60"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:65"
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:61"
+        ]
+      },
+      "/members": {
+        "operations": [
+          "clickhouse.members.list"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/collector.go:23"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/collector.go:26"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/collector.go:33"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/collector.go:45"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/collector.go:46"
+          },
+          {
+            "role": "helper",
+            "line": "internal/collector/console.go:29",
+            "end": 54
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:36"
+        ]
+      },
+      "/members/admin_count": {
+        "operations": [
+          "clickhouse.members.list"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:30"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:31"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:41"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:42"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:43"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:44"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:45"
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:36"
+        ]
+      },
+      "/members/inventory/*/admin": {
+        "operations": [
+          "clickhouse.members.list"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:30"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:31"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:41"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:42"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:43"
+          },
+          {
+            "role": "helper",
+            "line": "internal/collector/console.go:189",
+            "end": 196
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:36"
+        ]
+      },
+      "/members/inventory/*/email": {
+        "operations": [
+          "clickhouse.members.list"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:30"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:31"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:41"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:43"
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:36"
+        ]
+      },
+      "/members/inventory/*/joined_at": {
+        "operations": [
+          "clickhouse.members.list"
+        ],
+        "code": [
+          {
+            "role": "helper",
+            "line": "internal/collector/collector.go:89",
+            "end": 99
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:30"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:31"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:41"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:43"
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:36"
+        ]
+      },
+      "/members/inventory/*/roles/*/name": {
+        "operations": [
+          "clickhouse.members.list"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:182"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:183"
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:36"
+        ]
+      },
+      "/members/inventory/*/roles/*/type": {
+        "operations": [
+          "clickhouse.members.list"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:182"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:183"
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:36"
+        ]
+      },
+      "/members/mfa_enabled_count": {
+        "gaps": [
+          "internal/collector/console.go:36",
+          "internal/collector/console.go:49"
+        ]
+      },
+      "/members/total_count": {
+        "operations": [
+          "clickhouse.members.list"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/console.go:30"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/console.go:31"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/console.go:40"
+          }
+        ],
+        "gaps": [
+          "internal/collector/console.go:36"
+        ]
+      },
+      "/organization/created_at": {
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/collector.go:23"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/collector.go:40"
+          },
+          {
+            "role": "helper",
+            "line": "internal/collector/collector.go:89",
+            "end": 99
+          }
+        ]
+      },
+      "/organization/id": {
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/collector.go:23"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/collector.go:40"
+          }
+        ]
+      },
+      "/organization/name": {
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/collector.go:23"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/collector.go:40"
+          }
+        ]
+      },
+      "/organization/sso_enabled": {
+        "gaps": [
+          "internal/collector/collector.go:43"
+        ]
+      },
+      "/schema_version": {
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/collector.go:23"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/collector.go:37"
+          }
+        ]
+      },
+      "/services": {
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/collector.go:23"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/collector.go:26"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/collector.go:33"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/collector.go:41"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/collector.go:58"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/collector.go:59"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/collector.go:60"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/collector.go:62"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/config.go:43"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/config.go:48"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/config.go:49"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/config.go:52"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/config.go:53"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/config.go:57"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/config.go:58"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/config.go:59"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/config.go:62"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/config.go:63"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/config.go:64"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/config.go:67"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/config.go:71"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/config.go:72"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/config.go:73"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/config.go:74"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/config.go:77"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/config.go:84"
+          },
+          {
+            "role": "helper",
+            "line": "internal/collector/services.go:36",
+            "end": 100
+          }
+        ]
+      },
+      "/services/*/grants": {
+        "operations": [
+          "clickhouse.db.grants.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:43"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:53"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:69"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:72"
+          },
+          {
+            "role": "helper",
+            "line": "internal/collector/services.go:237",
+            "end": 260
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:70"
+        ]
+      },
+      "/services/*/grants/cloud_managed": {
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:238"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:256"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:257"
+          }
+        ]
+      },
+      "/services/*/grants/cloud_managed/*/access_type": {
+        "operations": [
+          "clickhouse.db.grants.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:244"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:70"
+        ]
+      },
+      "/services/*/grants/cloud_managed/*/column": {
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:247"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:70"
+        ]
+      },
+      "/services/*/grants/cloud_managed/*/database": {
+        "operations": [
+          "clickhouse.db.grants.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:245"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:70"
+        ]
+      },
+      "/services/*/grants/cloud_managed/*/grant_option": {
+        "operations": [
+          "clickhouse.db.grants.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:249"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:70"
+        ]
+      },
+      "/services/*/grants/cloud_managed/*/is_partial_revoke": {
+        "operations": [
+          "clickhouse.db.grants.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:248"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:70"
+        ]
+      },
+      "/services/*/grants/cloud_managed/*/role_name": {
+        "operations": [
+          "clickhouse.db.grants.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:243"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:70"
+        ]
+      },
+      "/services/*/grants/cloud_managed/*/table": {
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:246"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:70"
+        ]
+      },
+      "/services/*/grants/cloud_managed/*/user_name": {
+        "operations": [
+          "clickhouse.db.grants.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:242"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:70"
+        ]
+      },
+      "/services/*/grants/cloud_managed_count": {
+        "operations": [
+          "clickhouse.db.grants.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:238"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:252"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:70"
+        ]
+      },
+      "/services/*/grants/customer_count": {
+        "operations": [
+          "clickhouse.db.grants.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:238"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:252"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:70"
+        ]
+      },
+      "/services/*/grants/grant_option_count": {
+        "operations": [
+          "clickhouse.db.grants.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "helper",
+            "line": "internal/collector/console.go:209",
+            "end": 214
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:238"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:249"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:253"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:254"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:70"
+        ]
+      },
+      "/services/*/grants/inventory": {
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:238"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:256"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:257"
+          }
+        ]
+      },
+      "/services/*/grants/inventory/*/access_type": {
+        "operations": [
+          "clickhouse.db.grants.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:244"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:70"
+        ]
+      },
+      "/services/*/grants/inventory/*/column": {
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:247"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:70"
+        ]
+      },
+      "/services/*/grants/inventory/*/database": {
+        "operations": [
+          "clickhouse.db.grants.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:245"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:70"
+        ]
+      },
+      "/services/*/grants/inventory/*/grant_option": {
+        "operations": [
+          "clickhouse.db.grants.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:249"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:70"
+        ]
+      },
+      "/services/*/grants/inventory/*/is_partial_revoke": {
+        "operations": [
+          "clickhouse.db.grants.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:248"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:70"
+        ]
+      },
+      "/services/*/grants/inventory/*/role_name": {
+        "operations": [
+          "clickhouse.db.grants.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:243"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:70"
+        ]
+      },
+      "/services/*/grants/inventory/*/table": {
+        "operations": [
+          "clickhouse.db.grants.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:246"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:70"
+        ]
+      },
+      "/services/*/grants/inventory/*/user_name": {
+        "operations": [
+          "clickhouse.db.grants.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:242"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:70"
+        ]
+      },
+      "/services/*/host": {
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/config.go:43"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/config.go:48"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/config.go:49"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/config.go:52"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/config.go:53"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/config.go:57"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/config.go:58"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/config.go:59"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/config.go:62"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/config.go:63"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/config.go:64"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/config.go:67"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/config.go:84"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:37"
+          }
+        ]
+      },
+      "/services/*/quota_limits": {
+        "operations": [
+          "clickhouse.db.quota_limits.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:43"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:53"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:89"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:92"
+          },
+          {
+            "role": "helper",
+            "line": "internal/collector/services.go:335",
+            "end": 351
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:90"
+        ]
+      },
+      "/services/*/quota_limits/cloud_managed": {
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:336"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:347"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:348"
+          }
+        ]
+      },
+      "/services/*/quota_limits/cloud_managed/*/duration": {
+        "operations": [
+          "clickhouse.db.quota_limits.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:341"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:90"
+        ]
+      },
+      "/services/*/quota_limits/cloud_managed/*/is_randomized_interval": {
+        "operations": [
+          "clickhouse.db.quota_limits.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/clickhouse/database.go:170"
+          },
+          {
+            "role": "input",
+            "line": "internal/clickhouse/database.go:173"
+          },
+          {
+            "role": "condition",
+            "line": "internal/clickhouse/database.go:174"
+          },
+          {
+            "role": "condition",
+            "line": "internal/clickhouse/database.go:177"
+          },
+          {
+            "role": "condition",
+            "line": "internal/clickhouse/database.go:180"
+          },
+          {
+            "role": "input",
+            "line": "internal/clickhouse/database.go:188"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:342"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:90"
+        ]
+      },
+      "/services/*/quota_limits/cloud_managed/*/limits": {
+        "operations": [
+          "clickhouse.db.quota_limits.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/clickhouse/database.go:167"
+          },
+          {
+            "role": "condition",
+            "line": "internal/clickhouse/database.go:170"
+          },
+          {
+            "role": "condition",
+            "line": "internal/clickhouse/database.go:174"
+          },
+          {
+            "role": "condition",
+            "line": "internal/clickhouse/database.go:177"
+          },
+          {
+            "role": "condition",
+            "line": "internal/clickhouse/database.go:180"
+          },
+          {
+            "role": "input",
+            "line": "internal/clickhouse/database.go:189"
+          },
+          {
+            "role": "condition",
+            "line": "internal/clickhouse/database.go:190"
+          },
+          {
+            "role": "condition",
+            "line": "internal/clickhouse/database.go:192"
+          },
+          {
+            "role": "input",
+            "line": "internal/clickhouse/database.go:195"
+          },
+          {
+            "role": "condition",
+            "line": "internal/clickhouse/database.go:196"
+          },
+          {
+            "role": "input",
+            "line": "internal/clickhouse/database.go:199"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:343"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:90"
+        ]
+      },
+      "/services/*/quota_limits/cloud_managed/*/quota_name": {
+        "operations": [
+          "clickhouse.db.quota_limits.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:340"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:90"
+        ]
+      },
+      "/services/*/quota_limits/cloud_managed_count": {
+        "operations": [
+          "clickhouse.db.quota_limits.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:336"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:346"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:90"
+        ]
+      },
+      "/services/*/quota_limits/customer_count": {
+        "operations": [
+          "clickhouse.db.quota_limits.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:336"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:346"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:90"
+        ]
+      },
+      "/services/*/quota_limits/inventory": {
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:336"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:347"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:348"
+          }
+        ]
+      },
+      "/services/*/quota_limits/inventory/*/duration": {
+        "operations": [
+          "clickhouse.db.quota_limits.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:341"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:90"
+        ]
+      },
+      "/services/*/quota_limits/inventory/*/is_randomized_interval": {
+        "operations": [
+          "clickhouse.db.quota_limits.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/clickhouse/database.go:170"
+          },
+          {
+            "role": "input",
+            "line": "internal/clickhouse/database.go:173"
+          },
+          {
+            "role": "condition",
+            "line": "internal/clickhouse/database.go:174"
+          },
+          {
+            "role": "condition",
+            "line": "internal/clickhouse/database.go:177"
+          },
+          {
+            "role": "condition",
+            "line": "internal/clickhouse/database.go:180"
+          },
+          {
+            "role": "input",
+            "line": "internal/clickhouse/database.go:188"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:342"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:90"
+        ]
+      },
+      "/services/*/quota_limits/inventory/*/limits/execution_time": {
+        "operations": [
+          "clickhouse.db.quota_limits.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/clickhouse/database.go:167"
+          },
+          {
+            "role": "condition",
+            "line": "internal/clickhouse/database.go:170"
+          },
+          {
+            "role": "condition",
+            "line": "internal/clickhouse/database.go:174"
+          },
+          {
+            "role": "condition",
+            "line": "internal/clickhouse/database.go:177"
+          },
+          {
+            "role": "condition",
+            "line": "internal/clickhouse/database.go:180"
+          },
+          {
+            "role": "input",
+            "line": "internal/clickhouse/database.go:189"
+          },
+          {
+            "role": "condition",
+            "line": "internal/clickhouse/database.go:190"
+          },
+          {
+            "role": "condition",
+            "line": "internal/clickhouse/database.go:192"
+          },
+          {
+            "role": "input",
+            "line": "internal/clickhouse/database.go:195"
+          },
+          {
+            "role": "condition",
+            "line": "internal/clickhouse/database.go:196"
+          },
+          {
+            "role": "input",
+            "line": "internal/clickhouse/database.go:199"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:343"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:90"
+        ]
+      },
+      "/services/*/quota_limits/inventory/*/limits/failed_sequential_authentications": {
+        "operations": [
+          "clickhouse.db.quota_limits.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/clickhouse/database.go:167"
+          },
+          {
+            "role": "condition",
+            "line": "internal/clickhouse/database.go:170"
+          },
+          {
+            "role": "condition",
+            "line": "internal/clickhouse/database.go:174"
+          },
+          {
+            "role": "condition",
+            "line": "internal/clickhouse/database.go:177"
+          },
+          {
+            "role": "condition",
+            "line": "internal/clickhouse/database.go:180"
+          },
+          {
+            "role": "input",
+            "line": "internal/clickhouse/database.go:189"
+          },
+          {
+            "role": "condition",
+            "line": "internal/clickhouse/database.go:190"
+          },
+          {
+            "role": "condition",
+            "line": "internal/clickhouse/database.go:192"
+          },
+          {
+            "role": "input",
+            "line": "internal/clickhouse/database.go:195"
+          },
+          {
+            "role": "condition",
+            "line": "internal/clickhouse/database.go:196"
+          },
+          {
+            "role": "input",
+            "line": "internal/clickhouse/database.go:199"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:343"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:90"
+        ]
+      },
+      "/services/*/quota_limits/inventory/*/limits/queries": {
+        "operations": [
+          "clickhouse.db.quota_limits.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/clickhouse/database.go:167"
+          },
+          {
+            "role": "condition",
+            "line": "internal/clickhouse/database.go:170"
+          },
+          {
+            "role": "condition",
+            "line": "internal/clickhouse/database.go:174"
+          },
+          {
+            "role": "condition",
+            "line": "internal/clickhouse/database.go:177"
+          },
+          {
+            "role": "condition",
+            "line": "internal/clickhouse/database.go:180"
+          },
+          {
+            "role": "input",
+            "line": "internal/clickhouse/database.go:189"
+          },
+          {
+            "role": "condition",
+            "line": "internal/clickhouse/database.go:190"
+          },
+          {
+            "role": "condition",
+            "line": "internal/clickhouse/database.go:192"
+          },
+          {
+            "role": "input",
+            "line": "internal/clickhouse/database.go:195"
+          },
+          {
+            "role": "condition",
+            "line": "internal/clickhouse/database.go:196"
+          },
+          {
+            "role": "input",
+            "line": "internal/clickhouse/database.go:199"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:343"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:90"
+        ]
+      },
+      "/services/*/quota_limits/inventory/*/quota_name": {
+        "operations": [
+          "clickhouse.db.quota_limits.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:340"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:90"
+        ]
+      },
+      "/services/*/quotas": {
+        "operations": [
+          "clickhouse.db.quotas.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:43"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:53"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:84"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:87"
+          },
+          {
+            "role": "helper",
+            "line": "internal/collector/services.go:314",
+            "end": 333
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:85"
+        ]
+      },
+      "/services/*/quotas/cloud_managed": {
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:315"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:329"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:330"
+          }
+        ]
+      },
+      "/services/*/quotas/cloud_managed/*/apply_to_all": {
+        "operations": [
+          "clickhouse.db.quotas.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:323"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:85"
+        ]
+      },
+      "/services/*/quotas/cloud_managed/*/apply_to_except": {
+        "operations": [
+          "clickhouse.db.quotas.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:325"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:85"
+        ]
+      },
+      "/services/*/quotas/cloud_managed/*/apply_to_list": {
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:324"
+          }
+        ]
+      },
+      "/services/*/quotas/cloud_managed/*/apply_to_list/*": {
+        "operations": [
+          "clickhouse.db.quotas.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:324"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:85"
+        ]
+      },
+      "/services/*/quotas/cloud_managed/*/durations/*": {
+        "operations": [
+          "clickhouse.db.quotas.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:322"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:85"
+        ]
+      },
+      "/services/*/quotas/cloud_managed/*/keys/*": {
+        "operations": [
+          "clickhouse.db.quotas.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:321"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:85"
+        ]
+      },
+      "/services/*/quotas/cloud_managed/*/name": {
+        "operations": [
+          "clickhouse.db.quotas.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:319"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:85"
+        ]
+      },
+      "/services/*/quotas/cloud_managed/*/storage": {
+        "operations": [
+          "clickhouse.db.quotas.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:320"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:85"
+        ]
+      },
+      "/services/*/quotas/cloud_managed_count": {
+        "operations": [
+          "clickhouse.db.quotas.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:315"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:328"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:85"
+        ]
+      },
+      "/services/*/quotas/customer_count": {
+        "operations": [
+          "clickhouse.db.quotas.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:315"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:328"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:85"
+        ]
+      },
+      "/services/*/quotas/inventory": {
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:315"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:329"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:330"
+          }
+        ]
+      },
+      "/services/*/quotas/inventory/*/apply_to_all": {
+        "operations": [
+          "clickhouse.db.quotas.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:323"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:85"
+        ]
+      },
+      "/services/*/quotas/inventory/*/apply_to_except": {
+        "operations": [
+          "clickhouse.db.quotas.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:325"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:85"
+        ]
+      },
+      "/services/*/quotas/inventory/*/apply_to_list/*": {
+        "operations": [
+          "clickhouse.db.quotas.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:324"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:85"
+        ]
+      },
+      "/services/*/quotas/inventory/*/durations/*": {
+        "operations": [
+          "clickhouse.db.quotas.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:322"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:85"
+        ]
+      },
+      "/services/*/quotas/inventory/*/keys": {
+        "operations": [
+          "clickhouse.db.quotas.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:321"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:85"
+        ]
+      },
+      "/services/*/quotas/inventory/*/name": {
+        "operations": [
+          "clickhouse.db.quotas.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:319"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:85"
+        ]
+      },
+      "/services/*/quotas/inventory/*/storage": {
+        "operations": [
+          "clickhouse.db.quotas.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:320"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:85"
+        ]
+      },
+      "/services/*/role_grants": {
+        "operations": [
+          "clickhouse.db.role_grants.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:43"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:53"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:64"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:67"
+          },
+          {
+            "role": "helper",
+            "line": "internal/collector/services.go:215",
+            "end": 235
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:65"
+        ]
+      },
+      "/services/*/role_grants/cloud_managed": {
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:216"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:231"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:232"
+          }
+        ]
+      },
+      "/services/*/role_grants/cloud_managed/*/granted_role_is_default": {
+        "operations": [
+          "clickhouse.db.role_grants.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:223"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:65"
+        ]
+      },
+      "/services/*/role_grants/cloud_managed/*/granted_role_name": {
+        "operations": [
+          "clickhouse.db.role_grants.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:222"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:65"
+        ]
+      },
+      "/services/*/role_grants/cloud_managed/*/role_name": {
+        "operations": [
+          "clickhouse.db.role_grants.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:221"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:65"
+        ]
+      },
+      "/services/*/role_grants/cloud_managed/*/user_name": {
+        "operations": [
+          "clickhouse.db.role_grants.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:220"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:65"
+        ]
+      },
+      "/services/*/role_grants/cloud_managed/*/with_admin_option": {
+        "operations": [
+          "clickhouse.db.role_grants.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:224"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:65"
+        ]
+      },
+      "/services/*/role_grants/cloud_managed_count": {
+        "operations": [
+          "clickhouse.db.role_grants.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:216"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:227"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:65"
+        ]
+      },
+      "/services/*/role_grants/customer_count": {
+        "operations": [
+          "clickhouse.db.role_grants.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:216"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:227"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:65"
+        ]
+      },
+      "/services/*/role_grants/inventory": {
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:216"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:231"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:232"
+          }
+        ]
+      },
+      "/services/*/role_grants/inventory/*/granted_role_is_default": {
+        "operations": [
+          "clickhouse.db.role_grants.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:223"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:65"
+        ]
+      },
+      "/services/*/role_grants/inventory/*/granted_role_name": {
+        "operations": [
+          "clickhouse.db.role_grants.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:222"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:65"
+        ]
+      },
+      "/services/*/role_grants/inventory/*/role_name": {
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:221"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:65"
+        ]
+      },
+      "/services/*/role_grants/inventory/*/user_name": {
+        "operations": [
+          "clickhouse.db.role_grants.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:220"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:65"
+        ]
+      },
+      "/services/*/role_grants/inventory/*/with_admin_option": {
+        "operations": [
+          "clickhouse.db.role_grants.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:224"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:65"
+        ]
+      },
+      "/services/*/role_grants/with_admin_option_count": {
+        "operations": [
+          "clickhouse.db.role_grants.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "helper",
+            "line": "internal/collector/console.go:209",
+            "end": 214
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:216"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:224"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:228"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:229"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:65"
+        ]
+      },
+      "/services/*/roles": {
+        "operations": [
+          "clickhouse.db.roles.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:43"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:53"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:59"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:62"
+          },
+          {
+            "role": "helper",
+            "line": "internal/collector/services.go:173",
+            "end": 190
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:60"
+        ]
+      },
+      "/services/*/roles/cloud_managed/*/name": {
+        "operations": [
+          "clickhouse.db.roles.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:176"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:177"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:60"
+        ]
+      },
+      "/services/*/roles/cloud_managed/*/storage": {
+        "operations": [
+          "clickhouse.db.roles.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:176"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:177"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:60"
+        ]
+      },
+      "/services/*/roles/cloud_managed_count": {
+        "operations": [
+          "clickhouse.db.roles.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:21"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:176"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:178"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:180"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:60"
+        ]
+      },
+      "/services/*/roles/customer_count": {
+        "operations": [
+          "clickhouse.db.roles.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:176"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:178"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:184"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:60"
+        ]
+      },
+      "/services/*/roles/inventory": {
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:175"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:176"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:177"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:178"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:183"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:186"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:187"
+          }
+        ]
+      },
+      "/services/*/roles/inventory/*/name": {
+        "operations": [
+          "clickhouse.db.roles.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:176"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:177"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:60"
+        ]
+      },
+      "/services/*/roles/inventory/*/storage": {
+        "operations": [
+          "clickhouse.db.roles.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:176"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:177"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:60"
+        ]
+      },
+      "/services/*/row_policies": {
+        "operations": [
+          "clickhouse.db.row_policies.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:43"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:53"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:94"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:97"
+          },
+          {
+            "role": "helper",
+            "line": "internal/collector/services.go:353",
+            "end": 374
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:95"
+        ]
+      },
+      "/services/*/row_policies/cloud_managed": {
+        "operations": [
+          "clickhouse.db.row_policies.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:354"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:370"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:371"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:95"
+        ]
+      },
+      "/services/*/row_policies/cloud_managed_count": {
+        "operations": [
+          "clickhouse.db.row_policies.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:354"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:369"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:95"
+        ]
+      },
+      "/services/*/row_policies/customer_count": {
+        "operations": [
+          "clickhouse.db.row_policies.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:354"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:369"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:95"
+        ]
+      },
+      "/services/*/row_policies/inventory": {
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:354"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:370"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:371"
+          }
+        ]
+      },
+      "/services/*/row_policies/inventory/*/apply_to_all": {
+        "operations": [
+          "clickhouse.db.row_policies.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:364"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:95"
+        ]
+      },
+      "/services/*/row_policies/inventory/*/apply_to_except": {
+        "operations": [
+          "clickhouse.db.row_policies.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:366"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:95"
+        ]
+      },
+      "/services/*/row_policies/inventory/*/apply_to_list/*": {
+        "operations": [
+          "clickhouse.db.row_policies.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:365"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:95"
+        ]
+      },
+      "/services/*/row_policies/inventory/*/database": {
+        "operations": [
+          "clickhouse.db.row_policies.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:360"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:95"
+        ]
+      },
+      "/services/*/row_policies/inventory/*/is_restrictive": {
+        "operations": [
+          "clickhouse.db.row_policies.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:363"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:95"
+        ]
+      },
+      "/services/*/row_policies/inventory/*/name": {
+        "operations": [
+          "clickhouse.db.row_policies.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:358"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:95"
+        ]
+      },
+      "/services/*/row_policies/inventory/*/short_name": {
+        "operations": [
+          "clickhouse.db.row_policies.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:359"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:95"
+        ]
+      },
+      "/services/*/row_policies/inventory/*/storage": {
+        "operations": [
+          "clickhouse.db.row_policies.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:362"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:95"
+        ]
+      },
+      "/services/*/row_policies/inventory/*/table": {
+        "operations": [
+          "clickhouse.db.row_policies.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:361"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:95"
+        ]
+      },
+      "/services/*/settings_profile_elements": {
+        "operations": [
+          "clickhouse.db.settings_profile_elements.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:43"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:53"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:79"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:82"
+          },
+          {
+            "role": "helper",
+            "line": "internal/collector/services.go:283",
+            "end": 312
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:80"
+        ]
+      },
+      "/services/*/settings_profile_elements/cloud_managed": {
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:284"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:308"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:309"
+          }
+        ]
+      },
+      "/services/*/settings_profile_elements/cloud_managed/*/inherit_profile": {
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:304"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:80"
+        ]
+      },
+      "/services/*/settings_profile_elements/cloud_managed/*/max": {
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:302"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:80"
+        ]
+      },
+      "/services/*/settings_profile_elements/cloud_managed/*/min": {
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:301"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:80"
+        ]
+      },
+      "/services/*/settings_profile_elements/cloud_managed/*/profile_name": {
+        "operations": [
+          "clickhouse.db.settings_profile_elements.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:296"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:80"
+        ]
+      },
+      "/services/*/settings_profile_elements/cloud_managed/*/role_name": {
+        "operations": [
+          "clickhouse.db.settings_profile_elements.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:298"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:80"
+        ]
+      },
+      "/services/*/settings_profile_elements/cloud_managed/*/setting_name": {
+        "operations": [
+          "clickhouse.db.settings_profile_elements.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:299"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:80"
+        ]
+      },
+      "/services/*/settings_profile_elements/cloud_managed/*/user_name": {
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:297"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:80"
+        ]
+      },
+      "/services/*/settings_profile_elements/cloud_managed/*/value": {
+        "operations": [
+          "clickhouse.db.settings_profile_elements.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:300"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:80"
+        ]
+      },
+      "/services/*/settings_profile_elements/cloud_managed/*/writability": {
+        "operations": [
+          "clickhouse.db.settings_profile_elements.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:303"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:80"
+        ]
+      },
+      "/services/*/settings_profile_elements/cloud_managed_count": {
+        "operations": [
+          "clickhouse.db.settings_profile_elements.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:284"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:307"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:80"
+        ]
+      },
+      "/services/*/settings_profile_elements/customer_count": {
+        "operations": [
+          "clickhouse.db.settings_profile_elements.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:284"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:307"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:80"
+        ]
+      },
+      "/services/*/settings_profile_elements/inventory": {
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:284"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:308"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:309"
+          }
+        ]
+      },
+      "/services/*/settings_profile_elements/inventory/*/inherit_profile": {
+        "operations": [
+          "clickhouse.db.settings_profile_elements.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:304"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:80"
+        ]
+      },
+      "/services/*/settings_profile_elements/inventory/*/max": {
+        "operations": [
+          "clickhouse.db.settings_profile_elements.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:302"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:80"
+        ]
+      },
+      "/services/*/settings_profile_elements/inventory/*/min": {
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:301"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:80"
+        ]
+      },
+      "/services/*/settings_profile_elements/inventory/*/profile_name": {
+        "operations": [
+          "clickhouse.db.settings_profile_elements.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:296"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:80"
+        ]
+      },
+      "/services/*/settings_profile_elements/inventory/*/role_name": {
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:298"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:80"
+        ]
+      },
+      "/services/*/settings_profile_elements/inventory/*/setting_name": {
+        "operations": [
+          "clickhouse.db.settings_profile_elements.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:299"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:80"
+        ]
+      },
+      "/services/*/settings_profile_elements/inventory/*/user_name": {
+        "operations": [
+          "clickhouse.db.settings_profile_elements.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:297"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:80"
+        ]
+      },
+      "/services/*/settings_profile_elements/inventory/*/value": {
+        "operations": [
+          "clickhouse.db.settings_profile_elements.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:300"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:80"
+        ]
+      },
+      "/services/*/settings_profile_elements/inventory/*/writability": {
+        "operations": [
+          "clickhouse.db.settings_profile_elements.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:303"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:80"
+        ]
+      },
+      "/services/*/settings_profiles": {
+        "operations": [
+          "clickhouse.db.settings_profiles.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:43"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:53"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:74"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:77"
+          },
+          {
+            "role": "helper",
+            "line": "internal/collector/services.go:262",
+            "end": 279
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:75"
+        ]
+      },
+      "/services/*/settings_profiles/cloud_managed": {
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:263"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:275"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:276"
+          }
+        ]
+      },
+      "/services/*/settings_profiles/cloud_managed/*/apply_to_all": {
+        "operations": [
+          "clickhouse.db.settings_profiles.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:269"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:75"
+        ]
+      },
+      "/services/*/settings_profiles/cloud_managed/*/apply_to_except": {
+        "operations": [
+          "clickhouse.db.settings_profiles.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:271"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:75"
+        ]
+      },
+      "/services/*/settings_profiles/cloud_managed/*/apply_to_list": {
+        "operations": [
+          "clickhouse.db.settings_profiles.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:270"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:75"
+        ]
+      },
+      "/services/*/settings_profiles/cloud_managed/*/name": {
+        "operations": [
+          "clickhouse.db.settings_profiles.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:267"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:75"
+        ]
+      },
+      "/services/*/settings_profiles/cloud_managed/*/storage": {
+        "operations": [
+          "clickhouse.db.settings_profiles.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:268"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:75"
+        ]
+      },
+      "/services/*/settings_profiles/cloud_managed_count": {
+        "operations": [
+          "clickhouse.db.settings_profiles.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:263"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:274"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:75"
+        ]
+      },
+      "/services/*/settings_profiles/customer_count": {
+        "operations": [
+          "clickhouse.db.settings_profiles.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:263"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:274"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:75"
+        ]
+      },
+      "/services/*/settings_profiles/inventory": {
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:263"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:275"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:276"
+          }
+        ]
+      },
+      "/services/*/settings_profiles/inventory/*/apply_to_all": {
+        "operations": [
+          "clickhouse.db.settings_profiles.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:269"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:75"
+        ]
+      },
+      "/services/*/settings_profiles/inventory/*/apply_to_except": {
+        "operations": [
+          "clickhouse.db.settings_profiles.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:271"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:75"
+        ]
+      },
+      "/services/*/settings_profiles/inventory/*/apply_to_except/*": {
+        "operations": [
+          "clickhouse.db.settings_profiles.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:271"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:75"
+        ]
+      },
+      "/services/*/settings_profiles/inventory/*/apply_to_list": {
+        "operations": [
+          "clickhouse.db.settings_profiles.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:270"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:75"
+        ]
+      },
+      "/services/*/settings_profiles/inventory/*/apply_to_list/*": {
+        "operations": [
+          "clickhouse.db.settings_profiles.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:270"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:75"
+        ]
+      },
+      "/services/*/settings_profiles/inventory/*/name": {
+        "operations": [
+          "clickhouse.db.settings_profiles.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:267"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:75"
+        ]
+      },
+      "/services/*/settings_profiles/inventory/*/storage": {
+        "operations": [
+          "clickhouse.db.settings_profiles.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:268"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:75"
+        ]
+      },
+      "/services/*/user": {
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/config.go:43"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/config.go:48"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/config.go:49"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/config.go:52"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/config.go:53"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/config.go:57"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/config.go:58"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/config.go:59"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/config.go:64"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/config.go:67"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/config.go:71"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/config.go:72"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/config.go:73"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/config.go:74"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/config.go:77"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/config.go:84"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:37"
+          }
+        ]
+      },
+      "/services/*/users": {
+        "operations": [
+          "clickhouse.db.users.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:43"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:53"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:54"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:57"
+          },
+          {
+            "role": "helper",
+            "line": "internal/collector/services.go:130",
+            "end": 171
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:55"
+        ]
+      },
+      "/services/*/users/any_host_count": {
+        "operations": [
+          "clickhouse.db.users.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "helper",
+            "line": "internal/collector/console.go:209",
+            "end": 214
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:133"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:142"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:156"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:165"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:55"
+        ]
+      },
+      "/services/*/users/cloud_managed/*/any_host": {
+        "operations": [
+          "clickhouse.db.users.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:133"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:142"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:55"
+        ]
+      },
+      "/services/*/users/cloud_managed/*/auth_methods/*/second_factor": {
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:133"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:144"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:149"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:150"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:55"
+        ]
+      },
+      "/services/*/users/cloud_managed/*/auth_methods/*/type": {
+        "operations": [
+          "clickhouse.db.users.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:133"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:144"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:145"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:55"
+        ]
+      },
+      "/services/*/users/cloud_managed/*/auth_methods/*/valid_until": {
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:133"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:144"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:146"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:147"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:55"
+        ]
+      },
+      "/services/*/users/cloud_managed/*/host_ip": {
+        "operations": [
+          "clickhouse.db.users.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:133"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:138"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:55"
+        ]
+      },
+      "/services/*/users/cloud_managed/*/host_ip/*": {
+        "operations": [
+          "clickhouse.db.users.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:133"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:138"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:55"
+        ]
+      },
+      "/services/*/users/cloud_managed/*/host_names": {
+        "operations": [
+          "clickhouse.db.users.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:133"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:139"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:55"
+        ]
+      },
+      "/services/*/users/cloud_managed/*/host_names/*": {
+        "operations": [
+          "clickhouse.db.users.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:133"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:139"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:55"
+        ]
+      },
+      "/services/*/users/cloud_managed/*/host_names_like": {
+        "operations": [
+          "clickhouse.db.users.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:133"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:141"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:55"
+        ]
+      },
+      "/services/*/users/cloud_managed/*/host_names_regexp": {
+        "operations": [
+          "clickhouse.db.users.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:133"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:140"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:55"
+        ]
+      },
+      "/services/*/users/cloud_managed/*/name": {
+        "operations": [
+          "clickhouse.db.users.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:133"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:135"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:55"
+        ]
+      },
+      "/services/*/users/cloud_managed/*/no_password": {
+        "operations": [
+          "clickhouse.db.users.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:133"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:144"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:153"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:55"
+        ]
+      },
+      "/services/*/users/cloud_managed/*/plaintext_password": {
+        "operations": [
+          "clickhouse.db.users.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:133"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:144"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:154"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:55"
+        ]
+      },
+      "/services/*/users/cloud_managed/*/storage": {
+        "operations": [
+          "clickhouse.db.users.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:133"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:136"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:55"
+        ]
+      },
+      "/services/*/users/cloud_managed_count": {
+        "operations": [
+          "clickhouse.db.users.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:133"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:156"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:158"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:55"
+        ]
+      },
+      "/services/*/users/customer_count": {
+        "operations": [
+          "clickhouse.db.users.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:133"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:156"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:162"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:55"
+        ]
+      },
+      "/services/*/users/inventory": {
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:132"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:133"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:134"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:156"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:161"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:167"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:168"
+          }
+        ]
+      },
+      "/services/*/users/inventory/*/any_host": {
+        "operations": [
+          "clickhouse.db.users.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:133"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:142"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:55"
+        ]
+      },
+      "/services/*/users/inventory/*/auth_methods/*/second_factor": {
+        "operations": [
+          "clickhouse.db.users.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:133"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:144"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:149"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:150"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:55"
+        ]
+      },
+      "/services/*/users/inventory/*/auth_methods/*/type": {
+        "operations": [
+          "clickhouse.db.users.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:133"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:144"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:145"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:55"
+        ]
+      },
+      "/services/*/users/inventory/*/auth_methods/*/valid_until": {
+        "operations": [
+          "clickhouse.db.users.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:133"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:144"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:146"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:147"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:55"
+        ]
+      },
+      "/services/*/users/inventory/*/host_ip": {
+        "operations": [
+          "clickhouse.db.users.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:133"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:138"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:55"
+        ]
+      },
+      "/services/*/users/inventory/*/host_ip/*": {
+        "operations": [
+          "clickhouse.db.users.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:133"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:138"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:55"
+        ]
+      },
+      "/services/*/users/inventory/*/host_names": {
+        "operations": [
+          "clickhouse.db.users.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:133"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:139"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:55"
+        ]
+      },
+      "/services/*/users/inventory/*/host_names/*": {
+        "operations": [
+          "clickhouse.db.users.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:133"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:139"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:55"
+        ]
+      },
+      "/services/*/users/inventory/*/host_names_like": {
+        "operations": [
+          "clickhouse.db.users.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:133"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:141"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:55"
+        ]
+      },
+      "/services/*/users/inventory/*/host_names_like/*": {
+        "operations": [
+          "clickhouse.db.users.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:133"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:141"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:55"
+        ]
+      },
+      "/services/*/users/inventory/*/host_names_regexp": {
+        "operations": [
+          "clickhouse.db.users.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:133"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:140"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:55"
+        ]
+      },
+      "/services/*/users/inventory/*/host_names_regexp/*": {
+        "operations": [
+          "clickhouse.db.users.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:133"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:140"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:55"
+        ]
+      },
+      "/services/*/users/inventory/*/name": {
+        "operations": [
+          "clickhouse.db.users.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:133"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:135"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:55"
+        ]
+      },
+      "/services/*/users/inventory/*/no_password": {
+        "operations": [
+          "clickhouse.db.users.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:133"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:144"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:153"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:55"
+        ]
+      },
+      "/services/*/users/inventory/*/plaintext_password": {
+        "operations": [
+          "clickhouse.db.users.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:133"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:144"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:154"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:55"
+        ]
+      },
+      "/services/*/users/inventory/*/storage": {
+        "operations": [
+          "clickhouse.db.users.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:133"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:136"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:55"
+        ]
+      },
+      "/services/*/users/no_password_count": {
+        "operations": [
+          "clickhouse.db.users.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "helper",
+            "line": "internal/collector/console.go:209",
+            "end": 214
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:133"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:144"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:153"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:156"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:163"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:55"
+        ]
+      },
+      "/services/*/users/plaintext_password_count": {
+        "operations": [
+          "clickhouse.db.users.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "helper",
+            "line": "internal/collector/console.go:209",
+            "end": 214
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:133"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:144"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:154"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:156"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:164"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:47",
+          "internal/collector/services.go:55"
+        ]
+      },
+      "/services/*/version": {
+        "operations": [
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:40"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:41"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:43"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:51"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:45"
+        ]
+      }
+    }
+  },
+  "lines": {
+    "internal/clickhouse/database.go:167": "\tvar row map[string]json.RawMessage",
+    "internal/clickhouse/database.go:170": "\tif err := dec.Decode(\u0026row); err != nil {",
+    "internal/clickhouse/database.go:173": "\tvar randomized Flag",
+    "internal/clickhouse/database.go:174": "\tif err := json.Unmarshal(row[\"quota_name\"], \u0026q.QuotaName); err != nil {",
+    "internal/clickhouse/database.go:177": "\tif err := json.Unmarshal(row[\"duration\"], \u0026q.Duration); err != nil {",
+    "internal/clickhouse/database.go:180": "\tif err := json.Unmarshal(row[\"is_randomized_interval\"], \u0026randomized); err != nil {",
+    "internal/clickhouse/database.go:188": "\tq.IsRandomizedInterval = bool(randomized)",
+    "internal/clickhouse/database.go:189": "\tq.Limits = map[string]json.Number{}",
+    "internal/clickhouse/database.go:190": "\tfor column, raw := range row {",
+    "internal/clickhouse/database.go:192": "\t\tif !ok || string(raw) == \"null\" {",
+    "internal/clickhouse/database.go:195": "\t\tlimit, err := limitValue(raw)",
+    "internal/clickhouse/database.go:196": "\t\tif err != nil {",
+    "internal/clickhouse/database.go:199": "\t\tq.Limits[name] = limit",
+    "internal/collector/collector.go:23": "\tif err != nil {",
+    "internal/collector/collector.go:26": "\trec := componentsdk.Records(ctx)",
+    "internal/collector/collector.go:33": "\tgaps := gapLog{rec: rec}",
+    "internal/collector/collector.go:35": "\tnow := componentsdk.Now(ctx).UTC()",
+    "internal/collector/collector.go:37": "\t\tSchemaVersion:    SchemaVersion,",
+    "internal/collector/collector.go:38": "\t\tCollectedAt:      now.Format(time.RFC3339),",
+    "internal/collector/collector.go:39": "\t\tCollectedAtLevel: string(ctx.Level()),",
+    "internal/collector/collector.go:40": "\t\tOrganization:     Organization{ID: org.ID, Name: org.Name, CreatedAt: timestamp(org.CreatedAt)},",
+    "internal/collector/collector.go:41": "\t\tServices:         []Service{},",
+    "internal/collector/collector.go:43": "\tgaps.noAPI(\"/organization/sso_enabled\", \"ClickHouse Cloud has no API that reports whether the organization signs members in with SAML SSO.\")",
+    "internal/collector/collector.go:45": "\tpeople, step := componentsdk.StartCollectorStep(ctx, \"members\", \"Members and invitations\")",
+    "internal/collector/collector.go:46": "\tout.Members = readMembers(people, cloud, gaps)",
+    "internal/collector/collector.go:47": "\tout.Invitations = readInvitations(people, cloud, gaps, now)",
+    "internal/collector/collector.go:50": "\tkeys, step := componentsdk.StartCollectorStep(ctx, \"api_keys\", \"API keys\")",
+    "internal/collector/collector.go:51": "\tout.APIKeys = readAPIKeys(keys, cloud, gaps)",
+    "internal/collector/collector.go:54": "\troles, step := componentsdk.StartCollectorStep(ctx, \"console_roles\", \"Console roles\")",
+    "internal/collector/collector.go:55": "\tout.ConsoleRoles = readConsoleRoles(roles, cloud, gaps)",
+    "internal/collector/collector.go:58": "\tif len(databases) \u003e 0 {",
+    "internal/collector/collector.go:59": "\t\tdbs, step := componentsdk.StartCollectorStep(ctx, \"databases\", \"Database access\")",
+    "internal/collector/collector.go:60": "\t\tfor i, db := range databases {",
+    "internal/collector/collector.go:62": "\t\t\tout.Services = append(out.Services, readService(dbs, db, gaps, i, cfg.Services[i]))",
+    "internal/collector/collector.go:89": "func timestamp(raw string) *string {",
+    "internal/collector/collector.go:90": "\tif raw == \"\" {",
+    "internal/collector/collector.go:91": "\t\treturn nil",
+    "internal/collector/collector.go:92": "\t}",
+    "internal/collector/collector.go:93": "\tt, err := time.Parse(time.RFC3339Nano, raw)",
+    "internal/collector/collector.go:94": "\tif err != nil {",
+    "internal/collector/collector.go:95": "\t\treturn \u0026raw",
+    "internal/collector/collector.go:96": "\t}",
+    "internal/collector/collector.go:97": "\ts := t.UTC().Format(time.RFC3339)",
+    "internal/collector/collector.go:98": "\treturn \u0026s",
+    "internal/collector/collector.go:99": "}",
+    "internal/collector/config.go:43": "\tif !ok || !organizationIDPattern.MatchString(organizationID) {",
+    "internal/collector/config.go:48": "\trawServices, present := raw[\"services\"]",
+    "internal/collector/config.go:49": "\tif !present || rawServices == nil {",
+    "internal/collector/config.go:52": "\tlist, ok := rawServices.([]any)",
+    "internal/collector/config.go:53": "\tif !ok {",
+    "internal/collector/config.go:57": "\tfor i, item := range list {",
+    "internal/collector/config.go:58": "\t\tentry, ok := item.(map[string]any)",
+    "internal/collector/config.go:59": "\t\tif !ok {",
+    "internal/collector/config.go:62": "\t\thost, ok := entry[\"host\"].(string)",
+    "internal/collector/config.go:63": "\t\thost = strings.ToLower(strings.TrimSuffix(host, \".\"))",
+    "internal/collector/config.go:64": "\t\tif !ok || !validHost(host) {",
+    "internal/collector/config.go:67": "\t\tif seen[host] {",
+    "internal/collector/config.go:71": "\t\tuser := defaultDatabaseUser",
+    "internal/collector/config.go:72": "\t\tif rawUser, present := entry[\"user\"]; present {",
+    "internal/collector/config.go:73": "\t\t\tname, ok := rawUser.(string)",
+    "internal/collector/config.go:74": "\t\t\tif !ok || strings.TrimSpace(name) == \"\" {",
+    "internal/collector/config.go:77": "\t\t\tuser = name",
+    "internal/collector/config.go:84": "\t\tcfg.Services = append(cfg.Services, ServiceConfig{Host: host, User: user})",
+    "internal/collector/console.go:29": "func readMembers(ctx componentsdk.CollectorContext, cloud *clickhouse.Cloud, gaps gapLog) *Members {",
+    "internal/collector/console.go:30": "\tmembers, err := cloud.ListMembers(ctx.Context())",
+    "internal/collector/console.go:31": "\tif err != nil {",
+    "internal/collector/console.go:32": "\t\twarning := manageWarning(err, \"members\")",
+    "internal/collector/console.go:33": "\t\tif errors.Is(err, clickhouse.ErrMembersHidden) {",
+    "internal/collector/console.go:34": "\t\t\twarning = componentsdk.Warning(membersHiddenWarning)",
+    "internal/collector/console.go:35": "\t\t}",
+    "internal/collector/console.go:36": "\t\tgaps.notCollected(err, \"/members\", componentsdk.MissingPermission(clickhouse.PermissionManageOrganization), warning)",
+    "internal/collector/console.go:37": "\t\treturn nil",
+    "internal/collector/console.go:38": "\t}",
+    "internal/collector/console.go:39": "\trows := make([]Member, len(members))",
+    "internal/collector/console.go:40": "\tout := \u0026Members{TotalCount: len(members)}",
+    "internal/collector/console.go:41": "\tfor i, m := range members {",
+    "internal/collector/console.go:42": "\t\troles := roleRefs(m.AssignedRoles)",
+    "internal/collector/console.go:43": "\t\trows[i] = Member{Email: strings.ToLower(m.Email), Roles: roles, Admin: holdsAdmin(roles), JoinedAt: timestamp(m.JoinedAt)}",
+    "internal/collector/console.go:44": "\t\tif rows[i].Admin {",
+    "internal/collector/console.go:45": "\t\t\tout.AdminCount++",
+    "internal/collector/console.go:46": "\t\t}",
+    "internal/collector/console.go:47": "\t}",
+    "internal/collector/console.go:48": "\tsort.SliceStable(rows, func(i, j int) bool { return rows[i].Email \u003c rows[j].Email })",
+    "internal/collector/console.go:49": "\tgaps.noAPI(\"/members/mfa_enabled_count\", \"ClickHouse Cloud has no API that reports whether a member signs in with MFA.\")",
+    "internal/collector/console.go:50": "\tif atAudit(ctx) {",
+    "internal/collector/console.go:51": "\t\tout.Inventory = rows",
+    "internal/collector/console.go:52": "\t}",
+    "internal/collector/console.go:53": "\treturn out",
+    "internal/collector/console.go:54": "}",
+    "internal/collector/console.go:58": "func readInvitations(ctx componentsdk.CollectorContext, cloud *clickhouse.Cloud, gaps gapLog, now time.Time) *Invitations {",
+    "internal/collector/console.go:59": "\tinvitations, err := cloud.ListInvitations(ctx.Context())",
+    "internal/collector/console.go:60": "\tif err != nil {",
+    "internal/collector/console.go:61": "\t\tgaps.notCollected(err, \"/invitations\", componentsdk.MissingPermission(clickhouse.PermissionViewOrganization))",
+    "internal/collector/console.go:62": "\t\treturn nil",
+    "internal/collector/console.go:63": "\t}",
+    "internal/collector/console.go:64": "\trows := make([]Invitation, len(invitations))",
+    "internal/collector/console.go:65": "\tout := \u0026Invitations{TotalCount: len(invitations)}",
+    "internal/collector/console.go:66": "\tfor i, inv := range invitations {",
+    "internal/collector/console.go:67": "\t\texpiresAt := *timestamp(inv.ExpireAt)",
+    "internal/collector/console.go:68": "\t\trows[i] = Invitation{",
+    "internal/collector/console.go:69": "\t\t\tEmail:     strings.ToLower(inv.Email),",
+    "internal/collector/console.go:70": "\t\t\tRoles:     roleRefs(inv.AssignedRoles),",
+    "internal/collector/console.go:71": "\t\t\tCreatedAt: timestamp(inv.CreatedAt),",
+    "internal/collector/console.go:72": "\t\t\tExpiresAt: expiresAt,",
+    "internal/collector/console.go:73": "\t\t\tExpired:   passed(expiresAt, now),",
+    "internal/collector/console.go:74": "\t\t}",
+    "internal/collector/console.go:75": "\t\tif rows[i].Expired {",
+    "internal/collector/console.go:76": "\t\t\tout.ExpiredCount++",
+    "internal/collector/console.go:77": "\t\t} else {",
+    "internal/collector/console.go:78": "\t\t\tout.PendingCount++",
+    "internal/collector/console.go:79": "\t\t}",
+    "internal/collector/console.go:80": "\t}",
+    "internal/collector/console.go:81": "\tsort.SliceStable(rows, func(i, j int) bool { return rows[i].Email \u003c rows[j].Email })",
+    "internal/collector/console.go:82": "\tif atAudit(ctx) {",
+    "internal/collector/console.go:83": "\t\tout.Inventory = rows",
+    "internal/collector/console.go:84": "\t}",
+    "internal/collector/console.go:85": "\treturn out",
+    "internal/collector/console.go:86": "}",
+    "internal/collector/console.go:90": "func readAPIKeys(ctx componentsdk.CollectorContext, cloud *clickhouse.Cloud, gaps gapLog) *APIKeys {",
+    "internal/collector/console.go:91": "\tkeys, err := cloud.ListKeys(ctx.Context())",
+    "internal/collector/console.go:92": "\tif err != nil {",
+    "internal/collector/console.go:93": "\t\tgaps.notCollected(err, \"/api_keys\", componentsdk.MissingPermission(clickhouse.PermissionViewAPIKeys),",
+    "internal/collector/console.go:94": "\t\t\tcomponentsdk.Warning(\"Give the API key's role \"+clickhouse.PermissionViewAPIKeys+\" to list API keys.\"))",
+    "internal/collector/console.go:95": "\t\treturn nil",
+    "internal/collector/console.go:96": "\t}",
+    "internal/collector/console.go:97": "\tout := \u0026APIKeys{TotalCount: len(keys), Inventory: make([]APIKey, len(keys))}",
+    "internal/collector/console.go:98": "\tfor i, k := range keys {",
+    "internal/collector/console.go:99": "\t\troles := roleRefs(k.AssignedRoles)",
+    "internal/collector/console.go:100": "\t\trow := APIKey{",
+    "internal/collector/console.go:101": "\t\t\tName:         k.Name,",
+    "internal/collector/console.go:102": "\t\t\tState:        k.State,",
+    "internal/collector/console.go:103": "\t\t\tRoles:        roles,",
+    "internal/collector/console.go:104": "\t\t\tAdmin:        holdsAdmin(roles),",
+    "internal/collector/console.go:105": "\t\t\tCreatedAt:    timestamp(k.CreatedAt),",
+    "internal/collector/console.go:106": "\t\t\tIPAccessList: make([]string, len(k.IPAccessList)),",
+    "internal/collector/console.go:107": "\t\t}",
+    "internal/collector/console.go:108": "\t\tif k.ExpireAt != nil {",
+    "internal/collector/console.go:109": "\t\t\trow.ExpiresAt = timestamp(*k.ExpireAt)",
+    "internal/collector/console.go:110": "\t\t}",
+    "internal/collector/console.go:111": "\t\trow.NeverExpires = row.ExpiresAt == nil",
+    "internal/collector/console.go:112": "\t\tfor j, entry := range k.IPAccessList {",
+    "internal/collector/console.go:113": "\t\t\trow.IPAccessList[j] = entry.Source",
+    "internal/collector/console.go:114": "\t\t\tif entry.Source == anyAddress {",
+    "internal/collector/console.go:115": "\t\t\t\trow.AnyAddress = true",
+    "internal/collector/console.go:116": "\t\t\t}",
+    "internal/collector/console.go:117": "\t\t}",
+    "internal/collector/console.go:118": "\t\tif k.UsedAt != nil {",
+    "internal/collector/console.go:119": "\t\t\trow.LastUsedAt = timestamp(*k.UsedAt)",
+    "internal/collector/console.go:120": "\t\t}",
+    "internal/collector/console.go:121": "\t\trow.NeverUsed = row.LastUsedAt == nil",
+    "internal/collector/console.go:122": "\t\tout.Inventory[i] = row",
+    "internal/collector/console.go:123": "\t\tout.EnabledCount += count(row.State == \"enabled\")",
+    "internal/collector/console.go:124": "\t\tout.AdminCount += count(row.Admin)",
+    "internal/collector/console.go:125": "\t\tout.NeverExpiresCount += count(row.NeverExpires)",
+    "internal/collector/console.go:126": "\t\tout.AnyAddressCount += count(row.AnyAddress)",
+    "internal/collector/console.go:127": "\t\tout.NeverUsedCount += count(row.NeverUsed)",
+    "internal/collector/console.go:128": "\t}",
+    "internal/collector/console.go:129": "\tsort.SliceStable(out.Inventory, func(i, j int) bool { return out.Inventory[i].Name \u003c out.Inventory[j].Name })",
+    "internal/collector/console.go:130": "\tif !atAudit(ctx) {",
+    "internal/collector/console.go:131": "\t\tout.Inventory = nil",
+    "internal/collector/console.go:132": "\t}",
+    "internal/collector/console.go:133": "\treturn out",
+    "internal/collector/console.go:134": "}",
+    "internal/collector/console.go:140": "func readConsoleRoles(ctx componentsdk.CollectorContext, cloud *clickhouse.Cloud, gaps gapLog) *ConsoleRoles {",
+    "internal/collector/console.go:141": "\troles, err := cloud.ListRoles(ctx.Context())",
+    "internal/collector/console.go:142": "\tif err != nil {",
+    "internal/collector/console.go:143": "\t\tgaps.notCollected(err, \"/console_roles\", componentsdk.MissingPermission(clickhouse.PermissionManageOrganization), manageWarning(err, \"console role definitions\"))",
+    "internal/collector/console.go:144": "\t\treturn nil",
+    "internal/collector/console.go:145": "\t}",
+    "internal/collector/console.go:146": "\tout := \u0026ConsoleRoles{TotalCount: len(roles), Inventory: make([]ConsoleRole, len(roles))}",
+    "internal/collector/console.go:147": "\tfor i, r := range roles {",
+    "internal/collector/console.go:148": "\t\trow := ConsoleRole{Name: r.Name, Type: r.Type, Policies: make([]ConsolePolicy, len(r.Policies))}",
+    "internal/collector/console.go:149": "\t\tfor _, actor := range r.Actors {",
+    "internal/collector/console.go:150": "\t\t\tswitch {",
+    "internal/collector/console.go:151": "\t\t\tcase strings.HasPrefix(actor, \"user/\"):",
+    "internal/collector/console.go:152": "\t\t\t\trow.MemberCount++",
+    "internal/collector/console.go:153": "\t\t\tcase strings.HasPrefix(actor, \"apiKey/\"):",
+    "internal/collector/console.go:154": "\t\t\t\trow.APIKeyCount++",
+    "internal/collector/console.go:155": "\t\t\t}",
+    "internal/collector/console.go:156": "\t\t}",
+    "internal/collector/console.go:157": "\t\tfor j, p := range r.Policies {",
+    "internal/collector/console.go:158": "\t\t\trow.Policies[j] = ConsolePolicy{AllowDeny: p.AllowDeny, Permissions: nonNil(p.Permissions), Resources: nonNil(p.Resources)}",
+    "internal/collector/console.go:159": "\t\t}",
+    "internal/collector/console.go:160": "\t\tout.Inventory[i] = row",
+    "internal/collector/console.go:161": "\t\tout.CustomCount += count(r.Type == \"custom\")",
+    "internal/collector/console.go:162": "\t}",
+    "internal/collector/console.go:163": "\tsort.SliceStable(out.Inventory, func(i, j int) bool { return out.Inventory[i].Name \u003c out.Inventory[j].Name })",
+    "internal/collector/console.go:164": "\tif !atAudit(ctx) {",
+    "internal/collector/console.go:165": "\t\tout.Inventory = nil",
+    "internal/collector/console.go:166": "\t}",
+    "internal/collector/console.go:167": "\treturn out",
+    "internal/collector/console.go:168": "}",
+    "internal/collector/console.go:182": "\tfor i, r := range assigned {",
+    "internal/collector/console.go:183": "\t\trefs[i] = RoleRef{Name: r.RoleName, Type: r.RoleType}",
+    "internal/collector/console.go:189": "func holdsAdmin(roles []RoleRef) bool {",
+    "internal/collector/console.go:190": "\tfor _, r := range roles {",
+    "internal/collector/console.go:191": "\t\tif r.Type == \"system\" \u0026\u0026 r.Name == adminRole {",
+    "internal/collector/console.go:192": "\t\t\treturn true",
+    "internal/collector/console.go:193": "\t\t}",
+    "internal/collector/console.go:194": "\t}",
+    "internal/collector/console.go:195": "\treturn false",
+    "internal/collector/console.go:196": "}",
+    "internal/collector/console.go:200": "func passed(at string, now time.Time) bool {",
+    "internal/collector/console.go:201": "\tt, err := time.Parse(time.RFC3339, at)",
+    "internal/collector/console.go:202": "\treturn err == nil \u0026\u0026 !t.After(now)",
+    "internal/collector/console.go:203": "}",
+    "internal/collector/console.go:209": "func count(ok bool) int {",
+    "internal/collector/console.go:210": "\tif ok {",
+    "internal/collector/console.go:211": "\t\treturn 1",
+    "internal/collector/console.go:212": "\t}",
+    "internal/collector/console.go:213": "\treturn 0",
+    "internal/collector/console.go:214": "}",
+    "internal/collector/console.go:216": "func nonNil(list []string) []string {",
+    "internal/collector/console.go:217": "\tif list == nil {",
+    "internal/collector/console.go:218": "\t\treturn []string{}",
+    "internal/collector/console.go:219": "\t}",
+    "internal/collector/console.go:220": "\treturn list",
+    "internal/collector/console.go:221": "}",
+    "internal/collector/services.go:21": "var cloudManagedRoles = []string{\"clickpipes_system\", \"default_role\", \"sql_console_admin\", \"sql_console_read_only\"}",
+    "internal/collector/services.go:36": "func readService(ctx componentsdk.CollectorContext, db *clickhouse.Database, gaps gapLog, index int, cfg ServiceConfig) Service {",
+    "internal/collector/services.go:37": "\tsvc := Service{Host: cfg.Host, User: cfg.User}",
+    "internal/collector/services.go:38": "\tbase := fmt.Sprintf(\"/services/%d/\", index)",
+    "internal/collector/services.go:39": "",
+    "internal/collector/services.go:40": "\twakeCtx, cancel := context.WithTimeout(ctx.Context(), wakeBudget)",
+    "internal/collector/services.go:41": "\tversion, err := db.Version(wakeCtx)",
+    "internal/collector/services.go:42": "\tcancel()",
+    "internal/collector/services.go:43": "\tif err != nil {",
+    "internal/collector/services.go:44": "\t\twarning := componentsdk.Warning(reachWarning(err, cfg.User))",
+    "internal/collector/services.go:45": "\t\tgaps.notCollected(err, base+\"version\", warning)",
+    "internal/collector/services.go:46": "\t\tfor _, part := range serviceParts {",
+    "internal/collector/services.go:47": "\t\t\tgaps.notCollected(err, base+part, warning)",
+    "internal/collector/services.go:48": "\t\t}",
+    "internal/collector/services.go:49": "\t\treturn svc",
+    "internal/collector/services.go:50": "\t}",
+    "internal/collector/services.go:51": "\tsvc.Version = version",
+    "internal/collector/services.go:52": "",
+    "internal/collector/services.go:53": "\tc, audit := ctx.Context(), atAudit(ctx)",
+    "internal/collector/services.go:54": "\tif users, err := db.Users(c); err != nil {",
+    "internal/collector/services.go:55": "\t\tgaps.notCollected(err, base+\"users\", grantWarning(err, cfg.User, \"SHOW USERS\"))",
+    "internal/collector/services.go:56": "\t} else {",
+    "internal/collector/services.go:57": "\t\tsvc.Users = databaseUsers(users, audit)",
+    "internal/collector/services.go:58": "\t}",
+    "internal/collector/services.go:59": "\tif roles, err := db.Roles(c); err != nil {",
+    "internal/collector/services.go:60": "\t\tgaps.notCollected(err, base+\"roles\", grantWarning(err, cfg.User, \"SHOW ROLES\"))",
+    "internal/collector/services.go:61": "\t} else {",
+    "internal/collector/services.go:62": "\t\tsvc.Roles = databaseRoles(roles, audit)",
+    "internal/collector/services.go:63": "\t}",
+    "internal/collector/services.go:64": "\tif grants, err := db.RoleGrants(c); err != nil {",
+    "internal/collector/services.go:65": "\t\tgaps.notCollected(err, base+\"role_grants\", grantWarning(err, cfg.User, \"SELECT ON system.role_grants\"))",
+    "internal/collector/services.go:66": "\t} else {",
+    "internal/collector/services.go:67": "\t\tsvc.RoleGrants = roleGrants(grants, audit)",
+    "internal/collector/services.go:68": "\t}",
+    "internal/collector/services.go:69": "\tif grants, err := db.Grants(c); err != nil {",
+    "internal/collector/services.go:70": "\t\tgaps.notCollected(err, base+\"grants\", grantWarning(err, cfg.User, \"SELECT ON system.grants\"))",
+    "internal/collector/services.go:71": "\t} else {",
+    "internal/collector/services.go:72": "\t\tsvc.Grants = privilegeGrants(grants, audit)",
+    "internal/collector/services.go:73": "\t}",
+    "internal/collector/services.go:74": "\tif profiles, err := db.SettingsProfiles(c); err != nil {",
+    "internal/collector/services.go:75": "\t\tgaps.notCollected(err, base+\"settings_profiles\", grantWarning(err, cfg.User, \"SHOW SETTINGS PROFILES\"))",
+    "internal/collector/services.go:76": "\t} else {",
+    "internal/collector/services.go:77": "\t\tsvc.SettingsProfiles = settingsProfiles(profiles, audit)",
+    "internal/collector/services.go:78": "\t}",
+    "internal/collector/services.go:79": "\tif elements, err := db.SettingsProfileElements(c); err != nil {",
+    "internal/collector/services.go:80": "\t\tgaps.notCollected(err, base+\"settings_profile_elements\", grantWarning(err, cfg.User, \"SELECT ON system.settings_profile_elements\"))",
+    "internal/collector/services.go:81": "\t} else {",
+    "internal/collector/services.go:82": "\t\tsvc.SettingsProfileElements = settingsProfileElements(elements, audit)",
+    "internal/collector/services.go:83": "\t}",
+    "internal/collector/services.go:84": "\tif quotas, err := db.Quotas(c); err != nil {",
+    "internal/collector/services.go:85": "\t\tgaps.notCollected(err, base+\"quotas\", grantWarning(err, cfg.User, \"SHOW QUOTAS\"))",
+    "internal/collector/services.go:86": "\t} else {",
+    "internal/collector/services.go:87": "\t\tsvc.Quotas = quotaList(quotas, audit)",
+    "internal/collector/services.go:88": "\t}",
+    "internal/collector/services.go:89": "\tif limits, err := db.QuotaLimits(c); err != nil {",
+    "internal/collector/services.go:90": "\t\tgaps.notCollected(err, base+\"quota_limits\", grantWarning(err, cfg.User, \"SELECT ON system.quota_limits\"))",
+    "internal/collector/services.go:91": "\t} else {",
+    "internal/collector/services.go:92": "\t\tsvc.QuotaLimits = quotaLimits(limits, audit)",
+    "internal/collector/services.go:93": "\t}",
+    "internal/collector/services.go:94": "\tif policies, err := db.RowPolicies(c); err != nil {",
+    "internal/collector/services.go:95": "\t\tgaps.notCollected(err, base+\"row_policies\", grantWarning(err, cfg.User, \"SHOW ROW POLICIES\"))",
+    "internal/collector/services.go:96": "\t} else {",
+    "internal/collector/services.go:97": "\t\tsvc.RowPolicies = rowPolicies(policies, audit)",
+    "internal/collector/services.go:98": "\t}",
+    "internal/collector/services.go:99": "\treturn svc",
+    "internal/collector/services.go:100": "}",
+    "internal/collector/services.go:130": "func databaseUsers(users []clickhouse.User, audit bool) *DatabaseUsers {",
+    "internal/collector/services.go:131": "\tout := \u0026DatabaseUsers{}",
+    "internal/collector/services.go:132": "\tcustomer, cloud := []DatabaseUser{}, []DatabaseUser{}",
+    "internal/collector/services.go:133": "\tfor _, u := range users {",
+    "internal/collector/services.go:134": "\t\trow := DatabaseUser{",
+    "internal/collector/services.go:135": "\t\t\tName:            u.Name,",
+    "internal/collector/services.go:136": "\t\t\tStorage:         u.Storage,",
+    "internal/collector/services.go:137": "\t\t\tAuthMethods:     make([]AuthMethod, len(u.AuthTypes)),",
+    "internal/collector/services.go:138": "\t\t\tHostIP:          u.HostIP,",
+    "internal/collector/services.go:139": "\t\t\tHostNames:       u.HostNames,",
+    "internal/collector/services.go:140": "\t\t\tHostNamesRegexp: u.HostNamesRegexp,",
+    "internal/collector/services.go:141": "\t\t\tHostNamesLike:   u.HostNamesLike,",
+    "internal/collector/services.go:142": "\t\t\tAnyHost:         slices.Contains(u.HostIP, \"::/0\") || slices.Contains(u.HostIP, anyAddress),",
+    "internal/collector/services.go:143": "\t\t}",
+    "internal/collector/services.go:144": "\t\tfor i, authType := range u.AuthTypes {",
+    "internal/collector/services.go:145": "\t\t\tmethod := AuthMethod{Type: authType}",
+    "internal/collector/services.go:146": "\t\t\tif until := u.ValidUntil[i]; until != noExpiry {",
+    "internal/collector/services.go:147": "\t\t\t\tmethod.ValidUntil = \u0026until",
+    "internal/collector/services.go:148": "\t\t\t}",
+    "internal/collector/services.go:149": "\t\t\tif factor := u.SecondFactors[i]; factor != \"\" {",
+    "internal/collector/services.go:150": "\t\t\t\tmethod.SecondFactor = \u0026factor",
+    "internal/collector/services.go:151": "\t\t\t}",
+    "internal/collector/services.go:152": "\t\t\trow.AuthMethods[i] = method",
+    "internal/collector/services.go:153": "\t\t\trow.NoPassword = row.NoPassword || authType == \"no_password\"",
+    "internal/collector/services.go:154": "\t\t\trow.PlaintextPassword = row.PlaintextPassword || authType == \"plaintext_password\"",
+    "internal/collector/services.go:155": "\t\t}",
+    "internal/collector/services.go:156": "\t\tif u.Storage == cloudManagedStorage {",
+    "internal/collector/services.go:157": "\t\t\tcloud = append(cloud, row)",
+    "internal/collector/services.go:158": "\t\t\tout.CloudManagedCount++",
+    "internal/collector/services.go:159": "\t\t\tcontinue",
+    "internal/collector/services.go:160": "\t\t}",
+    "internal/collector/services.go:161": "\t\tcustomer = append(customer, row)",
+    "internal/collector/services.go:162": "\t\tout.CustomerCount++",
+    "internal/collector/services.go:163": "\t\tout.NoPasswordCount += count(row.NoPassword)",
+    "internal/collector/services.go:164": "\t\tout.PlaintextPasswordCount += count(row.PlaintextPassword)",
+    "internal/collector/services.go:165": "\t\tout.AnyHostCount += count(row.AnyHost)",
+    "internal/collector/services.go:166": "\t}",
+    "internal/collector/services.go:167": "\tif audit {",
+    "internal/collector/services.go:168": "\t\tout.Inventory, out.CloudManaged = customer, cloud",
+    "internal/collector/services.go:169": "\t}",
+    "internal/collector/services.go:170": "\treturn out",
+    "internal/collector/services.go:171": "}",
+    "internal/collector/services.go:173": "func databaseRoles(roles []clickhouse.DatabaseRole, audit bool) *DatabaseRoles {",
+    "internal/collector/services.go:174": "\tout := \u0026DatabaseRoles{}",
+    "internal/collector/services.go:175": "\tcustomer, cloud := []DatabaseRole{}, []DatabaseRole{}",
+    "internal/collector/services.go:176": "\tfor _, r := range roles {",
+    "internal/collector/services.go:177": "\t\trow := DatabaseRole{Name: r.Name, Storage: r.Storage}",
+    "internal/collector/services.go:178": "\t\tif slices.Contains(cloudManagedRoles, r.Name) {",
+    "internal/collector/services.go:179": "\t\t\tcloud = append(cloud, row)",
+    "internal/collector/services.go:180": "\t\t\tout.CloudManagedCount++",
+    "internal/collector/services.go:181": "\t\t\tcontinue",
+    "internal/collector/services.go:182": "\t\t}",
+    "internal/collector/services.go:183": "\t\tcustomer = append(customer, row)",
+    "internal/collector/services.go:184": "\t\tout.CustomerCount++",
+    "internal/collector/services.go:185": "\t}",
+    "internal/collector/services.go:186": "\tif audit {",
+    "internal/collector/services.go:187": "\t\tout.Inventory, out.CloudManaged = customer, cloud",
+    "internal/collector/services.go:188": "\t}",
+    "internal/collector/services.go:189": "\treturn out",
+    "internal/collector/services.go:190": "}",
+    "internal/collector/services.go:215": "func roleGrants(grants []clickhouse.RoleGrant, audit bool) *RoleGrants {",
+    "internal/collector/services.go:216": "\tcustomer, cloud := split(grants,",
+    "internal/collector/services.go:217": "\t\tfunc(g clickhouse.RoleGrant) bool { return cloudGrantee(g.RoleName, g.UserStorage) },",
+    "internal/collector/services.go:218": "\t\tfunc(g clickhouse.RoleGrant) RoleGrant {",
+    "internal/collector/services.go:219": "\t\t\treturn RoleGrant{",
+    "internal/collector/services.go:220": "\t\t\t\tUserName:             g.UserName,",
+    "internal/collector/services.go:221": "\t\t\t\tRoleName:             g.RoleName,",
+    "internal/collector/services.go:222": "\t\t\t\tGrantedRoleName:      g.GrantedRoleName,",
+    "internal/collector/services.go:223": "\t\t\t\tGrantedRoleIsDefault: bool(g.GrantedRoleIsDefault),",
+    "internal/collector/services.go:224": "\t\t\t\tWithAdminOption:      bool(g.WithAdminOption),",
+    "internal/collector/services.go:225": "\t\t\t}",
+    "internal/collector/services.go:226": "\t\t})",
+    "internal/collector/services.go:227": "\tout := \u0026RoleGrants{CustomerCount: len(customer), CloudManagedCount: len(cloud)}",
+    "internal/collector/services.go:228": "\tfor _, g := range customer {",
+    "internal/collector/services.go:229": "\t\tout.WithAdminOptionCount += count(g.WithAdminOption)",
+    "internal/collector/services.go:230": "\t}",
+    "internal/collector/services.go:231": "\tif audit {",
+    "internal/collector/services.go:232": "\t\tout.Inventory, out.CloudManaged = customer, cloud",
+    "internal/collector/services.go:233": "\t}",
+    "internal/collector/services.go:234": "\treturn out",
+    "internal/collector/services.go:235": "}",
+    "internal/collector/services.go:237": "func privilegeGrants(grants []clickhouse.Grant, audit bool) *Grants {",
+    "internal/collector/services.go:238": "\tcustomer, cloud := split(grants,",
+    "internal/collector/services.go:239": "\t\tfunc(g clickhouse.Grant) bool { return cloudGrantee(g.RoleName, g.UserStorage) },",
+    "internal/collector/services.go:240": "\t\tfunc(g clickhouse.Grant) Grant {",
+    "internal/collector/services.go:241": "\t\t\treturn Grant{",
+    "internal/collector/services.go:242": "\t\t\t\tUserName:        g.UserName,",
+    "internal/collector/services.go:243": "\t\t\t\tRoleName:        g.RoleName,",
+    "internal/collector/services.go:244": "\t\t\t\tAccessType:      g.AccessType,",
+    "internal/collector/services.go:245": "\t\t\t\tDatabase:        g.Database,",
+    "internal/collector/services.go:246": "\t\t\t\tTable:           g.Table,",
+    "internal/collector/services.go:247": "\t\t\t\tColumn:          g.Column,",
+    "internal/collector/services.go:248": "\t\t\t\tIsPartialRevoke: bool(g.IsPartialRevoke),",
+    "internal/collector/services.go:249": "\t\t\t\tGrantOption:     bool(g.GrantOption),",
+    "internal/collector/services.go:250": "\t\t\t}",
+    "internal/collector/services.go:251": "\t\t})",
+    "internal/collector/services.go:252": "\tout := \u0026Grants{CustomerCount: len(customer), CloudManagedCount: len(cloud)}",
+    "internal/collector/services.go:253": "\tfor _, g := range customer {",
+    "internal/collector/services.go:254": "\t\tout.GrantOptionCount += count(g.GrantOption)",
+    "internal/collector/services.go:255": "\t}",
+    "internal/collector/services.go:256": "\tif audit {",
+    "internal/collector/services.go:257": "\t\tout.Inventory, out.CloudManaged = customer, cloud",
+    "internal/collector/services.go:258": "\t}",
+    "internal/collector/services.go:259": "\treturn out",
+    "internal/collector/services.go:260": "}",
+    "internal/collector/services.go:262": "func settingsProfiles(profiles []clickhouse.SettingsProfile, audit bool) *SettingsProfiles {",
+    "internal/collector/services.go:263": "\tcustomer, cloud := split(profiles,",
+    "internal/collector/services.go:264": "\t\tfunc(p clickhouse.SettingsProfile) bool { return p.Storage == cloudManagedStorage },",
+    "internal/collector/services.go:265": "\t\tfunc(p clickhouse.SettingsProfile) SettingsProfile {",
+    "internal/collector/services.go:266": "\t\t\treturn SettingsProfile{",
+    "internal/collector/services.go:267": "\t\t\t\tName:          p.Name,",
+    "internal/collector/services.go:268": "\t\t\t\tStorage:       p.Storage,",
+    "internal/collector/services.go:269": "\t\t\t\tApplyToAll:    bool(p.ApplyToAll),",
+    "internal/collector/services.go:270": "\t\t\t\tApplyToList:   p.ApplyToList,",
+    "internal/collector/services.go:271": "\t\t\t\tApplyToExcept: p.ApplyToExcept,",
+    "internal/collector/services.go:272": "\t\t\t}",
+    "internal/collector/services.go:273": "\t\t})",
+    "internal/collector/services.go:274": "\tout := \u0026SettingsProfiles{CustomerCount: len(customer), CloudManagedCount: len(cloud)}",
+    "internal/collector/services.go:275": "\tif audit {",
+    "internal/collector/services.go:276": "\t\tout.Inventory, out.CloudManaged = customer, cloud",
+    "internal/collector/services.go:277": "\t}",
+    "internal/collector/services.go:278": "\treturn out",
+    "internal/collector/services.go:279": "}",
+    "internal/collector/services.go:283": "func settingsProfileElements(elements []clickhouse.SettingsProfileElement, audit bool) *SettingsProfileElements {",
+    "internal/collector/services.go:284": "\tcustomer, cloud := split(elements,",
+    "internal/collector/services.go:285": "\t\tfunc(e clickhouse.SettingsProfileElement) bool {",
+    "internal/collector/services.go:286": "\t\t\tswitch {",
+    "internal/collector/services.go:287": "\t\t\tcase e.ProfileName != nil:",
+    "internal/collector/services.go:288": "\t\t\t\treturn e.ProfileStorage == cloudManagedStorage",
+    "internal/collector/services.go:289": "\t\t\tcase e.RoleName != nil:",
+    "internal/collector/services.go:290": "\t\t\t\treturn slices.Contains(cloudManagedRoles, *e.RoleName)",
+    "internal/collector/services.go:291": "\t\t\t}",
+    "internal/collector/services.go:292": "\t\t\treturn e.UserStorage == cloudManagedStorage",
+    "internal/collector/services.go:293": "\t\t},",
+    "internal/collector/services.go:294": "\t\tfunc(e clickhouse.SettingsProfileElement) SettingsProfileElement {",
+    "internal/collector/services.go:295": "\t\t\treturn SettingsProfileElement{",
+    "internal/collector/services.go:296": "\t\t\t\tProfileName:    e.ProfileName,",
+    "internal/collector/services.go:297": "\t\t\t\tUserName:       e.UserName,",
+    "internal/collector/services.go:298": "\t\t\t\tRoleName:       e.RoleName,",
+    "internal/collector/services.go:299": "\t\t\t\tSettingName:    e.SettingName,",
+    "internal/collector/services.go:300": "\t\t\t\tValue:          e.Value,",
+    "internal/collector/services.go:301": "\t\t\t\tMin:            e.Min,",
+    "internal/collector/services.go:302": "\t\t\t\tMax:            e.Max,",
+    "internal/collector/services.go:303": "\t\t\t\tWritability:    e.Writability,",
+    "internal/collector/services.go:304": "\t\t\t\tInheritProfile: e.InheritProfile,",
+    "internal/collector/services.go:305": "\t\t\t}",
+    "internal/collector/services.go:306": "\t\t})",
+    "internal/collector/services.go:307": "\tout := \u0026SettingsProfileElements{CustomerCount: len(customer), CloudManagedCount: len(cloud)}",
+    "internal/collector/services.go:308": "\tif audit {",
+    "internal/collector/services.go:309": "\t\tout.Inventory, out.CloudManaged = customer, cloud",
+    "internal/collector/services.go:310": "\t}",
+    "internal/collector/services.go:311": "\treturn out",
+    "internal/collector/services.go:312": "}",
+    "internal/collector/services.go:314": "func quotaList(quotas []clickhouse.Quota, audit bool) *Quotas {",
+    "internal/collector/services.go:315": "\tcustomer, cloud := split(quotas,",
+    "internal/collector/services.go:316": "\t\tfunc(q clickhouse.Quota) bool { return q.Storage == cloudManagedStorage },",
+    "internal/collector/services.go:317": "\t\tfunc(q clickhouse.Quota) Quota {",
+    "internal/collector/services.go:318": "\t\t\treturn Quota{",
+    "internal/collector/services.go:319": "\t\t\t\tName:          q.Name,",
+    "internal/collector/services.go:320": "\t\t\t\tStorage:       q.Storage,",
+    "internal/collector/services.go:321": "\t\t\t\tKeys:          q.Keys,",
+    "internal/collector/services.go:322": "\t\t\t\tDurations:     q.Durations,",
+    "internal/collector/services.go:323": "\t\t\t\tApplyToAll:    bool(q.ApplyToAll),",
+    "internal/collector/services.go:324": "\t\t\t\tApplyToList:   q.ApplyToList,",
+    "internal/collector/services.go:325": "\t\t\t\tApplyToExcept: q.ApplyToExcept,",
+    "internal/collector/services.go:326": "\t\t\t}",
+    "internal/collector/services.go:327": "\t\t})",
+    "internal/collector/services.go:328": "\tout := \u0026Quotas{CustomerCount: len(customer), CloudManagedCount: len(cloud)}",
+    "internal/collector/services.go:329": "\tif audit {",
+    "internal/collector/services.go:330": "\t\tout.Inventory, out.CloudManaged = customer, cloud",
+    "internal/collector/services.go:331": "\t}",
+    "internal/collector/services.go:332": "\treturn out",
+    "internal/collector/services.go:333": "}",
+    "internal/collector/services.go:335": "func quotaLimits(limits []clickhouse.QuotaLimit, audit bool) *QuotaLimits {",
+    "internal/collector/services.go:336": "\tcustomer, cloud := split(limits,",
+    "internal/collector/services.go:337": "\t\tfunc(l clickhouse.QuotaLimit) bool { return l.QuotaStorage == cloudManagedStorage },",
+    "internal/collector/services.go:338": "\t\tfunc(l clickhouse.QuotaLimit) QuotaLimit {",
+    "internal/collector/services.go:339": "\t\t\treturn QuotaLimit{",
+    "internal/collector/services.go:340": "\t\t\t\tQuotaName:            l.QuotaName,",
+    "internal/collector/services.go:341": "\t\t\t\tDuration:             l.Duration,",
+    "internal/collector/services.go:342": "\t\t\t\tIsRandomizedInterval: l.IsRandomizedInterval,",
+    "internal/collector/services.go:343": "\t\t\t\tLimits:               l.Limits,",
+    "internal/collector/services.go:344": "\t\t\t}",
+    "internal/collector/services.go:345": "\t\t})",
+    "internal/collector/services.go:346": "\tout := \u0026QuotaLimits{CustomerCount: len(customer), CloudManagedCount: len(cloud)}",
+    "internal/collector/services.go:347": "\tif audit {",
+    "internal/collector/services.go:348": "\t\tout.Inventory, out.CloudManaged = customer, cloud",
+    "internal/collector/services.go:349": "\t}",
+    "internal/collector/services.go:350": "\treturn out",
+    "internal/collector/services.go:351": "}",
+    "internal/collector/services.go:353": "func rowPolicies(policies []clickhouse.RowPolicy, audit bool) *RowPolicies {",
+    "internal/collector/services.go:354": "\tcustomer, cloud := split(policies,",
+    "internal/collector/services.go:355": "\t\tfunc(p clickhouse.RowPolicy) bool { return p.Storage == cloudManagedStorage },",
+    "internal/collector/services.go:356": "\t\tfunc(p clickhouse.RowPolicy) RowPolicy {",
+    "internal/collector/services.go:357": "\t\t\treturn RowPolicy{",
+    "internal/collector/services.go:358": "\t\t\t\tName:          p.Name,",
+    "internal/collector/services.go:359": "\t\t\t\tShortName:     p.ShortName,",
+    "internal/collector/services.go:360": "\t\t\t\tDatabase:      p.Database,",
+    "internal/collector/services.go:361": "\t\t\t\tTable:         p.Table,",
+    "internal/collector/services.go:362": "\t\t\t\tStorage:       p.Storage,",
+    "internal/collector/services.go:363": "\t\t\t\tIsRestrictive: bool(p.IsRestrictive),",
+    "internal/collector/services.go:364": "\t\t\t\tApplyToAll:    bool(p.ApplyToAll),",
+    "internal/collector/services.go:365": "\t\t\t\tApplyToList:   p.ApplyToList,",
+    "internal/collector/services.go:366": "\t\t\t\tApplyToExcept: p.ApplyToExcept,",
+    "internal/collector/services.go:367": "\t\t\t}",
+    "internal/collector/services.go:368": "\t\t})",
+    "internal/collector/services.go:369": "\tout := \u0026RowPolicies{CustomerCount: len(customer), CloudManagedCount: len(cloud)}",
+    "internal/collector/services.go:370": "\tif audit {",
+    "internal/collector/services.go:371": "\t\tout.Inventory, out.CloudManaged = customer, cloud",
+    "internal/collector/services.go:372": "\t}",
+    "internal/collector/services.go:373": "\treturn out",
+    "internal/collector/services.go:374": "}"
+  }
+}
