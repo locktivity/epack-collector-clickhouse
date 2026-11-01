@@ -1,6 +1,6 @@
 {
   "name": "clickhouse",
-  "recorded_at": "2026-10-22T16:04:14Z",
+  "recorded_at": "2026-11-01T06:19:22Z",
   "collector": "clickhouse",
   "collector_version": "record",
   "config": {
@@ -24,7 +24,7 @@
           "application/json; charset=utf-8"
         ],
         "Etag": [
-          "W/\"106-v2Nw65+Y9MSqs0wKEbSKZS2Mbh0\""
+          "W/\"106-ca9GnVGyouuGWIVlCZNl3/cBn9w\""
         ],
         "X-Ratelimit-Limit": [
           "40"
@@ -36,7 +36,7 @@
           "37"
         ],
         "X-Ratelimit-Reset": [
-          "9.812"
+          "9.824"
         ]
       },
       "body": {
@@ -64,7 +64,7 @@
           "application/json; charset=utf-8"
         ],
         "Etag": [
-          "W/\"5c2-od13QVAJpCjLvOM/pm1LTpxCd1o\""
+          "W/\"5c2-AX+PW3WvE10JSS1NcU+5QoFpfoA\""
         ],
         "X-Ratelimit-Limit": [
           "40"
@@ -76,7 +76,7 @@
           "36"
         ],
         "X-Ratelimit-Reset": [
-          "9.744"
+          "9.754"
         ]
       },
       "body": {
@@ -162,7 +162,7 @@
           "application/json; charset=utf-8"
         ],
         "Etag": [
-          "W/\"172-WXTjV2U+e+NRehj1E4/qfcuOHtA\""
+          "W/\"172-PSgWaHQ3h2vXMdSYT8WCtUvD/zI\""
         ],
         "X-Ratelimit-Limit": [
           "40"
@@ -174,7 +174,7 @@
           "35"
         ],
         "X-Ratelimit-Reset": [
-          "9.627"
+          "9.563"
         ]
       },
       "body": {
@@ -208,7 +208,7 @@
           "application/json; charset=utf-8"
         ],
         "Etag": [
-          "W/\"84c-IsWTjqJPhAPkJP+Iuk+7lputJHc\""
+          "W/\"84c-RLWQmnAk0b6YOAskDXIWdhHzXgs\""
         ],
         "X-Ratelimit-Limit": [
           "40"
@@ -220,7 +220,7 @@
           "34"
         ],
         "X-Ratelimit-Reset": [
-          "9.529"
+          "9.396"
         ]
       },
       "body": {
@@ -239,7 +239,7 @@
               }
             ],
             "state": "enabled",
-            "usedAt": "2026-10-22T16:04:00Z",
+            "usedAt": "2026-11-01T06:18:00Z",
             "ipAccessList": [
               {
                 "source": "0.0.0.0/0",
@@ -328,7 +328,7 @@
               }
             ],
             "state": "enabled",
-            "usedAt": "2026-10-22T16:04:00Z",
+            "usedAt": "2026-11-01T06:19:00Z",
             "ipAccessList": [
               {
                 "source": "0.0.0.0/0",
@@ -354,7 +354,7 @@
           "application/json; charset=utf-8"
         ],
         "Etag": [
-          "W/\"4346-d9NRWvmx+GAeMDc4xkIYr9Mkkmk\""
+          "W/\"4346-p+Fd/wo5jGWuYHK5nQUQyN9ZOUA\""
         ],
         "X-Ratelimit-Limit": [
           "40"
@@ -366,7 +366,7 @@
           "33"
         ],
         "X-Ratelimit-Reset": [
-          "9.472"
+          "9.218"
         ]
       },
       "body": {
@@ -541,7 +541,7 @@
               }
             ],
             "createdAt": "2026-02-03T17:10:10.145Z",
-            "updatedAt": "2026-10-22T15:17:03.277Z",
+            "updatedAt": "2026-11-01T06:17:03.155Z",
             "type": "system"
           },
           {
@@ -569,7 +569,7 @@
               }
             ],
             "createdAt": "2026-02-03T17:10:10.224Z",
-            "updatedAt": "2026-10-22T15:17:03.281Z",
+            "updatedAt": "2026-11-01T06:17:03.157Z",
             "type": "system"
           },
           {
@@ -599,7 +599,7 @@
               }
             ],
             "createdAt": "2026-02-03T17:10:10.302Z",
-            "updatedAt": "2026-10-22T15:17:03.284Z",
+            "updatedAt": "2026-11-01T06:17:03.160Z",
             "type": "system"
           },
           {
@@ -659,7 +659,7 @@
               }
             ],
             "createdAt": "2026-02-03T17:10:10.379Z",
-            "updatedAt": "2026-10-22T15:17:03.289Z",
+            "updatedAt": "2026-11-01T06:17:03.162Z",
             "type": "system"
           },
           {
@@ -733,7 +733,7 @@
               }
             ],
             "createdAt": "2026-02-03T17:10:10.456Z",
-            "updatedAt": "2026-10-22T15:17:03.292Z",
+            "updatedAt": "2026-11-01T06:17:03.164Z",
             "type": "system"
           },
           {
@@ -761,7 +761,7 @@
               }
             ],
             "createdAt": "2026-02-03T17:10:10.537Z",
-            "updatedAt": "2026-10-22T15:17:03.295Z",
+            "updatedAt": "2026-11-01T06:17:03.166Z",
             "type": "system"
           },
           {
@@ -836,7 +836,7 @@
               }
             ],
             "createdAt": "2026-02-03T17:10:10.612Z",
-            "updatedAt": "2026-10-22T15:17:03.297Z",
+            "updatedAt": "2026-11-01T06:17:03.168Z",
             "type": "system"
           },
           {
@@ -923,7 +923,7 @@
               }
             ],
             "createdAt": "2026-02-03T17:10:10.693Z",
-            "updatedAt": "2026-10-22T15:17:03.300Z",
+            "updatedAt": "2026-11-01T06:17:03.170Z",
             "type": "system"
           },
           {
@@ -975,7 +975,7 @@
               }
             ],
             "createdAt": "2026-02-03T17:10:10.772Z",
-            "updatedAt": "2026-10-22T15:17:03.303Z",
+            "updatedAt": "2026-11-01T06:17:03.172Z",
             "type": "system"
           },
           {
@@ -1032,7 +1032,7 @@
               }
             ],
             "createdAt": "2026-03-11T15:48:59.383Z",
-            "updatedAt": "2026-10-22T15:17:03.306Z",
+            "updatedAt": "2026-11-01T06:17:03.174Z",
             "type": "system"
           }
         ],
@@ -1059,12 +1059,12 @@
         ],
         "data": [
           {
-            "version": "26.8.1.588"
+            "version": "26.8.1.605"
           }
         ],
         "rows": 1,
         "statistics": {
-          "elapsed": 0.001071163,
+          "elapsed": 0.001141898,
           "rows_read": 1,
           "bytes_read": 1
         }
@@ -1513,7 +1513,7 @@
         ],
         "rows": 19,
         "statistics": {
-          "elapsed": 0.002624047,
+          "elapsed": 0.0029111,
           "rows_read": 19,
           "bytes_read": 4883
         }
@@ -1572,7 +1572,7 @@
         ],
         "rows": 7,
         "statistics": {
-          "elapsed": 0.001269639,
+          "elapsed": 0.001354464,
           "rows_read": 7,
           "bytes_read": 394
         }
@@ -1683,7 +1683,7 @@
         ],
         "rows": 8,
         "statistics": {
-          "elapsed": 0.0093544,
+          "elapsed": 0.004539921,
           "rows_read": 27,
           "bytes_read": 5419
         }
@@ -3722,7 +3722,7 @@
         ],
         "rows": 180,
         "statistics": {
-          "elapsed": 0.00304684,
+          "elapsed": 0.003464099,
           "rows_read": 199,
           "bytes_read": 18777
         }
@@ -3879,7 +3879,7 @@
         ],
         "rows": 16,
         "statistics": {
-          "elapsed": 0.00146124,
+          "elapsed": 0.001533761,
           "rows_read": 16,
           "bytes_read": 1290
         }
@@ -11018,7 +11018,7 @@
         ],
         "rows": 544,
         "statistics": {
-          "elapsed": 0.011686722,
+          "elapsed": 0.007995339,
           "rows_read": 579,
           "bytes_read": 75063
         }
@@ -11111,7 +11111,7 @@
         ],
         "rows": 3,
         "statistics": {
-          "elapsed": 0.002008681,
+          "elapsed": 0.002185415,
           "rows_read": 3,
           "bytes_read": 384
         }
@@ -11252,7 +11252,7 @@
         ],
         "rows": 3,
         "statistics": {
-          "elapsed": 0.008561655,
+          "elapsed": 0.004039319,
           "rows_read": 6,
           "bytes_read": 794
         }
@@ -11324,7 +11324,7 @@
         ],
         "rows": 1,
         "statistics": {
-          "elapsed": 0.001661239,
+          "elapsed": 0.001764407,
           "rows_read": 1,
           "bytes_read": 162
         }
