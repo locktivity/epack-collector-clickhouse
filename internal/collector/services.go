@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"net"
 	"slices"
+	"time"
 
 	"github.com/locktivity/epack/componentsdk"
 
@@ -33,7 +34,7 @@ var serviceParts = []string{
 // readService reads one service's access settings as cfg.User. The first
 // query also wakes a service that has gone idle. When it fails, every part
 // is left out with its error, since the rest would fail the same way.
-func readService(ctx componentsdk.CollectorContext, db *clickhouse.Database, gaps gapLog, index int, cfg ServiceConfig) Service {
+func readService(ctx componentsdk.CollectorContext, db *clickhouse.Database, gaps gapLog, now time.Time, index int, cfg ServiceConfig) Service {
 	svc := Service{Host: cfg.Host, User: cfg.User}
 	base := fmt.Sprintf("/services/%d/", index)
 
@@ -54,7 +55,7 @@ func readService(ctx componentsdk.CollectorContext, db *clickhouse.Database, gap
 	if users, err := db.Users(c); err != nil {
 		gaps.notCollected(err, base+"users", grantWarning(err, cfg.User, "SHOW USERS"))
 	} else {
-		svc.Users = databaseUsers(users, audit)
+		svc.Users = databaseUsers(users, now, audit)
 	}
 	if roles, err := db.Roles(c); err != nil {
 		gaps.notCollected(err, base+"roles", grantWarning(err, cfg.User, "SHOW ROLES"))
@@ -120,14 +121,16 @@ func reachWarning(err error, user string) string {
 
 // grantWarning tells the operator which grant user lacks when err is a
 // permission_denied failure, and adds nothing otherwise.
-func grantWarning(err error, user, grant string) componentsdk.GapOption {
+func grantWarning(err error, user, grant string) componentsdk.AdviceOption {
 	if componentsdk.Classify(err) != componentsdk.CodePermissionDenied {
-		return componentsdk.GapOption{}
+		return componentsdk.AdviceOption{}
 	}
 	return componentsdk.Warning(fmt.Sprintf("Grant %s to %s. docs/configuration.md lists every grant the collector needs.", grant, user))
 }
 
-func databaseUsers(users []clickhouse.User, audit bool) *DatabaseUsers {
+// databaseUsers counts a user as one who can sign in with no password when
+// one of its no_password methods has not expired at now.
+func databaseUsers(users []clickhouse.User, now time.Time, audit bool) *DatabaseUsers {
 	out := &DatabaseUsers{}
 	customer, cloud := []DatabaseUser{}, []DatabaseUser{}
 	for _, u := range users {
@@ -150,7 +153,8 @@ func databaseUsers(users []clickhouse.User, audit bool) *DatabaseUsers {
 				method.SecondFactor = &factor
 			}
 			row.AuthMethods[i] = method
-			row.NoPassword = row.NoPassword || authType == "no_password"
+			expired := method.ValidUntil != nil && passed(*method.ValidUntil, now)
+			row.NoPassword = row.NoPassword || (authType == "no_password" && !expired)
 			row.PlaintextPassword = row.PlaintextPassword || authType == "plaintext_password"
 		}
 		if u.Storage == cloudManagedStorage {
@@ -238,16 +242,22 @@ func privilegeGrants(grants []clickhouse.Grant, audit bool) *Grants {
 	customer, cloud := split(grants,
 		func(g clickhouse.Grant) bool { return cloudGrantee(g.RoleName, g.UserStorage) },
 		func(g clickhouse.Grant) Grant {
-			return Grant{
+			out := Grant{
 				UserName:        g.UserName,
 				RoleName:        g.RoleName,
 				AccessType:      g.AccessType,
+				AccessObject:    g.AccessObject,
 				Database:        g.Database,
 				Table:           g.Table,
 				Column:          g.Column,
 				IsPartialRevoke: bool(g.IsPartialRevoke),
 				GrantOption:     bool(g.GrantOption),
 			}
+			if g.IsWildcard != nil {
+				wildcard := bool(*g.IsWildcard)
+				out.IsWildcard = &wildcard
+			}
+			return out
 		})
 	out := &Grants{CustomerCount: len(customer), CloudManagedCount: len(cloud)}
 	for _, g := range customer {

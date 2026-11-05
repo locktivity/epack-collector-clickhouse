@@ -100,13 +100,21 @@ type RoleGrant struct {
 // Grant is a row of system.grants: a privilege granted to a user or a role,
 // or partly revoked from one. UserStorage is where the server keeps the
 // user, and empty for a grant to a role.
+//
+// AccessObject is the source of a READ or WRITE grant, or the user of a SET
+// DEFINER grant. It is empty for every source or user, and for any other
+// privilege. IsWildcard is set when the database or table name is a prefix,
+// as in sales*.*. Each is nil when the server has no such column.
+// access_object arrived in ClickHouse 25.8 and is_wildcard in 26.7.
 type Grant struct {
 	UserName        *string `json:"user_name"`
 	RoleName        *string `json:"role_name"`
 	AccessType      string  `json:"access_type"`
+	AccessObject    *string `json:"access_object"`
 	Database        *string `json:"database"`
 	Table           *string `json:"table"`
 	Column          *string `json:"column"`
+	IsWildcard      *Flag   `json:"is_wildcard"`
 	IsPartialRevoke Flag    `json:"is_partial_revoke"`
 	GrantOption     Flag    `json:"grant_option"`
 	UserStorage     string  `json:"user_storage"`
@@ -298,11 +306,15 @@ ORDER BY g.user_name, g.role_name, g.granted_role_name`)
 }
 
 // Grants lists the privileges granted to users and roles, and the parts of
-// them revoked again, with where the server keeps each user.
+// them revoked again, with where the server keeps each user. COLUMNS picks
+// out access_object and is_wildcard where the server has them, and matches
+// nothing on an older server. ORDER BY ALL sorts on every selected column,
+// so grants that differ only in those two come back in the same order.
 func (d *Database) Grants(ctx context.Context) ([]Grant, error) {
-	rows, resp, err := query[Grant](ctx, d, d.query, OpListGrants, `SELECT g.user_name, g.role_name, toString(g.access_type) AS access_type, g.database, g.table, g.column, g.is_partial_revoke, g.grant_option, u.storage AS user_storage
+	rows, resp, err := query[Grant](ctx, d, d.query, OpListGrants, `SELECT g.user_name, g.role_name, toString(g.access_type) AS access_type, g.database, g.table, g.column, g.is_partial_revoke, g.grant_option,
+	g.COLUMNS('^(access_object|is_wildcard)$'), u.storage AS user_storage
 FROM system.grants AS g LEFT JOIN system.users AS u ON u.name = g.user_name
-ORDER BY g.user_name, g.role_name, access_type, g.database, g.table, g.column, g.is_partial_revoke`)
+ORDER BY ALL`)
 	if err != nil {
 		return nil, err
 	}

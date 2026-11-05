@@ -1,8 +1,12 @@
 package clickhouse
 
 import (
+	"context"
 	"encoding/json"
+	"io"
 	"net/http"
+	"strconv"
+	"strings"
 	"testing"
 
 	"github.com/locktivity/epack/componentsdk"
@@ -31,6 +35,24 @@ func TestAPIErrorIPNotAllowed(t *testing.T) {
 	denied := &APIError{StatusCode: http.StatusForbidden, Message: "FORBIDDEN: The API key does not have the required permissions"}
 	if denied.IPNotAllowed() {
 		t.Errorf("%v is read as a refused address", denied)
+	}
+}
+
+func TestAPINamesPermissionSkipsARefusedAddress(t *testing.T) {
+	forbidden := &http.Response{StatusCode: http.StatusForbidden}
+	if APINamesPermission(forbidden, []byte(`{"status": 403, "error": "FORBIDDEN: IP address not allowed"}`)) {
+		t.Error("a refused address names the call's permission")
+	}
+	if !APINamesPermission(forbidden, []byte(`{"status": 403, "error": "FORBIDDEN"}`)) {
+		t.Error("a plain FORBIDDEN does not name the call's permission")
+	}
+}
+
+func TestEveryCloudCallDeclaresAPermission(t *testing.T) {
+	for _, op := range []string{OpGetOrganization, OpListMembers, OpListInvitations, OpListKeys, OpListRoles} {
+		if operationPermissions[op] == "" {
+			t.Errorf("%s declares no permission", op)
+		}
 	}
 }
 
@@ -68,6 +90,75 @@ func TestDatabaseErrorCodes(t *testing.T) {
 		classified, ok := DatabaseClassify(resp, nil)
 		if want := tc.code != componentsdk.CodeVendorError; ok != want || ok && classified != tc.code {
 			t.Errorf("status %d, exception %q: DatabaseClassify = %s, %t", tc.status, tc.exception, classified, ok)
+		}
+	}
+}
+
+// sqlAnswer answers every query with body and keeps the last query it got.
+type sqlAnswer struct {
+	body  string
+	query string
+}
+
+func (a *sqlAnswer) RoundTrip(req *http.Request) (*http.Response, error) {
+	sent, err := io.ReadAll(req.Body)
+	if err != nil {
+		return nil, err
+	}
+	a.query = string(sent)
+	return &http.Response{
+		StatusCode: http.StatusOK,
+		Header:     http.Header{"Content-Type": []string{"application/json; charset=UTF-8"}},
+		Body:       io.NopCloser(strings.NewReader(a.body)),
+		Request:    req,
+	}, nil
+}
+
+// TestGrantsReadSourceAndWildcard checks that the grants query reads
+// access_object and is_wildcard. Without them, READ on S3 and READ on URL
+// look the same, and so do grants on sales*.* and sales.*. The last row
+// comes from a server that has neither column.
+func TestGrantsReadSourceAndWildcard(t *testing.T) {
+	row := func(access, database, extra string) string {
+		return `{"user_name": null, "role_name": "loader", "access_type": "` + access + `", "database": ` + database +
+			`, "table": null, "column": null, "is_partial_revoke": 0, "grant_option": 0` + extra + `, "user_storage": ""}`
+	}
+	answer := &sqlAnswer{body: `{"data": [` + strings.Join([]string{
+		row("READ", "null", `, "access_object": "S3", "is_wildcard": 0`),
+		row("READ", "null", `, "access_object": "URL", "is_wildcard": 0`),
+		row("SELECT", `"sales"`, `, "access_object": "", "is_wildcard": 1`),
+		row("SELECT", `"sales"`, `, "access_object": "", "is_wildcard": 0`),
+		row("SELECT", `"sales"`, ``),
+	}, ",") + `], "rows": 5}`}
+	client := &http.Client{Transport: answer}
+	grants, err := NewDatabase(client, client, "kit.us-east-1.aws.clickhouse.cloud", "epack_collector", "pw").Grants(context.Background())
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, column := range []string{"access_object", "is_wildcard"} {
+		if !strings.Contains(answer.query, column) {
+			t.Errorf("the grants query does not select %s:\n%s", column, answer.query)
+		}
+	}
+	text := func(s *string) string {
+		if s == nil {
+			return "nil"
+		}
+		return *s
+	}
+	flag := func(f *Flag) string {
+		if f == nil {
+			return "nil"
+		}
+		return strconv.FormatBool(bool(*f))
+	}
+	want := []string{"S3 false", "URL false", " true", " false", "nil nil"}
+	if len(grants) != len(want) {
+		t.Fatalf("read %d grants, want %d", len(grants), len(want))
+	}
+	for i, g := range grants {
+		if got := text(g.AccessObject) + " " + flag(g.IsWildcard); got != want[i] {
+			t.Errorf("grant %d: access_object and is_wildcard read as %q, want %q", i, got, want[i])
 		}
 	}
 }

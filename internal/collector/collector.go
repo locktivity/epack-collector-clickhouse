@@ -16,12 +16,17 @@ import (
 // with its calls. It fails only when the sign-in fails. A value it cannot
 // read after that is left out of the output with a gap, never written as
 // zero or false.
-func collect(ctx componentsdk.CollectorContext, cfg Config, cloud *clickhouse.Cloud, databases []*clickhouse.Database) (*Output, error) {
+//
+// The members and API keys feed both the detailed artifact and the
+// access-posture file. The invitations, console roles, and services feed
+// only the detailed artifact, so they are read only when the collect config
+// key lists it. The access-posture file is nil when the key leaves it out.
+func collect(ctx componentsdk.CollectorContext, cfg Config, cloud *clickhouse.Cloud, databases []*clickhouse.Database) (*Output, *AccessPosture, error) {
 	signIn, step := componentsdk.StartCollectorStep(ctx, "sign_in", "Sign in")
 	org, err := cloud.GetOrganization(signIn.Context())
 	step.End()
 	if err != nil {
-		return nil, signInError(err)
+		return nil, nil, signInError(err)
 	}
 	rec := componentsdk.Records(ctx)
 	rec.SignedInAs(componentsdk.Principal{
@@ -42,28 +47,44 @@ func collect(ctx componentsdk.CollectorContext, cfg Config, cloud *clickhouse.Cl
 	}
 	gaps.noAPI("/organization/sso_enabled", "ClickHouse Cloud has no API that reports whether the organization signs members in with SAML SSO.")
 
-	people, step := componentsdk.StartCollectorStep(ctx, "members", "Members and invitations")
-	out.Members = readMembers(people, cloud, gaps)
-	out.Invitations = readInvitations(people, cloud, gaps, now)
-	step.End()
+	details := componentsdk.Selected(ctx, componentsdk.Location{Path: artifactPath})
+	access := componentsdk.Selected(ctx, componentsdk.Location{Schema: accessSchema, Path: accessPath})
 
-	keys, step := componentsdk.StartCollectorStep(ctx, "api_keys", "API keys")
-	out.APIKeys = readAPIKeys(keys, cloud, gaps)
-	step.End()
-
-	roles, step := componentsdk.StartCollectorStep(ctx, "console_roles", "Console roles")
-	out.ConsoleRoles = readConsoleRoles(roles, cloud, gaps)
-	step.End()
-
-	if len(databases) > 0 {
-		dbs, step := componentsdk.StartCollectorStep(ctx, "databases", "Database access")
-		for i, db := range databases {
-			dbs.Progress(int64(i+1), int64(len(databases)), fmt.Sprintf("Reading service %d of %d", i+1, len(databases)))
-			out.Services = append(out.Services, readService(dbs, db, gaps, i, cfg.Services[i]))
+	var members []Member
+	var keys []APIKey
+	if details || access {
+		people, step := componentsdk.StartCollectorStep(ctx, "members", "Members and invitations")
+		out.Members, members = readMembers(people, cloud, gaps)
+		if details {
+			out.Invitations = readInvitations(people, cloud, gaps, now)
 		}
 		step.End()
+
+		apiKeys, step := componentsdk.StartCollectorStep(ctx, "api_keys", "API keys")
+		out.APIKeys, keys = readAPIKeys(apiKeys, cloud, gaps)
+		step.End()
 	}
-	return out, nil
+
+	if details {
+		roles, step := componentsdk.StartCollectorStep(ctx, "console_roles", "Console roles")
+		out.ConsoleRoles = readConsoleRoles(roles, cloud, gaps)
+		step.End()
+
+		if len(databases) > 0 {
+			dbs, step := componentsdk.StartCollectorStep(ctx, "databases", "Database access")
+			for i, db := range databases {
+				dbs.Progress(int64(i+1), int64(len(databases)), fmt.Sprintf("Reading service %d of %d", i+1, len(databases)))
+				out.Services = append(out.Services, readService(dbs, db, gaps, now, i, cfg.Services[i]))
+			}
+			step.End()
+		}
+	}
+
+	var posture *AccessPosture
+	if access {
+		posture = accessPosture(gaps, ctx.Level(), now, members, keys)
+	}
+	return out, posture, nil
 }
 
 // signInError says what to fix when the sign-in fails. The SDK gives the

@@ -13,10 +13,12 @@ See [docs/](docs/) for setup and the output: [configuration](docs/configuration.
 | `internal/collector/collector.go` | The sign-in and the run's steps |
 | `internal/collector/console.go` | Members, invitations, API keys, and console roles |
 | `internal/collector/services.go` | Each service's database access settings |
+| `internal/collector/access.go` | The access-posture file, built from the members and API keys |
 | `internal/collector/gaps.go` | Records each value the collector leaves out, and why |
 | `internal/clickhouse/cloud.go` | The Cloud API client, with one named operation per call |
 | `internal/clickhouse/database.go` | The SQL client, with one named operation per query |
-| `docs/schema/v1.0.0.json` | The artifact's JSON Schema, with the `x-epack` annotations the output checks read |
+| `docs/schema/v1.0.0.json` | The detailed artifact's JSON Schema, with the `x-epack` annotations the output checks read |
+| `docs/schema/methods.json` | How the collector measures each value of the access-posture file |
 | `docs/schema/trace-map.json` | The trace map, which links each field to the calls and the code behind it |
 
 ## Development

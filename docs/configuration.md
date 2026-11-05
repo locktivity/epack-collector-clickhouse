@@ -11,7 +11,7 @@ The key's role decides what the collector reads from the console:
 | `control-plane:organization:view` and `control-plane:organization:view-api-keys` | The organization, its invitations, and its API keys |
 | Both of those and `control-plane:organization:manage` | Also the members, their console roles, and what each console role grants |
 
-`control-plane:organization:manage` also lets the key change the organization, including its members and their roles. Without it, the collector leaves the members and the role definitions out with a `permission_denied` gap. ClickHouse's [API reference](https://clickhouse.com/docs/products/cloud/api-reference/user-management/list-organization-members) says `control-plane:organization:view` is enough to list members, but the API returns an empty list without `control-plane:organization:manage`.
+`control-plane:organization:manage` also lets the key change the organization, including its members and their roles. Without it, the collector leaves the members and the role definitions out with a `permission_denied` gap. The members and admins in `artifacts/clickhouse.access-posture.json` are left out with the same gap. ClickHouse's [API reference](https://clickhouse.com/docs/products/cloud/api-reference/user-management/list-organization-members) says `control-plane:organization:view` is enough to list members, but the API returns an empty list without `control-plane:organization:manage`.
 
 1. In the ClickHouse Cloud console, open your organization's **Users and roles**, select **Roles**, and select **Create new role**.
 2. Name the role `epack-collector`, select **Allow**, and give it the permissions from the table.
@@ -69,6 +69,7 @@ export CLICKHOUSE_KEY_ID=YOUR-KEY-ID CLICKHOUSE_KEY_SECRET=YOUR-KEY-SECRET CLICK
 | `organization_id` | Yes | The organization's ID, from **Organization details** in the console. |
 | `services` | No | The services whose database access the collector reads. Each has a `host`, the service's HTTPS host name without `https://` or a port, and an optional `user`, which is `epack_collector` unless you set it. Leave `services` out to read only the console. |
 | `level` | No | `trust` (the default), `audit`, or `internal`. See [levels.md](levels.md). |
+| `collect` | No | The kinds of evidence to collect. `details` is `artifacts/clickhouse.details.json`, and `access-posture` is `artifacts/clickhouse.access-posture.json`. Leave it out to collect both. With only `access-posture`, the collector reads the members and API keys and skips the invitations, console roles, and services. |
 
 ## Environment Variables
 
@@ -84,7 +85,7 @@ A service that has gone idle starts again when the collector's first query reach
 
 ## Partial Collection and Exit Codes
 
-The run fails only when the configuration is invalid (exit 2), when the Cloud API rejects the key or refuses its address (exit 3), or when the Cloud API cannot be reached (exit 4). Every other read that fails leaves its values out of `artifacts/clickhouse.json`, and `artifacts/clickhouse.collector-result.json` records a gap for each, with the call that failed and what to check.
+The run fails only when the configuration is invalid (exit 2), when the Cloud API rejects the key or refuses its address (exit 3), or when the Cloud API cannot be reached (exit 4). Every other read that fails leaves its values out of `artifacts/clickhouse.details.json` and `artifacts/clickhouse.access-posture.json`. `artifacts/clickhouse.collector-result.json` records a gap for each, with the call that failed and what to check.
 
 Some values are left out every time their condition holds:
 
@@ -92,5 +93,10 @@ Some values are left out every time their condition holds:
 |-------|------|------|
 | `members` | `permission_denied` | The key's role lacks `control-plane:organization:manage`. |
 | `console_roles` | `permission_denied` | The key's role lacks `control-plane:organization:manage`. |
-| `organization.sso_enabled` | `not_licensed` | Always. ClickHouse Cloud has no API that reports SAML SSO. |
-| `members.mfa_enabled_count` | `not_licensed` | Whenever the members are read. ClickHouse Cloud has no API that reports a member's MFA. |
+| `organization.sso_enabled` | `unsupported` | Always. ClickHouse Cloud has no API that reports SAML SSO. |
+| `members.mfa_enabled_count` | `unsupported` | Whenever the members are read. ClickHouse Cloud has no API that reports a member's MFA. |
+| `members` and `admins` in the access-posture file | `permission_denied` | The key's role lacks `control-plane:organization:manage`. |
+| `credentials` in the access-posture file | `permission_denied` | The key's role lacks `control-plane:organization:view-api-keys`. |
+| `members.inactive_member_count` and `members.inactive_pct` in the access-posture file | `not_read` | Always. They need ClickHouse Cloud's activities list, which the collector does not read. |
+
+The access-posture file also leaves out the values ClickHouse Cloud does not report, such as its sign-in rules, each with an `unsupported` gap. [overview.md](overview.md#values-clickhouse-cloud-does-not-report) lists them. An `unsupported` or `not_read` gap does not make the run partial.

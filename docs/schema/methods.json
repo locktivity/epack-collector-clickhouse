@@ -1,0 +1,19 @@
+{
+  "/members/members_present": "Checks whether the Cloud API's list of organization members has any members.",
+  "/members/member_count": "Counts the members in the Cloud API's list of organization members.",
+  "/admins/admins_present": "Checks whether any listed member holds the system Admin role.",
+  "/admins/admin_count": "Counts the listed members who hold the system Admin role.",
+  "/admins/admin_share_pct": "Divides admin_count by members.member_count, rounded up.",
+  "/credentials/credentials_present": "Checks whether the Cloud API's list of API keys, every page included, has a key that is enabled and has not expired.",
+  "/credentials/credential_count": "Counts the listed API keys that are enabled and whose expireAt, if set, is later than the run.",
+  "/credentials/never_expiring_credential_count": "Counts the keys in credential_count that have no expireAt.",
+  "/credentials/never_expiring_pct": "Divides never_expiring_credential_count by credential_count, rounded up.",
+  "/credentials/unused_credential_count": "Counts the keys in credential_count with no usedAt, or with a usedAt more than 90 days before the run.",
+  "/credentials/unused_pct": "Divides unused_credential_count by credential_count, rounded up.",
+  "/credentials/unrestricted_credential_count": "Counts the keys in credential_count that hold the system Admin role and have a 0.0.0.0/0 entry in ipAccessList. A key with any other role or with no such entry counts as restricted.",
+  "/credentials/unrestricted_pct": "Divides unrestricted_credential_count by credential_count, rounded up.",
+  "/credentials/write_access_credential_count": "Counts the keys in credential_count that hold the system Admin role.",
+  "/credentials/write_access_pct": "Divides write_access_credential_count by credential_count, rounded up.",
+  "/credentials/rotation_overdue_credential_count": "Counts the keys in credential_count whose createdAt is more than 90 days before the run.",
+  "/credentials/rotation_overdue_pct": "Divides rotation_overdue_credential_count by credential_count, rounded up."
+}

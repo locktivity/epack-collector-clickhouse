@@ -15,20 +15,47 @@ type gapLog struct {
 
 // notCollected records the value at pointer as left out because of err.
 // opts add details, such as the permission a permission_denied gap lacks.
-func (l gapLog) notCollected(err error, pointer string, opts ...componentsdk.GapOption) {
+func (l gapLog) notCollected(err error, pointer string, opts ...componentsdk.AdviceOption) {
 	l.rec.Helper()
 	l.rec.NotCollected(location(pointer), err, opts...)
 }
 
 // noAPI records the value at pointer as left out because ClickHouse Cloud
-// has no API that reports it. The code is not_licensed, whose owner is
-// nobody: no grant or setting on the customer's side would let the
-// collector read the value.
+// has no API that reports it. The code is unsupported, whose owner is
+// nobody. No grant or setting on the customer's side would let the collector
+// read the value. Such a gap does not make the run partial.
 func (l gapLog) noAPI(pointer, detail string) {
 	l.rec.Helper()
-	l.rec.NotCollectedCode(location(pointer), componentsdk.CodeNotLicensed, detail, componentsdk.Warning(detail))
+	l.rec.NotCollectedCode(location(pointer), componentsdk.CodeUnsupported, detail, componentsdk.Warning(detail))
+}
+
+// leftOut records the access-posture value at pointer as left out with
+// code. The code is unsupported when ClickHouse Cloud does not report the
+// value, and not_read when it reports the value through a call the
+// collector does not make. Neither makes the run partial.
+func (l gapLog) leftOut(pointer string, code componentsdk.Code, detail string) {
+	l.rec.Helper()
+	l.rec.NotCollectedCode(accessLocation(pointer), code, detail)
+}
+
+// mirror records, at the access-posture value at to, the gap that covers the
+// detailed artifact's value at from, such as a list that could not be read.
+func (l gapLog) mirror(from, to string) {
+	l.rec.Helper()
+	l.rec.Mirror(location(from), accessLocation(to))
+}
+
+// partial records the access-posture value at pointer as left out because
+// unmeasured of the items it counts could not be read.
+func (l gapLog) partial(pointer string, unmeasured int, err error) {
+	l.rec.Helper()
+	l.rec.Partial(accessLocation(pointer), unmeasured, err)
 }
 
 func location(pointer string) componentsdk.Location {
 	return componentsdk.Location{Path: artifactPath, Pointer: pointer}
+}
+
+func accessLocation(pointer string) componentsdk.Location {
+	return componentsdk.Location{Path: accessPath, Pointer: pointer}
 }

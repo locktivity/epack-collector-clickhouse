@@ -54,7 +54,7 @@ collectors:
 
 ## Example Output
 
-With a key whose role has `control-plane:organization:manage`, at the `trust` level, `artifacts/clickhouse.json` holds:
+With a key whose role has `control-plane:organization:manage`, at the `trust` level, `artifacts/clickhouse.details.json` holds:
 
 ```json
 {
@@ -110,7 +110,7 @@ With a read-only key, `members` and `console_roles` are absent too, and the coll
 ```json
 "gaps": [
   {
-    "path": "artifacts/clickhouse.json",
+    "path": "artifacts/clickhouse.details.json",
     "pointer": "/console_roles",
     "status": "not_collected",
     "code": "permission_denied",
@@ -122,7 +122,7 @@ With a read-only key, `members` and `console_roles` are absent too, and the coll
     "warning": "Reading console role definitions needs control-plane:organization:manage, which can also change the organization."
   },
   {
-    "path": "artifacts/clickhouse.json",
+    "path": "artifacts/clickhouse.details.json",
     "pointer": "/members",
     "status": "not_collected",
     "code": "permission_denied",
@@ -132,9 +132,32 @@ With a read-only key, `members` and `console_roles` are absent too, and the coll
     "missing_permission": "control-plane:organization:manage",
     "warning": "Reading members needs control-plane:organization:manage, which can also change the organization."
   },
-  {"path": "artifacts/clickhouse.json", "pointer": "/organization/sso_enabled", "status": "not_collected", "code": "not_licensed", "owner": "nobody"}
+  {"path": "artifacts/clickhouse.details.json", "pointer": "/organization/sso_enabled", "status": "not_collected", "code": "unsupported", "owner": "nobody"}
 ]
 ```
+
+At the `trust` level, the same organization's `artifacts/clickhouse.access-posture.json` holds:
+
+```json
+{
+  "schema_version": "1.0.0",
+  "collected_at": "2026-10-22T12:00:00Z",
+  "provider": "clickhouse",
+  "system_type": "database",
+  "members": {"members_present": true},
+  "admins": {"admins_present": true, "admin_share_pct": 25},
+  "credentials": {
+    "credentials_present": true,
+    "never_expiring_pct": 60,
+    "unused_pct": 60,
+    "unrestricted_pct": 20,
+    "write_access_pct": 20,
+    "rotation_overdue_pct": 0
+  }
+}
+```
+
+Five of the six API keys are enabled, and none has expired, so the credentials cover five keys. At `audit`, the file also holds the count behind each percentage, such as `credential_count` and `never_expiring_credential_count`.
 
 At `audit`, each count has its rows beside it. A database user's row:
 
