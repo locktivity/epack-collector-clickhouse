@@ -23,13 +23,36 @@ ClickHouse Cloud creates its own database users, roles, settings profiles, and q
 - Member names. A member appears by email, from the `audit` level.
 - Row policy filter expressions, which can hold the customer's data.
 
+## Access posture
+
+`artifacts/clickhouse.access-posture.json` holds the console's members, admins, and API keys in the `evidencepack/access-posture@v1` form. Its admins are the members who hold the system Admin role. Its credentials are the API keys that are enabled and have not expired.
+
+- A key never expires when it has no expiry date.
+- A key is unused when it was never used or was last used more than 90 days before the run.
+- A key is unrestricted when it holds the Admin role and its IP access list admits any address. A key with another role or a narrower IP access list is restricted.
+- A key has write access when it holds the Admin role.
+- A key is overdue for rotation when it was created more than 90 days before the run.
+
 ## Values ClickHouse Cloud does not report
 
-ClickHouse Cloud has no API that says whether the organization uses SAML SSO or whether a member signs in with MFA. The artifact holds both as null, and the collector result records a gap for each.
+ClickHouse Cloud has no API that says whether the organization uses SAML SSO or whether a member signs in with MFA. The detailed artifact holds both as null, and the collector result records an `unsupported` gap for each.
+
+The access-posture file leaves out these values, each with an `unsupported` gap:
+
+- The sign-in rules for SSO, MFA, and SCIM.
+- Members and admins who can sign in without SSO, and their MFA. ClickHouse Cloud keeps a person's SAML account apart from their password account, and the member list does not say which kind each member is.
+- Members who sign in through SSO, and members from outside the organization. The member list marks neither.
+- Root accounts, since an organization has none.
+- Connected apps, since the Cloud API does not list them.
+
+## Values the collector does not read
+
+The access-posture file leaves out inactive members with a `not_read` gap. ClickHouse Cloud's activities list reports member sign-ins. Reading it needs `control-plane:organization:view-activities`, which is not among the permissions in [configuration.md](configuration.md#1-create-the-api-key). A `not_read` gap does not make the run partial.
 
 ## Artifacts
 
-- `artifacts/clickhouse.json`, described by [docs/schema/v1.0.0.json](schema/v1.0.0.json).
+- `artifacts/clickhouse.details.json`, described by [docs/schema/v1.0.0.json](schema/v1.0.0.json).
+- `artifacts/clickhouse.access-posture.json`, described by epack's `evidencepack/access-posture@v1` schema, with the collector's methods from [docs/schema/methods.json](schema/methods.json).
 - `artifacts/clickhouse.collector-result.json`, which records each value left out and why, the run's steps, and its calls.
 
 See [levels.md](levels.md) for what each collection level adds and [examples.md](examples.md) for sample output.

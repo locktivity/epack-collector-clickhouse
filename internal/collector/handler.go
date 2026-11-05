@@ -11,7 +11,7 @@ import (
 
 const (
 	// artifactPath is where the collector's artifact sits in the pack.
-	artifactPath = "artifacts/clickhouse.json"
+	artifactPath = "artifacts/clickhouse.details.json"
 
 	// The variables the credentials arrive in, which epack.yaml lists under
 	// secrets: the Cloud API key's ID and secret, and the password of the
@@ -39,7 +39,9 @@ func Spec(version, commit string) componentsdk.CollectorSpec {
 		Description: "Who can reach a ClickHouse Cloud organization: console members, invitations, and API keys, and each service's database users, roles, grants, settings profiles, quotas, and row policies.",
 		Timeout:     10 * time.Minute,
 		Schemas:     map[string][]byte{artifactPath: schema.Artifact},
+		Methods:     schema.Methods(),
 		TraceMap:    schema.TraceMap,
+		Writes:      []string{accessSchema},
 	}
 }
 
@@ -66,6 +68,7 @@ func Run(ctx componentsdk.CollectorContext) error {
 	api := componentsdk.NewHTTPClient(ctx, componentsdk.HTTPOptions{
 		CredentialHosts: []string{clickhouse.APIHost},
 		VendorCode:      clickhouse.APIVendorCode,
+		NamesPermission: clickhouse.APINamesPermission,
 	})
 	cloud := clickhouse.NewCloud(api, cfg.OrganizationID, keyID, keySecret)
 
@@ -90,14 +93,22 @@ func Run(ctx componentsdk.CollectorContext) error {
 		}
 	}
 
-	output, err := collect(ctx, cfg, cloud, databases)
+	output, access, err := collect(ctx, cfg, cloud, databases)
 	if err != nil {
 		return err
 	}
-	return ctx.Emit([]componentsdk.CollectedArtifact{
+	artifacts := []componentsdk.CollectedArtifact{
 		componentsdk.JSONArtifact(artifactPath, output, componentsdk.ArtifactMeta{
 			DisplayName: "ClickHouse Cloud access",
 			Description: "Console members, invitations, and API keys, and each service's database users, roles, and grants",
 		}),
-	})
+	}
+	if access != nil {
+		artifacts = append(artifacts, componentsdk.JSONArtifact(accessPath, access, componentsdk.ArtifactMeta{
+			Schema:      accessSchema,
+			DisplayName: "ClickHouse Cloud access posture",
+			Description: "Members, admins, and API keys of the organization's console",
+		}))
+	}
+	return ctx.Emit(artifacts)
 }

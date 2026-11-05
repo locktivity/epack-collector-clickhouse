@@ -34,12 +34,28 @@ const (
 )
 
 // Permissions an API key's role grants, in ClickHouse Cloud's terms, which a
-// permission_denied gap names.
+// permission_denied gap names. No call here needs PermissionViewActivities.
+// The not_read gaps name it as the permission that reading the activities
+// would need.
 const (
 	PermissionViewOrganization   = "control-plane:organization:view"
 	PermissionViewAPIKeys        = "control-plane:organization:view-api-keys"
 	PermissionManageOrganization = "control-plane:organization:manage"
+	PermissionViewActivities     = "control-plane:organization:view-activities"
 )
+
+// operationPermissions holds the permission each call needs, which the
+// collector result lists with the call. The API reference names it for each
+// call. The members list is the exception. Its reference names
+// control-plane:organization:view, but a key without
+// control-plane:organization:manage gets an empty list.
+var operationPermissions = map[string]string{
+	OpGetOrganization: PermissionViewOrganization,
+	OpListMembers:     PermissionManageOrganization,
+	OpListInvitations: PermissionViewOrganization,
+	OpListKeys:        PermissionViewAPIKeys,
+	OpListRoles:       PermissionManageOrganization,
+}
 
 const (
 	maxResponseBytes = 32 << 20
@@ -130,9 +146,19 @@ type Role struct {
 
 // Policy allows or denies permissions on resources.
 type Policy struct {
-	AllowDeny   string   `json:"allowDeny"`
-	Permissions []string `json:"permissions"`
-	Resources   []string `json:"resources"`
+	AllowDeny   string     `json:"allowDeny"`
+	Permissions []string   `json:"permissions"`
+	Resources   []string   `json:"resources"`
+	Tags        PolicyTags `json:"tags"`
+}
+
+// PolicyTags are a policy's tags. RoleV2 is sql-console-readonly for
+// read-only SQL console access, or sql-console-admin for admin access.
+// Grants lists database grants, such as database names. Each is empty when
+// the policy has no such tag.
+type PolicyTags struct {
+	RoleV2 *string  `json:"roleV2"`
+	Grants []string `json:"grants"`
 }
 
 func (c *Cloud) orgPath() string {
@@ -252,8 +278,13 @@ func (c *Cloud) ListKeys(ctx context.Context) ([]APIKey, error) {
 	return nil, componentsdk.CodeError(componentsdk.CodeInvalidResponse, fmt.Errorf("%s: more than %d pages of keys", OpListKeys, maxKeyPages))
 }
 
+// ErrRolesHidden is the error ListRoles returns for an empty list of roles.
+// Every organization has the system roles, so the list is never empty.
+var ErrRolesHidden = errors.New(OpListRoles + ": the API returned no roles, and an organization always has its system roles")
+
 // ListRoles lists the organization's console roles. It needs
 // control-plane:organization:manage, which can also change the organization.
+// An empty list is ErrRolesHidden, coded permission_denied.
 func (c *Cloud) ListRoles(ctx context.Context) ([]Role, error) {
 	var env struct {
 		Result []Role `json:"result"`
@@ -264,6 +295,9 @@ func (c *Cloud) ListRoles(ctx context.Context) ([]Role, error) {
 	}
 	if env.Result == nil {
 		return nil, componentsdk.ResponseError(resp, invalidResponse(OpListRoles, "has no list of roles"))
+	}
+	if len(env.Result) == 0 {
+		return nil, componentsdk.ResponseError(resp, componentsdk.CodeError(componentsdk.CodePermissionDenied, ErrRolesHidden))
 	}
 	for _, r := range env.Result {
 		if r.Name == "" || r.Type == "" {
@@ -278,7 +312,7 @@ func (c *Cloud) ListRoles(ctx context.Context) ([]Role, error) {
 // body wanting can build an error with componentsdk.ResponseError, which
 // gives a gap recorded from it the response's call.
 func (c *Cloud) get(ctx context.Context, op, path string, out any) (*http.Response, error) {
-	ctx = componentsdk.WithOperation(ctx, componentsdk.Operation{Name: op})
+	ctx = componentsdk.WithOperation(ctx, componentsdk.Operation{Name: op, Permission: operationPermissions[op]})
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, apiBase+path, nil)
 	if err != nil {
 		return nil, err
@@ -327,6 +361,15 @@ func (e *APIError) HTTPHeader() http.Header { return e.Header }
 // came from an address outside the key's IP access list.
 func (e *APIError) IPNotAllowed() bool {
 	return e.StatusCode == http.StatusForbidden && strings.Contains(strings.ToLower(e.Message), "ip address not allowed")
+}
+
+// APINamesPermission reports whether a refused Cloud API call shows that the
+// key's role lacks the call's permission, for
+// componentsdk.HTTPOptions.NamesPermission. It is false for a 403 that
+// refuses the runner's address, which the key's IP access list controls.
+func APINamesPermission(resp *http.Response, body []byte) bool {
+	refused := APIError{StatusCode: resp.StatusCode, Message: apiErrorMessage(body)}
+	return !refused.IPNotAllowed()
 }
 
 // apiErrorMessage reads the error field of a Cloud API error body, or the

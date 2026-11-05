@@ -25,16 +25,18 @@ const adminRole = "Admin"
 const anyAddress = "0.0.0.0/0"
 
 // readMembers lists the organization's members. Their rows, sorted by
-// email, appear from the audit level.
-func readMembers(ctx componentsdk.CollectorContext, cloud *clickhouse.Cloud, gaps gapLog) *Members {
+// email, appear in the artifact from the audit level. It also returns every
+// row at every level, for the access-posture file, or nil when the list
+// could not be read.
+func readMembers(ctx componentsdk.CollectorContext, cloud *clickhouse.Cloud, gaps gapLog) (*Members, []Member) {
 	members, err := cloud.ListMembers(ctx.Context())
 	if err != nil {
 		warning := manageWarning(err, "members")
 		if errors.Is(err, clickhouse.ErrMembersHidden) {
 			warning = componentsdk.Warning(membersHiddenWarning)
 		}
-		gaps.notCollected(err, "/members", componentsdk.MissingPermission(clickhouse.PermissionManageOrganization), warning)
-		return nil
+		gaps.notCollected(err, "/members", hiddenListPermission(err, clickhouse.ErrMembersHidden), warning)
+		return nil, nil
 	}
 	rows := make([]Member, len(members))
 	out := &Members{TotalCount: len(members)}
@@ -50,7 +52,7 @@ func readMembers(ctx componentsdk.CollectorContext, cloud *clickhouse.Cloud, gap
 	if atAudit(ctx) {
 		out.Inventory = rows
 	}
-	return out
+	return out, rows
 }
 
 // readInvitations lists the invitations that have not been accepted. One
@@ -58,7 +60,7 @@ func readMembers(ctx componentsdk.CollectorContext, cloud *clickhouse.Cloud, gap
 func readInvitations(ctx componentsdk.CollectorContext, cloud *clickhouse.Cloud, gaps gapLog, now time.Time) *Invitations {
 	invitations, err := cloud.ListInvitations(ctx.Context())
 	if err != nil {
-		gaps.notCollected(err, "/invitations", componentsdk.MissingPermission(clickhouse.PermissionViewOrganization))
+		gaps.notCollected(err, "/invitations")
 		return nil
 	}
 	rows := make([]Invitation, len(invitations))
@@ -86,13 +88,18 @@ func readInvitations(ctx componentsdk.CollectorContext, cloud *clickhouse.Cloud,
 }
 
 // readAPIKeys lists the organization's API keys. Their rows, sorted by name,
-// appear from the audit level.
-func readAPIKeys(ctx componentsdk.CollectorContext, cloud *clickhouse.Cloud, gaps gapLog) *APIKeys {
+// appear in the artifact from the audit level. It also returns every row at
+// every level, for the access-posture file, or nil when the list could not
+// be read.
+func readAPIKeys(ctx componentsdk.CollectorContext, cloud *clickhouse.Cloud, gaps gapLog) (*APIKeys, []APIKey) {
 	keys, err := cloud.ListKeys(ctx.Context())
 	if err != nil {
-		gaps.notCollected(err, "/api_keys", componentsdk.MissingPermission(clickhouse.PermissionViewAPIKeys),
-			componentsdk.Warning("Give the API key's role "+clickhouse.PermissionViewAPIKeys+" to list API keys."))
-		return nil
+		var warning componentsdk.AdviceOption
+		if componentsdk.Classify(err) == componentsdk.CodePermissionDenied {
+			warning = componentsdk.Warning("Give the API key's role " + clickhouse.PermissionViewAPIKeys + " to list API keys.")
+		}
+		gaps.notCollected(err, "/api_keys", warning)
+		return nil, nil
 	}
 	out := &APIKeys{TotalCount: len(keys), Inventory: make([]APIKey, len(keys))}
 	for i, k := range keys {
@@ -127,10 +134,11 @@ func readAPIKeys(ctx componentsdk.CollectorContext, cloud *clickhouse.Cloud, gap
 		out.NeverUsedCount += count(row.NeverUsed)
 	}
 	sort.SliceStable(out.Inventory, func(i, j int) bool { return out.Inventory[i].Name < out.Inventory[j].Name })
+	rows := out.Inventory
 	if !atAudit(ctx) {
 		out.Inventory = nil
 	}
-	return out
+	return out, rows
 }
 
 // readConsoleRoles lists the console roles and what they grant. The Cloud
@@ -140,7 +148,7 @@ func readAPIKeys(ctx componentsdk.CollectorContext, cloud *clickhouse.Cloud, gap
 func readConsoleRoles(ctx componentsdk.CollectorContext, cloud *clickhouse.Cloud, gaps gapLog) *ConsoleRoles {
 	roles, err := cloud.ListRoles(ctx.Context())
 	if err != nil {
-		gaps.notCollected(err, "/console_roles", componentsdk.MissingPermission(clickhouse.PermissionManageOrganization), manageWarning(err, "console role definitions"))
+		gaps.notCollected(err, "/console_roles", hiddenListPermission(err, clickhouse.ErrRolesHidden), manageWarning(err, "console role definitions"))
 		return nil
 	}
 	out := &ConsoleRoles{TotalCount: len(roles), Inventory: make([]ConsoleRole, len(roles))}
@@ -155,7 +163,12 @@ func readConsoleRoles(ctx componentsdk.CollectorContext, cloud *clickhouse.Cloud
 			}
 		}
 		for j, p := range r.Policies {
-			row.Policies[j] = ConsolePolicy{AllowDeny: p.AllowDeny, Permissions: nonNil(p.Permissions), Resources: nonNil(p.Resources)}
+			row.Policies[j] = ConsolePolicy{
+				AllowDeny:   p.AllowDeny,
+				Permissions: nonNil(p.Permissions),
+				Resources:   nonNil(p.Resources),
+				Tags:        ConsolePolicyTags{RoleV2: p.Tags.RoleV2, Grants: p.Tags.Grants},
+			}
 		}
 		out.Inventory[i] = row
 		out.CustomCount += count(r.Type == "custom")
@@ -170,11 +183,23 @@ func readConsoleRoles(ctx componentsdk.CollectorContext, cloud *clickhouse.Cloud
 // manageWarning tells the operator that reading what names needs
 // control-plane:organization:manage when err is a permission_denied
 // failure, and adds nothing otherwise.
-func manageWarning(err error, what string) componentsdk.GapOption {
+func manageWarning(err error, what string) componentsdk.AdviceOption {
 	if componentsdk.Classify(err) != componentsdk.CodePermissionDenied {
-		return componentsdk.GapOption{}
+		return componentsdk.AdviceOption{}
 	}
 	return componentsdk.Warning(fmt.Sprintf("Reading %s needs %s, which can also change the organization.", what, clickhouse.PermissionManageOrganization))
+}
+
+// hiddenListPermission names control-plane:organization:manage on the gap
+// when err is hidden. hidden is the error for a list the API answered empty
+// with status 200, which a key without that permission gets. A gap takes
+// its operation's permission only from a refused call, so this one needs it
+// named here.
+func hiddenListPermission(err, hidden error) componentsdk.AdviceOption {
+	if !errors.Is(err, hidden) {
+		return componentsdk.AdviceOption{}
+	}
+	return componentsdk.MissingPermission(clickhouse.PermissionManageOrganization)
 }
 
 func roleRefs(assigned []clickhouse.AssignedRole) []RoleRef {

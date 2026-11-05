@@ -159,14 +159,14 @@ var kitRoleGrants = []string{
 }
 
 var kitGrants = []string{
-	`{"user_name": "legacy_app", "role_name": null, "access_type": "SELECT", "database": "app", "table": "events", "column": null, "is_partial_revoke": 0, "grant_option": 1, "user_storage": "replicated"}`,
-	`{"user_name": "monitoring-internal", "role_name": null, "access_type": "SELECT", "database": "system", "table": null, "column": null, "is_partial_revoke": 0, "grant_option": 0, "user_storage": "users_xml"}`,
-	`{"user_name": null, "role_name": "access_reader", "access_type": "SHOW USERS", "database": null, "table": null, "column": null, "is_partial_revoke": 0, "grant_option": 0, "user_storage": ""}`,
-	`{"user_name": null, "role_name": "access_reader", "access_type": "SELECT", "database": "system", "table": "grants", "column": null, "is_partial_revoke": 0, "grant_option": 0, "user_storage": ""}`,
-	`{"user_name": null, "role_name": "app_reader", "access_type": "SELECT", "database": "app", "table": null, "column": null, "is_partial_revoke": 0, "grant_option": 0, "user_storage": ""}`,
-	`{"user_name": null, "role_name": "default_role", "access_type": "ALL", "database": null, "table": null, "column": null, "is_partial_revoke": 0, "grant_option": 1, "user_storage": ""}`,
-	`{"user_name": null, "role_name": "default_role", "access_type": "CREATE USER", "database": null, "table": null, "column": null, "is_partial_revoke": 1, "grant_option": 0, "user_storage": ""}`,
-	`{"user_name": null, "role_name": "user_admin", "access_type": "CREATE USER", "database": null, "table": null, "column": null, "is_partial_revoke": 0, "grant_option": 0, "user_storage": ""}`,
+	`{"user_name": "legacy_app", "role_name": null, "access_type": "SELECT", "database": "app", "table": "events", "column": null, "is_partial_revoke": 0, "grant_option": 1, "access_object": "", "is_wildcard": 0, "user_storage": "replicated"}`,
+	`{"user_name": "monitoring-internal", "role_name": null, "access_type": "SELECT", "database": "system", "table": null, "column": null, "is_partial_revoke": 0, "grant_option": 0, "access_object": "", "is_wildcard": 0, "user_storage": "users_xml"}`,
+	`{"user_name": null, "role_name": "access_reader", "access_type": "SHOW USERS", "database": null, "table": null, "column": null, "is_partial_revoke": 0, "grant_option": 0, "access_object": "", "is_wildcard": 0, "user_storage": ""}`,
+	`{"user_name": null, "role_name": "access_reader", "access_type": "SELECT", "database": "system", "table": "grants", "column": null, "is_partial_revoke": 0, "grant_option": 0, "access_object": "", "is_wildcard": 0, "user_storage": ""}`,
+	`{"user_name": null, "role_name": "app_reader", "access_type": "SELECT", "database": "app", "table": null, "column": null, "is_partial_revoke": 0, "grant_option": 0, "access_object": "", "is_wildcard": 0, "user_storage": ""}`,
+	`{"user_name": null, "role_name": "default_role", "access_type": "ALL", "database": null, "table": null, "column": null, "is_partial_revoke": 0, "grant_option": 1, "access_object": "", "is_wildcard": 0, "user_storage": ""}`,
+	`{"user_name": null, "role_name": "default_role", "access_type": "CREATE USER", "database": null, "table": null, "column": null, "is_partial_revoke": 1, "grant_option": 0, "access_object": "", "is_wildcard": 0, "user_storage": ""}`,
+	`{"user_name": null, "role_name": "user_admin", "access_type": "CREATE USER", "database": null, "table": null, "column": null, "is_partial_revoke": 0, "grant_option": 0, "access_object": "", "is_wildcard": 0, "user_storage": ""}`,
 }
 
 var kitProfiles = []string{
@@ -306,6 +306,53 @@ func kitClean() collectortest.Scenario {
 				"/services/0/quota_limits/inventory/0/limits":                 map[string]any{"queries": 1000, "execution_time": 3.5, "failed_sequential_authentications": 5},
 				"/services/0/row_policies/inventory/0/short_name":             "tenant_a",
 			},
+			// Five of the six keys are enabled and none has expired. The
+			// disabled key is left out of the credentials. Four of the five
+			// can be used from any address. Only sandbox-admin among them
+			// holds Admin, so it is the one unrestricted key.
+			accessPath: {
+				"/schema_version": "1.0.0",
+				"/provider":       "clickhouse",
+				"/system_type":    "database",
+				"/members":        map[string]any{"members_present": true, "member_count": 4},
+				"/admins":         map[string]any{"admins_present": true, "admin_count": 1, "admin_share_pct": 25},
+				"/credentials": map[string]any{
+					"credentials_present": true, "credential_count": 5,
+					"never_expiring_credential_count": 3, "never_expiring_pct": 60,
+					"unused_credential_count": 3, "unused_pct": 60,
+					"unrestricted_credential_count": 1, "unrestricted_pct": 20,
+					"write_access_credential_count": 1, "write_access_pct": 20,
+					"rotation_overdue_credential_count": 0, "rotation_overdue_pct": 0,
+				},
+				"/sign_in":        collectortest.Absent,
+				"/root":           collectortest.Absent,
+				"/connected_apps": collectortest.Absent,
+				"/scopes":         collectortest.Absent,
+			},
+			kitResultPath: kitPermissionPins(),
 		},
 	}
+}
+
+// kitPermissionPins pins the permission each Cloud API call declares, as
+// the clean run's result lists it, and that the run is collected. The
+// result lists the operations by name, so the Cloud API's calls come after
+// the database's ten, which declare none.
+func kitPermissionPins() map[string]any {
+	pins := map[string]any{
+		"/outcome/status":                "collected",
+		"/calls/operations/9/name":       clickhouse.OpGetVersion,
+		"/calls/operations/9/permission": collectortest.Absent,
+	}
+	for i, op := range []struct{ name, permission string }{
+		{clickhouse.OpListInvitations, clickhouse.PermissionViewOrganization},
+		{clickhouse.OpListKeys, clickhouse.PermissionViewAPIKeys},
+		{clickhouse.OpListMembers, clickhouse.PermissionManageOrganization},
+		{clickhouse.OpGetOrganization, clickhouse.PermissionViewOrganization},
+		{clickhouse.OpListRoles, clickhouse.PermissionManageOrganization},
+	} {
+		pins[fmt.Sprintf("/calls/operations/%d/name", 10+i)] = op.name
+		pins[fmt.Sprintf("/calls/operations/%d/permission", 10+i)] = op.permission
+	}
+	return pins
 }

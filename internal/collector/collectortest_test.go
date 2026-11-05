@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"path/filepath"
 	"slices"
+	"strings"
 	"testing"
 	"time"
 
@@ -46,6 +47,12 @@ func TestCollectorKit(t *testing.T) {
 			kitClean(),
 			kitLeastPrivilegeKey(),
 			kitEmptyOrganization(),
+			kitTrustLevel(),
+			kitStaleKeys(),
+			kitNoUsableKeys(),
+			kitKeyWithoutCreationTime(),
+			kitCollectAccessOnly(),
+			kitCollectDetailsOnly(),
 			{
 				Name:      "no services configured",
 				Config:    map[string]any{"services": nil},
@@ -57,6 +64,18 @@ func TestCollectorKit(t *testing.T) {
 			},
 			kitDatabasePasswordRejected(),
 			kitMissingShowUsers(),
+			kitSourceAndPrefixGrants(),
+			kitOlderServerGrants(),
+			kitSQLConsoleRoles(),
+			kitNoRolesListed(),
+			kitExpiredNoPassword(),
+			kitAPIKeysFail("API keys call fails with a server error", http.StatusInternalServerError, apiError(500, "INTERNAL_SERVER_ERROR"), map[string]any{
+				"code": "vendor_error", "missing_permission": collectortest.Absent, "warning": collectortest.Absent,
+			}),
+			kitAPIKeysFail("API keys call refused", http.StatusForbidden, apiError(403, "FORBIDDEN"), map[string]any{
+				"code": "permission_denied", "missing_permission": clickhouse.PermissionViewAPIKeys,
+				"warning": "Give the API key's role control-plane:organization:view-api-keys to list API keys.",
+			}),
 			{
 				Name:          "API key refused from the runner's address",
 				ExpectFailure: componentsdk.CodePermissionDenied,
@@ -110,30 +129,33 @@ func TestCollectorKit(t *testing.T) {
 // naming control-plane:organization:manage.
 func kitLeastPrivilegeKey() collectortest.Scenario {
 	result := kitStepPins()
-	for field, value := range map[string]any{
+	access := kitAccessGaps("/admins", "/members")
+	details := len(access)
+	kitGap(result, details, map[string]any{
 		"pointer": "/console_roles", "status": "not_collected",
 		"code": "permission_denied", "owner": "customer", "vendor_code": "FORBIDDEN",
 		"operation": clickhouse.OpListRoles, "call": 6,
 		"missing_permission": clickhouse.PermissionManageOrganization,
 		"warning":            "Reading console role definitions needs control-plane:organization:manage, which can also change the organization.",
 		"detail":             "the ClickHouse Cloud API returned status 403: FORBIDDEN",
-	} {
-		result["/gaps/0/"+field] = value
-	}
-	for field, value := range map[string]any{
-		"pointer": "/members", "status": "not_collected",
-		"code": "permission_denied", "owner": "customer",
+	})
+	membersHidden := map[string]any{
+		"status": "not_collected", "code": "permission_denied", "owner": "customer",
 		"operation": clickhouse.OpListMembers, "call": 2,
 		"missing_permission": clickhouse.PermissionManageOrganization,
 		"warning":            "ClickHouse Cloud's API reference says control-plane:organization:view is enough to list members (https://clickhouse.com/docs/products/cloud/api-reference/user-management/list-organization-members). In practice the API returns an empty list unless the key's role also has control-plane:organization:manage, which can also change the organization. This looks like a bug in ClickHouse Cloud.",
 		"detail":             "clickhouse.members.list: the API returned no members, and an organization always has at least one",
-	} {
-		result["/gaps/1/"+field] = value
 	}
-	result["/gaps/2/pointer"] = "/organization/sso_enabled"
-	result["/gaps/2/code"] = "not_licensed"
-	result["/gaps/2/owner"] = "nobody"
-	result["/gaps/3"] = collectortest.Absent
+	kitGap(result, details+1, membersHidden)
+	kitGap(result, details+1, map[string]any{"pointer": "/members", "path": artifactPath})
+	kitGap(result, details+2, map[string]any{"pointer": "/organization/sso_enabled", "code": "unsupported", "owner": "nobody"})
+	result[fmt.Sprintf("/gaps/%d", details+3)] = collectortest.Absent
+	// The access-posture file's members and admins come from the same list,
+	// so they carry the same gap.
+	for _, section := range []string{"/admins", "/members"} {
+		kitGap(result, slices.Index(access, section), membersHidden)
+		kitGap(result, slices.Index(access, section), map[string]any{"pointer": section, "path": accessPath})
+	}
 	result["/signed_in_as"] = map[string]any{"provider": "clickhouse", "kind": "api_key", "tenant_id": kitOrgID, "auth_method": "api_token"}
 	responses := kitConsole(kitRolesRefused())
 	responses[1] = collectortest.Response{URL: kitAPI + "/members", Body: apiBody(`[]`)}
@@ -146,6 +168,11 @@ func kitLeastPrivilegeKey() collectortest.Scenario {
 				"/console_roles":           collectortest.Absent,
 				"/invitations/total_count": 2,
 				"/api_keys/total_count":    6,
+			},
+			accessPath: {
+				"/members":                      collectortest.Absent,
+				"/admins":                       collectortest.Absent,
+				"/credentials/credential_count": 5,
 			},
 			kitResultPath: result,
 		},
@@ -171,6 +198,18 @@ func kitEmptyOrganization() collectortest.Scenario {
 	empty["/services/0/users/inventory"] = []any{}
 	empty["/services/0/roles/customer_count"] = 0
 	empty["/services/0/roles/inventory"] = []any{}
+	access := map[string]any{
+		"/members": map[string]any{"members_present": true, "member_count": 1},
+		"/admins":  map[string]any{"admins_present": true, "admin_count": 1, "admin_share_pct": 100},
+		"/credentials": map[string]any{
+			"credentials_present": true, "credential_count": 1,
+			"never_expiring_credential_count": 1, "never_expiring_pct": 100,
+			"unused_credential_count": 1, "unused_pct": 100,
+			"unrestricted_credential_count": 0, "unrestricted_pct": 0,
+			"write_access_credential_count": 1, "write_access_pct": 100,
+			"rotation_overdue_credential_count": 0, "rotation_overdue_pct": 0,
+		},
+	}
 	return collectortest.Scenario{
 		Name: "empty organization",
 		Responses: []collectortest.Response{
@@ -190,7 +229,7 @@ func kitEmptyOrganization() collectortest.Scenario {
 			sql(clickhouse.OpListQuotaLimits, sqlBody()),
 			sql(clickhouse.OpListRowPolicies, sqlBody()),
 		},
-		Expect: map[string]map[string]any{artifactPath: empty},
+		Expect: map[string]map[string]any{artifactPath: empty, accessPath: access},
 	}
 }
 
@@ -200,18 +239,22 @@ func kitEmptyOrganization() collectortest.Scenario {
 func kitDatabasePasswordRejected() collectortest.Scenario {
 	rejected := sqlError(clickhouse.OpGetVersion, http.StatusForbidden, 516,
 		"Code: 516. DB::Exception: epack_collector: Authentication failed: password is incorrect, or there is no user with such name. (AUTHENTICATION_FAILED) (version 26.8.1.2045 (official build))\n")
-	// The result sorts gaps by pointer, after the two the console leaves.
+	// The result lists gaps by path and then pointer. The service's come
+	// after the access-posture file's and the two the console leaves.
 	parts := slices.Sorted(slices.Values(kitServiceParts))
+	first := len(kitAccessGaps()) + 2
 	detailed, result := map[string]any{}, map[string]any{}
 	for i, part := range parts {
 		detailed["/services/0/"+part] = collectortest.Absent
-		result[fmt.Sprintf("/gaps/%d/pointer", i+2)] = "/services/0/" + part
-		result[fmt.Sprintf("/gaps/%d/code", i+2)] = "auth_failed"
-		result[fmt.Sprintf("/gaps/%d/vendor_code", i+2)] = "AUTHENTICATION_FAILED"
-		result[fmt.Sprintf("/gaps/%d/operation", i+2)] = clickhouse.OpGetVersion
-		result[fmt.Sprintf("/gaps/%d/warning", i+2)] = "The service rejected the password for epack_collector. Check CLICKHOUSE_DB_PASSWORD and the user in services."
+		kitGap(result, first+i, map[string]any{
+			"pointer":     "/services/0/" + part,
+			"code":        "auth_failed",
+			"vendor_code": "AUTHENTICATION_FAILED",
+			"operation":   clickhouse.OpGetVersion,
+			"warning":     "The service rejected the password for epack_collector. Check CLICKHOUSE_DB_PASSWORD and the user in services.",
+		})
 	}
-	result[fmt.Sprintf("/gaps/%d", len(parts)+2)] = collectortest.Absent
+	result[fmt.Sprintf("/gaps/%d", first+len(parts))] = collectortest.Absent
 	return collectortest.Scenario{
 		Name:      "database password rejected",
 		Responses: append(kitConsole(kitRolesAllowed()), rejected),
@@ -229,16 +272,189 @@ func kitMissingShowUsers() collectortest.Scenario {
 		Responses: append(append(kitConsole(kitRolesAllowed()), denied), kitDatabase()...),
 		Expect: map[string]map[string]any{
 			artifactPath: {"/services/0/users": collectortest.Absent, "/services/0/roles/customer_count": 3},
-			kitResultPath: {
-				"/gaps/2/pointer":     "/services/0/users",
-				"/gaps/2/code":        "permission_denied",
-				"/gaps/2/vendor_code": "ACCESS_DENIED",
-				"/gaps/2/operation":   clickhouse.OpListUsers,
-				"/gaps/2/warning":     "Grant SHOW USERS to epack_collector. docs/configuration.md lists every grant the collector needs.",
-				"/gaps/3":             collectortest.Absent,
-			},
+			kitResultPath: kitGapPins(len(kitAccessGaps())+2, map[string]any{
+				"pointer":     "/services/0/users",
+				"code":        "permission_denied",
+				"vendor_code": "ACCESS_DENIED",
+				"operation":   clickhouse.OpListUsers,
+				"warning":     "Grant SHOW USERS to epack_collector. docs/configuration.md lists every grant the collector needs.",
+			}),
 		},
 	}
+}
+
+// kitAnswered is a clean run in which each query named in bodies gets that
+// body for its answer.
+func kitAnswered(bodies map[string]string) []collectortest.Response {
+	database := kitDatabase()
+	for i, r := range database {
+		if body, ok := bodies[r.Operation]; ok {
+			database[i] = sql(r.Operation, body)
+		}
+	}
+	return append(kitConsole(kitRolesAllowed()), database...)
+}
+
+// kitSourceAndPrefixGrants has grants that differ only in their source, or
+// in whether their database name is a prefix.
+func kitSourceAndPrefixGrants() collectortest.Scenario {
+	grant := func(access, database, source string, wildcard int) string {
+		return fmt.Sprintf(`{"user_name": null, "role_name": "app_reader", "access_type": %q, "database": %s, "table": null, "column": null, "is_partial_revoke": 0, "grant_option": 0, "access_object": %q, "is_wildcard": %d, "user_storage": ""}`,
+			access, database, source, wildcard)
+	}
+	return collectortest.Scenario{
+		Name: "grants on sources and database name prefixes",
+		Responses: kitAnswered(map[string]string{clickhouse.OpListGrants: sqlBody(
+			grant("READ", "null", "S3", 0),
+			grant("READ", "null", "URL", 0),
+			grant("SELECT", `"sales"`, "", 0),
+			grant("SELECT", `"sales"`, "", 1),
+		)}),
+		Expect: map[string]map[string]any{artifactPath: {
+			"/services/0/grants/customer_count":            4,
+			"/services/0/grants/inventory/0/access_object": "S3",
+			"/services/0/grants/inventory/1/access_object": "URL",
+			"/services/0/grants/inventory/2/is_wildcard":   false,
+			"/services/0/grants/inventory/3/is_wildcard":   true,
+		}},
+	}
+}
+
+// kitOlderServerGrants is a service on ClickHouse 25.3, whose system.grants
+// has neither access_object nor is_wildcard.
+func kitOlderServerGrants() collectortest.Scenario {
+	return collectortest.Scenario{
+		Name: "grants from a server older than 25.8",
+		Responses: kitAnswered(map[string]string{
+			clickhouse.OpGetVersion: sqlBody(`{"version": "25.3.1.1"}`),
+			clickhouse.OpListGrants: sqlBody(`{"user_name": null, "role_name": "app_reader", "access_type": "SELECT", "database": "app", "table": null, "column": null, "is_partial_revoke": 0, "grant_option": 0, "user_storage": ""}`),
+		}),
+		Expect: map[string]map[string]any{artifactPath: {
+			"/services/0/grants/customer_count":            1,
+			"/services/0/grants/inventory/0/access_object": nil,
+			"/services/0/grants/inventory/0/is_wildcard":   nil,
+		}},
+	}
+}
+
+// kitSQLConsoleRoles has the Service Reader and Service Admin system roles
+// as the sandbox recording holds them. Their policies differ only in
+// tags.roleV2.
+func kitSQLConsoleRoles() collectortest.Scenario {
+	roles := `[
+		{"id": "r-service-reader", "name": "Service Reader", "type": "system", "actors": [],
+		 "policies": [{"id": "p1", "allowDeny": "ALLOW", "permissions": ["sql-console:database:access"], "resources": ["instance/*"], "tags": {"roleV2": "sql-console-readonly"}}]},
+		{"id": "r-service-admin", "name": "Service Admin", "type": "system", "actors": [],
+		 "policies": [{"id": "p2", "allowDeny": "ALLOW", "permissions": ["sql-console:database:access"], "resources": ["instance/*"], "tags": {"roleV2": "sql-console-admin"}}]},
+		{"id": "r-member", "name": "Member", "type": "system", "actors": [],
+		 "policies": [{"id": "p3", "allowDeny": "ALLOW", "permissions": ["control-plane:organization:view"], "resources": ["organization/` + kitOrgID + `"], "tags": {}}]}
+	]`
+	return collectortest.Scenario{
+		Name:      "SQL console roles",
+		Responses: append(kitConsole(collectortest.Response{URL: kitAPI + "/roles", Body: apiBody(roles)}), kitDatabase()...),
+		Expect: map[string]map[string]any{artifactPath: {
+			"/console_roles/inventory/0/name":                    "Member",
+			"/console_roles/inventory/0/policies/0/tags":         map[string]any{"role_v2": nil, "grants": nil},
+			"/console_roles/inventory/1/name":                    "Service Admin",
+			"/console_roles/inventory/1/policies/0/tags/role_v2": "sql-console-admin",
+			"/console_roles/inventory/2/name":                    "Service Reader",
+			"/console_roles/inventory/2/policies/0/tags/role_v2": "sql-console-readonly",
+		}},
+	}
+}
+
+// kitNoRolesListed answers the roles call with an empty list. Every
+// organization has the system roles, so the roles are left out with a
+// permission_denied gap, as the members are when none are listed.
+func kitNoRolesListed() collectortest.Scenario {
+	result := map[string]any{}
+	kitGap(result, len(kitAccessGaps()), map[string]any{
+		"pointer": "/console_roles", "code": "permission_denied", "operation": clickhouse.OpListRoles,
+		"missing_permission": clickhouse.PermissionManageOrganization,
+		"warning":            "Reading console role definitions needs control-plane:organization:manage, which can also change the organization.",
+		"detail":             "clickhouse.roles.list: the API returned no roles, and an organization always has its system roles",
+	})
+	return collectortest.Scenario{
+		Name:      "roles call lists no roles",
+		Responses: append(kitConsole(collectortest.Response{URL: kitAPI + "/roles", Body: apiBody(`[]`)}), kitDatabase()...),
+		Expect:    map[string]map[string]any{artifactPath: {"/console_roles": collectortest.Absent}, kitResultPath: result},
+	}
+}
+
+// kitExpiredNoPassword has otp_user's no_password method expire before the
+// run, so no customer user can sign in with no password. The no_password
+// method of operator-internal, one of ClickHouse Cloud's own users, never
+// expires.
+func kitExpiredNoPassword() collectortest.Scenario {
+	users := slices.Clone(kitUsers)
+	for i, u := range users {
+		if strings.Contains(u, `"name": "otp_user"`) {
+			users[i] = strings.Replace(u, `"2026-11-01T00:00:00Z"`, `"2026-10-01T00:00:00Z"`, 1)
+		}
+	}
+	return collectortest.Scenario{
+		Name:      "no_password method expired",
+		Responses: kitAnswered(map[string]string{clickhouse.OpListUsers: sqlBody(users...)}),
+		Expect: map[string]map[string]any{artifactPath: {
+			"/services/0/users/no_password_count":                      0,
+			"/services/0/users/inventory/7/name":                       "otp_user",
+			"/services/0/users/inventory/7/no_password":                false,
+			"/services/0/users/inventory/7/auth_methods/1/valid_until": "2026-10-01T00:00:00Z",
+			"/services/0/users/cloud_managed/1/name":                   "operator-internal",
+			"/services/0/users/cloud_managed/1/no_password":            true,
+		}},
+	}
+}
+
+// kitAPIKeysFail answers the keys call with status and body. gap pins the
+// fields of the gap at /api_keys, which the access-posture file's
+// credentials carry too.
+func kitAPIKeysFail(name string, status int, body string, gap map[string]any) collectortest.Scenario {
+	responses := kitConsole(kitRolesAllowed())
+	responses = append(responses[:3:3], collectortest.Response{URL: kitAPI + "/keys?", Status: status, Body: body}, responses[5])
+	access := kitAccessGaps("/credentials")
+	result := map[string]any{}
+	kitGap(result, len(access), gap)
+	kitGap(result, len(access), map[string]any{"pointer": "/api_keys", "path": artifactPath})
+	kitGap(result, slices.Index(access, "/credentials"), gap)
+	kitGap(result, slices.Index(access, "/credentials"), map[string]any{"pointer": "/credentials", "path": accessPath})
+	return collectortest.Scenario{
+		Name:      name,
+		Responses: append(responses, kitDatabase()...),
+		Expect: map[string]map[string]any{
+			artifactPath:  {"/api_keys": collectortest.Absent},
+			accessPath:    {"/credentials": collectortest.Absent, "/members/member_count": 4},
+			kitResultPath: result,
+		},
+	}
+}
+
+// kitAccessGaps returns the pointers of the access-posture file's gaps in a
+// run at the audit level or above, in the order the result lists them,
+// which is before the detailed artifact's. left adds the sections a failed
+// list leaves out.
+func kitAccessGaps(left ...string) []string {
+	pointers := slices.Clone(left)
+	for _, u := range accessLeftOut {
+		pointers = append(pointers, u.pointer)
+	}
+	slices.Sort(pointers)
+	return pointers
+}
+
+// kitGap pins fields of the result's gap at index.
+func kitGap(pins map[string]any, index int, fields map[string]any) {
+	for field, value := range fields {
+		pins[fmt.Sprintf("/gaps/%d/%s", index, field)] = value
+	}
+}
+
+// kitGapPins pins fields of the result's gap at index, and that it is the
+// last gap.
+func kitGapPins(index int, fields map[string]any) map[string]any {
+	pins := map[string]any{fmt.Sprintf("/gaps/%d", index+1): collectortest.Absent}
+	kitGap(pins, index, fields)
+	return pins
 }
 
 // kitStepPins pins a run's five steps in order, and that there are no more.
@@ -304,4 +520,181 @@ func TestRunRejectsInvalidConfiguration(t *testing.T) {
 			}
 		})
 	}
+}
+
+// kitTrustLevel is the clean organization at the trust level. The
+// access-posture file has its present flags and percentages and none of its
+// counts. Only its trust-level values get an unsupported or not_read gap,
+// and neither makes the run partial.
+func kitTrustLevel() collectortest.Scenario {
+	var trustGaps []string
+	for _, v := range accessLeftOut {
+		if !v.audit {
+			trustGaps = append(trustGaps, v.pointer)
+		}
+	}
+	slices.Sort(trustGaps)
+	result := kitGapPins(len(trustGaps)+1, map[string]any{"pointer": "/organization/sso_enabled", "code": "unsupported"})
+	kitGap(result, len(trustGaps), map[string]any{"pointer": "/members/mfa_enabled_count", "code": "unsupported"})
+	kitGap(result, 0, map[string]any{"pointer": "/admins/local_admin_mfa_coverage_pct", "code": "unsupported", "owner": "nobody"})
+	kitGap(result, slices.Index(trustGaps, "/members/inactive_pct"), map[string]any{
+		"pointer": "/members/inactive_pct", "code": "not_read", "owner": "publisher",
+	})
+	result["/outcome/status"] = "collected"
+	return collectortest.Scenario{
+		Name:      "trust level",
+		Config:    map[string]any{"level": "trust"},
+		Responses: append(kitConsole(kitRolesAllowed()), kitDatabase()...),
+		Expect: map[string]map[string]any{
+			accessPath: {
+				"/members":     map[string]any{"members_present": true},
+				"/admins":      map[string]any{"admins_present": true, "admin_share_pct": 25},
+				"/credentials": map[string]any{"credentials_present": true, "never_expiring_pct": 60, "unused_pct": 60, "unrestricted_pct": 20, "write_access_pct": 20, "rotation_overdue_pct": 0},
+			},
+			kitResultPath: result,
+		},
+	}
+}
+
+// kitStaleKeys has keys created or last used more than 90 days before the
+// run. Its expired key and its disabled key cannot be used, so they are left
+// out of the credentials.
+func kitStaleKeys() collectortest.Scenario {
+	keys := `[
+		{"id": "7a4b5c60-0000-4000-8000-000000000001", "name": "old-admin", "state": "enabled", "createdAt": "2026-01-05T09:00:00Z", "usedAt": "2026-06-01T08:00:00Z",
+		 "assignedRoles": [{"roleId": "r-admin", "roleName": "Admin", "roleType": "system"}], "ipAccessList": [{"source": "0.0.0.0/0", "description": "Anywhere"}]},
+		{"id": "7a4b5c60-0000-4000-8000-000000000002", "name": "recent", "state": "enabled", "createdAt": "2026-10-01T09:00:00Z", "usedAt": "2026-10-20T08:00:00Z", "expireAt": "2027-01-01T00:00:00Z",
+		 "assignedRoles": [{"roleId": "r-collector", "roleName": "epack-collector", "roleType": "custom"}], "ipAccessList": [{"source": "203.0.113.0/24", "description": "Office"}]},
+		{"id": "7a4b5c60-0000-4000-8000-000000000003", "name": "unused-new", "state": "enabled", "createdAt": "2026-07-25T09:00:00Z", "expireAt": "2026-12-01T00:00:00Z",
+		 "assignedRoles": [], "ipAccessList": [{"source": "203.0.113.0/24", "description": "Office"}]},
+		{"id": "7a4b5c60-0000-4000-8000-000000000004", "name": "expired", "state": "enabled", "createdAt": "2026-01-05T09:00:00Z", "expireAt": "2026-10-01T00:00:00Z",
+		 "assignedRoles": [{"roleId": "r-admin", "roleName": "Admin", "roleType": "system"}], "ipAccessList": [{"source": "0.0.0.0/0", "description": "Anywhere"}]},
+		{"id": "7a4b5c60-0000-4000-8000-000000000005", "name": "disabled-old", "state": "disabled", "createdAt": "2025-01-05T09:00:00Z",
+		 "assignedRoles": [{"roleId": "r-admin", "roleName": "Admin", "roleType": "system"}], "ipAccessList": [{"source": "0.0.0.0/0", "description": "Anywhere"}]}
+	]`
+	return collectortest.Scenario{
+		Name:      "API keys past their dates",
+		Responses: append(kitKeysAnswered(keys), kitDatabase()...),
+		Expect: map[string]map[string]any{
+			artifactPath: {"/api_keys/total_count": 5, "/api_keys/never_expires_count": 2},
+			accessPath: {"/credentials": map[string]any{
+				"credentials_present": true, "credential_count": 3,
+				"never_expiring_credential_count": 1, "never_expiring_pct": 34,
+				"unused_credential_count": 2, "unused_pct": 67,
+				"unrestricted_credential_count": 1, "unrestricted_pct": 34,
+				"write_access_credential_count": 1, "write_access_pct": 34,
+				"rotation_overdue_credential_count": 1, "rotation_overdue_pct": 34,
+			}},
+		},
+	}
+}
+
+// kitNoUsableKeys lists only a disabled key, so the access-posture file has
+// no credentials. Its percentages are null and its counts are 0.
+func kitNoUsableKeys() collectortest.Scenario {
+	keys := `[{"id": "7a4b5c60-0000-4000-8000-000000000006", "name": "disabled", "state": "disabled", "createdAt": "2026-10-21T14:30:02Z",
+		"assignedRoles": [], "ipAccessList": [{"source": "0.0.0.0/0", "description": "Anywhere"}]}]`
+	return collectortest.Scenario{
+		Name:      "no API key enabled",
+		Responses: append(kitKeysAnswered(keys), kitDatabase()...),
+		Expect: map[string]map[string]any{
+			artifactPath: {"/api_keys/total_count": 1, "/api_keys/enabled_count": 0},
+			accessPath: {"/credentials": map[string]any{
+				"credentials_present": false, "credential_count": 0,
+				"never_expiring_credential_count": 0, "never_expiring_pct": nil,
+				"unused_credential_count": 0, "unused_pct": nil,
+				"unrestricted_credential_count": 0, "unrestricted_pct": nil,
+				"write_access_credential_count": 0, "write_access_pct": nil,
+				"rotation_overdue_credential_count": 0, "rotation_overdue_pct": nil,
+			}},
+		},
+	}
+}
+
+// kitKeyWithoutCreationTime lists a key with no createdAt, so the keys
+// overdue for rotation cannot be counted. That count and its percentage are
+// left out with a partial gap, and the other credential values are written.
+func kitKeyWithoutCreationTime() collectortest.Scenario {
+	keys := `[
+		{"id": "7a4b5c60-0000-4000-8000-000000000007", "name": "no-created-at", "state": "enabled", "usedAt": "2026-10-20T08:00:00Z",
+		 "assignedRoles": [], "ipAccessList": [{"source": "0.0.0.0/0", "description": "Anywhere"}]},
+		{"id": "7a4b5c60-0000-4000-8000-000000000008", "name": "with-created-at", "state": "enabled", "createdAt": "2026-10-01T09:00:00Z",
+		 "assignedRoles": [], "ipAccessList": [{"source": "203.0.113.0/24", "description": "Office"}]}
+	]`
+	access := kitAccessGaps("/credentials/rotation_overdue_credential_count", "/credentials/rotation_overdue_pct")
+	result := map[string]any{}
+	for _, pointer := range []string{"/credentials/rotation_overdue_credential_count", "/credentials/rotation_overdue_pct"} {
+		kitGap(result, slices.Index(access, pointer), map[string]any{
+			"pointer": pointer, "status": "partial", "code": "invalid_response", "unmeasured": 1,
+			"detail": "clickhouse.keys.list: 1 of the listed keys have no createdAt, or one that is not an RFC 3339 time",
+		})
+	}
+	return collectortest.Scenario{
+		Name:      "API key without a creation time",
+		Responses: append(kitKeysAnswered(keys), kitDatabase()...),
+		Expect: map[string]map[string]any{
+			accessPath: {
+				"/credentials/credential_count":                  2,
+				"/credentials/unused_credential_count":           1,
+				"/credentials/rotation_overdue_credential_count": collectortest.Absent,
+				"/credentials/rotation_overdue_pct":              collectortest.Absent,
+			},
+			kitResultPath: result,
+		},
+	}
+}
+
+// kitCollectAccessOnly has the collect config key list only the
+// access-posture file. The run reads only the members and the API keys,
+// which the file needs.
+func kitCollectAccessOnly() collectortest.Scenario {
+	console := kitConsole(kitRolesAllowed())
+	result := map[string]any{
+		"/steps/0/name":     "sign_in",
+		"/steps/1/name":     "members",
+		"/steps/2/name":     "api_keys",
+		"/steps/3":          collectortest.Absent,
+		"/collect/listed":   []any{"access-posture"},
+		"/collect/left_out": []any{"details"},
+	}
+	kitGap(result, len(kitAccessGaps()), map[string]any{"path": artifactPath, "code": "not_shared"})
+	result[fmt.Sprintf("/gaps/%d", len(kitAccessGaps())+1)] = collectortest.Absent
+	return collectortest.Scenario{
+		Name:      "collect lists only access-posture",
+		Config:    map[string]any{"collect": []any{"access-posture"}},
+		Responses: []collectortest.Response{console[0], console[1], console[3], console[4]},
+		Expect: map[string]map[string]any{
+			accessPath:    {"/members/member_count": 4, "/credentials/credential_count": 5},
+			kitResultPath: result,
+		},
+	}
+}
+
+// kitCollectDetailsOnly has the collect config key list only the detailed
+// artifact, so the run writes no access-posture file and records none of
+// its gaps.
+func kitCollectDetailsOnly() collectortest.Scenario {
+	result := kitStepPins()
+	kitGap(result, 0, map[string]any{"schema": accessSchema, "code": "not_shared"})
+	kitGap(result, 1, map[string]any{"pointer": "/members/mfa_enabled_count", "code": "unsupported"})
+	kitGap(result, 2, map[string]any{"pointer": "/organization/sso_enabled", "code": "unsupported"})
+	result["/gaps/3"] = collectortest.Absent
+	result["/collect/left_out"] = []any{"access-posture"}
+	return collectortest.Scenario{
+		Name:      "collect lists only details",
+		Config:    map[string]any{"collect": []any{"details"}},
+		Responses: append(kitConsole(kitRolesAllowed()), kitDatabase()...),
+		Expect: map[string]map[string]any{
+			artifactPath:  {"/members/total_count": 4, "/api_keys/total_count": 6},
+			kitResultPath: result,
+		},
+	}
+}
+
+// kitKeysAnswered is a clean run whose keys call answers with keys, a list
+// of API keys on one page.
+func kitKeysAnswered(keys string) []collectortest.Response {
+	console := kitConsole(kitRolesAllowed())
+	page := collectortest.Response{URL: kitAPI + "/keys?", Body: `{"status": 200, "requestId": "0b6f7c1e-3a2d-4c5b-8e9f-102132435469", "limit": 250, "nextCursor": null, "result": ` + keys + `}`}
+	return append(console[:3:3], page, console[5])
 }

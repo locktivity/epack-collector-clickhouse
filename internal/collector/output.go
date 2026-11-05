@@ -116,9 +116,17 @@ type ConsoleRole struct {
 
 // ConsolePolicy is one policy of a console role.
 type ConsolePolicy struct {
-	AllowDeny   string   `json:"allow_deny"`
-	Permissions []string `json:"permissions"`
-	Resources   []string `json:"resources"`
+	AllowDeny   string            `json:"allow_deny"`
+	Permissions []string          `json:"permissions"`
+	Resources   []string          `json:"resources"`
+	Tags        ConsolePolicyTags `json:"tags"`
+}
+
+// ConsolePolicyTags are the tags of a console role's policy. Each is nil
+// when the policy has no such tag.
+type ConsolePolicyTags struct {
+	RoleV2 *string  `json:"role_v2"`
+	Grants []string `json:"grants"`
 }
 
 // Service is what the collector read from one configured service. Every
@@ -220,14 +228,17 @@ type Grants struct {
 	CloudManaged      []Grant `json:"cloud_managed,omitzero"`
 }
 
-// Grant is a row of system.grants.
+// Grant is a row of system.grants. AccessObject and IsWildcard are nil when
+// the server is too old to report them.
 type Grant struct {
 	UserName        *string `json:"user_name"`
 	RoleName        *string `json:"role_name"`
 	AccessType      string  `json:"access_type"`
+	AccessObject    *string `json:"access_object"`
 	Database        *string `json:"database"`
 	Table           *string `json:"table"`
 	Column          *string `json:"column"`
+	IsWildcard      *bool   `json:"is_wildcard"`
 	IsPartialRevoke bool    `json:"is_partial_revoke"`
 	GrantOption     bool    `json:"grant_option"`
 }
