@@ -1,11 +1,14 @@
 package collector
 
 import (
+	"context"
+	"encoding/json"
 	"errors"
 	"fmt"
 	"io/fs"
 	"net/http"
 	"path/filepath"
+	"reflect"
 	"slices"
 	"strings"
 	"testing"
@@ -522,7 +525,112 @@ func TestRunRejectsInvalidConfiguration(t *testing.T) {
 	}
 }
 
+// A trust run writes neither the organization's ID nor a service's host in
+// any artifact, even for a service it could not reach. An audit run still
+// writes both.
+func TestATrustRunWritesNoIDsOrHosts(t *testing.T) {
+	const unreachable = "kit0service2.us-east-1.aws.clickhouse.cloud"
+	for _, a := range runAtLevel(t, componentsdk.LevelTrust, unreachable).Artifacts {
+		for _, id := range []string{kitOrgID, kitHost, unreachable} {
+			if strings.Contains(string(a.Data), id) {
+				t.Errorf("the trust run wrote %s in %s", id, a.Path)
+			}
+		}
+	}
+	for _, a := range runAtLevel(t, componentsdk.LevelAudit, unreachable).Artifacts {
+		if a.Path != artifactPath {
+			continue
+		}
+		var out Output
+		if err := json.Unmarshal(a.Data, &out); err != nil {
+			t.Fatal(err)
+		}
+		if out.Organization.ID != kitOrgID {
+			t.Errorf("the audit run wrote organization ID %q, want %q", out.Organization.ID, kitOrgID)
+		}
+		var hosts []string
+		for _, svc := range out.Services {
+			hosts = append(hosts, svc.Host)
+		}
+		if want := []string{kitHost, unreachable}; !slices.Equal(hosts, want) {
+			t.Errorf("the audit run wrote hosts %q, want %q", hosts, want)
+		}
+		return
+	}
+	t.Fatalf("the audit run wrote no %s", artifactPath)
+}
+
+// The run declares the organization it signed in to and the services the
+// config lists. A service it could not reach leaves the services
+// incomplete. Only the audit level counts them.
+func TestRunDeclaresTheOrganizationAndServices(t *testing.T) {
+	const unreachable = "kit0service2.us-east-1.aws.clickhouse.cloud"
+	one, two, complete, incomplete := 1, 2, true, false
+	targets := func(count, services *int, servicesComplete *bool) []componentsdk.ResultTarget {
+		return []componentsdk.ResultTarget{
+			{
+				Kind: componentsdk.TargetOrganization, ChosenBy: componentsdk.ChosenByConfig, ConfigKey: "organization_id",
+				At: &componentsdk.Location{Path: artifactPath, Pointer: "/organization"}, Name: []string{"/name"},
+				Count: count, Complete: &complete,
+			},
+			{
+				Kind: componentsdk.TargetService, ChosenBy: componentsdk.ChosenByConfig, ConfigKey: "services",
+				At: &componentsdk.Location{Path: artifactPath, Pointer: "/services"}, Name: []string{"/host"},
+				Count: services, Complete: servicesComplete,
+			},
+		}
+	}
+	cases := []struct {
+		name string
+		res  componentsdk.InProcessResult
+		want []componentsdk.ResultTarget
+	}{
+		{"audit", runAtLevel(t, componentsdk.LevelAudit), targets(&one, &one, &complete)},
+		{"audit, a service unreachable", runAtLevel(t, componentsdk.LevelAudit, unreachable), targets(&one, &two, &incomplete)},
+		{"trust, a service unreachable", runAtLevel(t, componentsdk.LevelTrust, unreachable), targets(nil, nil, &incomplete)},
+	}
+	for _, tc := range cases {
+		if !reflect.DeepEqual(tc.res.Result.Targets, tc.want) {
+			got, _ := json.Marshal(tc.res.Result.Targets)
+			want, _ := json.Marshal(tc.want)
+			t.Errorf("%s: targets = %s, want %s", tc.name, got, want)
+		}
+		for _, f := range tc.res.Result.Checks {
+			t.Errorf("%s: check finding %+v", tc.name, f)
+		}
+	}
+}
+
+// runAtLevel runs the clean organization at level, with a further service
+// at each host in unreachable, which nothing answers.
+func runAtLevel(t *testing.T, level componentsdk.Level, unreachable ...string) componentsdk.InProcessResult {
+	t.Helper()
+	replay, err := collectortest.NewReplay(collectortest.Scenario{Name: t.Name(), Responses: append(kitConsole(kitRolesAllowed()), kitDatabase()...)})
+	if err != nil {
+		t.Fatal(err)
+	}
+	config := kitConfig()
+	config["level"] = string(level)
+	services := []any{map[string]any{"host": kitHost}}
+	for _, host := range unreachable {
+		services = append(services, map[string]any{"host": host})
+	}
+	config["services"] = services
+	res := componentsdk.RunInProcess(Spec("test", "collectortest"), Run, componentsdk.InProcessOptions{
+		Config:    config,
+		Secrets:   kitSecrets(),
+		Transport: replay,
+		Clock:     func() time.Time { return kitNow },
+		Sleep:     func(context.Context, time.Duration) error { return nil },
+	})
+	if res.ExitCode != 0 {
+		t.Fatalf("the %s run exited %d: %+v", level, res.ExitCode, res.Failure)
+	}
+	return res
+}
+
 // kitTrustLevel is the clean organization at the trust level. The
+// organization's ID and the service's host are left out. The
 // access-posture file has its present flags and percentages and none of its
 // counts. Only its trust-level values get an unsupported or not_read gap,
 // and neither makes the run partial.
@@ -546,6 +654,12 @@ func kitTrustLevel() collectortest.Scenario {
 		Config:    map[string]any{"level": "trust"},
 		Responses: append(kitConsole(kitRolesAllowed()), kitDatabase()...),
 		Expect: map[string]map[string]any{
+			artifactPath: {
+				"/organization/id":   collectortest.Absent,
+				"/organization/name": "Kit Org",
+				"/services/0/host":   collectortest.Absent,
+				"/services/0/user":   defaultDatabaseUser,
+			},
 			accessPath: {
 				"/members":     map[string]any{"members_present": true},
 				"/admins":      map[string]any{"admins_present": true, "admin_share_pct": 25},

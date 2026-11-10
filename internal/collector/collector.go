@@ -35,6 +35,10 @@ func collect(ctx componentsdk.CollectorContext, cfg Config, cloud *clickhouse.Cl
 		TenantID:   org.ID,
 		AuthMethod: componentsdk.AuthAPIToken,
 	})
+	rec.Targets(componentsdk.TargetOrganization, location("/organization"), "/name").
+		ChosenBy(componentsdk.ChosenByConfig, "organization_id")
+	rec.Targets(componentsdk.TargetService, location("/services"), "/host").
+		ChosenBy(componentsdk.ChosenByConfig, "services")
 	gaps := gapLog{rec: rec}
 
 	now := componentsdk.Now(ctx).UTC()
@@ -42,8 +46,11 @@ func collect(ctx componentsdk.CollectorContext, cfg Config, cloud *clickhouse.Cl
 		SchemaVersion:    SchemaVersion,
 		CollectedAt:      now.Format(time.RFC3339),
 		CollectedAtLevel: string(ctx.Level()),
-		Organization:     Organization{ID: org.ID, Name: org.Name, CreatedAt: timestamp(org.CreatedAt)},
+		Organization:     Organization{Name: org.Name, CreatedAt: timestamp(org.CreatedAt)},
 		Services:         []Service{},
+	}
+	if atAudit(ctx) {
+		out.Organization.ID = org.ID
 	}
 	gaps.noAPI("/organization/sso_enabled", "ClickHouse Cloud has no API that reports whether the organization signs members in with SAML SSO.")
 

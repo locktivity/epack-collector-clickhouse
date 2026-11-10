@@ -62,7 +62,6 @@ With a key whose role has `control-plane:organization:manage`, at the `trust` le
   "collected_at": "2026-10-22T12:00:00Z",
   "collected_at_level": "trust",
   "organization": {
-    "id": "8c1f2a4e-5b6d-4e7f-9a0b-1c2d3e4f5a6b",
     "name": "Example Org",
     "created_at": "2026-10-21T13:58:12Z",
     "sso_enabled": null
@@ -80,7 +79,6 @@ With a key whose role has `control-plane:organization:manage`, at the `trust` le
   "console_roles": {"total_count": 4, "custom_count": 2},
   "services": [
     {
-      "host": "abc123xyz.us-east-1.aws.clickhouse.cloud",
       "user": "epack_collector",
       "version": "26.8.1.2045",
       "users": {
@@ -102,6 +100,8 @@ With a key whose role has `control-plane:organization:manage`, at the `trust` le
   ]
 }
 ```
+
+At `audit`, `organization` also holds the organization's `id`, and each service its `host`, such as `"host": "abc123xyz.us-east-1.aws.clickhouse.cloud"`.
 
 `sso_enabled` and `mfa_enabled_count` are null because ClickHouse Cloud has no API that reports them, and `artifacts/clickhouse.collector-result.json` records a gap for each.
 

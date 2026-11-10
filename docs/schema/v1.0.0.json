@@ -38,9 +38,10 @@
       "properties": {
         "id": {
           "type": "string",
-          "description": "The organization's ID.",
+          "description": "The organization's ID. Left out below the audit level.",
           "x-epack-label": "Organization ID",
-          "x-epack-summary": "The organization's ID."
+          "x-epack-summary": "The organization's ID.",
+          "x-epack-level": "audit"
         },
         "name": {
           "type": "string",
@@ -1089,9 +1090,10 @@
       "properties": {
         "host": {
           "type": "string",
-          "description": "The service's host, as the configuration names it.",
+          "description": "The service's host, as the configuration names it. Left out below the audit level, where the service's position in the list identifies it.",
           "x-epack-label": "Service host",
-          "x-epack-summary": "The service's HTTPS host."
+          "x-epack-summary": "The service's HTTPS host.",
+          "x-epack-level": "audit"
         },
         "user": {
           "type": "string",
