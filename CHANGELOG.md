@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+## v0.2.1
+
+- The collector is built on epack v0.10.5.
+- `organization.id` and each service's `host` in `artifacts/clickhouse.details.json` are written from the audit level. A ClickHouse Cloud service host is a private endpoint, so a trust run identifies each service by its position in `services`. The schema marks both `audit` and keeps them required for the runs that write them.
+- The collector result's `targets` says what the run was pointed at: the organization, chosen by `organization_id`, at `organization` in `artifacts/clickhouse.details.json`, and the services `services` lists, at `services`. A service the run could not reach marks the services incomplete.
+
 ## v0.2.0
 
 - The collector is built on epack v0.10.0. The detailed artifact moves from `artifacts/clickhouse.json` to `artifacts/clickhouse.details.json`, the path epack's `ArtifactPath` gives it. A reader of the old path needs the new one

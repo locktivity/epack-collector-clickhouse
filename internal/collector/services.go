@@ -35,7 +35,11 @@ var serviceParts = []string{
 // query also wakes a service that has gone idle. When it fails, every part
 // is left out with its error, since the rest would fail the same way.
 func readService(ctx componentsdk.CollectorContext, db *clickhouse.Database, gaps gapLog, now time.Time, index int, cfg ServiceConfig) Service {
-	svc := Service{Host: cfg.Host, User: cfg.User}
+	audit := atAudit(ctx)
+	svc := Service{User: cfg.User}
+	if audit {
+		svc.Host = cfg.Host
+	}
 	base := fmt.Sprintf("/services/%d/", index)
 
 	wakeCtx, cancel := context.WithTimeout(ctx.Context(), wakeBudget)
@@ -51,7 +55,7 @@ func readService(ctx componentsdk.CollectorContext, db *clickhouse.Database, gap
 	}
 	svc.Version = version
 
-	c, audit := ctx.Context(), atAudit(ctx)
+	c := ctx.Context()
 	if users, err := db.Users(c); err != nil {
 		gaps.notCollected(err, base+"users", grantWarning(err, cfg.User, "SHOW USERS"))
 	} else {

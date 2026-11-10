@@ -1229,27 +1229,27 @@
           },
           {
             "role": "input",
-            "line": "internal/collector/collector.go:38"
+            "line": "internal/collector/collector.go:42"
           },
           {
             "role": "input",
-            "line": "internal/collector/collector.go:50"
+            "line": "internal/collector/collector.go:57"
           },
           {
             "role": "input",
-            "line": "internal/collector/collector.go:51"
+            "line": "internal/collector/collector.go:58"
           },
           {
             "role": "condition",
-            "line": "internal/collector/collector.go:55"
+            "line": "internal/collector/collector.go:62"
           },
           {
             "role": "input",
-            "line": "internal/collector/collector.go:63"
+            "line": "internal/collector/collector.go:70"
           },
           {
             "role": "assign",
-            "line": "internal/collector/collector.go:64"
+            "line": "internal/collector/collector.go:71"
           },
           {
             "role": "helper",
@@ -1454,8 +1454,8 @@
         "code": [
           {
             "role": "helper",
-            "line": "internal/collector/collector.go:110",
-            "end": 120
+            "line": "internal/collector/collector.go:117",
+            "end": 127
           },
           {
             "role": "input",
@@ -1485,8 +1485,8 @@
         "code": [
           {
             "role": "helper",
-            "line": "internal/collector/collector.go:110",
-            "end": 120
+            "line": "internal/collector/collector.go:117",
+            "end": 127
           },
           {
             "role": "input",
@@ -1582,8 +1582,8 @@
         "code": [
           {
             "role": "helper",
-            "line": "internal/collector/collector.go:110",
-            "end": 120
+            "line": "internal/collector/collector.go:117",
+            "end": 127
           },
           {
             "role": "input",
@@ -1912,7 +1912,7 @@
           },
           {
             "role": "assign",
-            "line": "internal/collector/collector.go:43"
+            "line": "internal/collector/collector.go:47"
           }
         ]
       },
@@ -1924,7 +1924,7 @@
           },
           {
             "role": "assign",
-            "line": "internal/collector/collector.go:44"
+            "line": "internal/collector/collector.go:48"
           }
         ]
       },
@@ -1943,23 +1943,23 @@
           },
           {
             "role": "input",
-            "line": "internal/collector/collector.go:38"
+            "line": "internal/collector/collector.go:42"
           },
           {
             "role": "input",
-            "line": "internal/collector/collector.go:50"
+            "line": "internal/collector/collector.go:57"
           },
           {
             "role": "condition",
-            "line": "internal/collector/collector.go:68"
+            "line": "internal/collector/collector.go:75"
           },
           {
             "role": "input",
-            "line": "internal/collector/collector.go:69"
+            "line": "internal/collector/collector.go:76"
           },
           {
             "role": "assign",
-            "line": "internal/collector/collector.go:70"
+            "line": "internal/collector/collector.go:77"
           },
           {
             "role": "helper",
@@ -2360,35 +2360,35 @@
           },
           {
             "role": "input",
-            "line": "internal/collector/collector.go:38"
+            "line": "internal/collector/collector.go:42"
           },
           {
             "role": "input",
-            "line": "internal/collector/collector.go:40"
+            "line": "internal/collector/collector.go:44"
           },
           {
             "role": "input",
-            "line": "internal/collector/collector.go:50"
+            "line": "internal/collector/collector.go:57"
           },
           {
             "role": "input",
-            "line": "internal/collector/collector.go:51"
-          },
-          {
-            "role": "condition",
-            "line": "internal/collector/collector.go:55"
-          },
-          {
-            "role": "input",
-            "line": "internal/collector/collector.go:56"
-          },
-          {
-            "role": "condition",
             "line": "internal/collector/collector.go:58"
           },
           {
+            "role": "condition",
+            "line": "internal/collector/collector.go:62"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/collector.go:63"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/collector.go:65"
+          },
+          {
             "role": "assign",
-            "line": "internal/collector/collector.go:59"
+            "line": "internal/collector/collector.go:66"
           },
           {
             "role": "helper",
@@ -2481,8 +2481,8 @@
         "code": [
           {
             "role": "helper",
-            "line": "internal/collector/collector.go:110",
-            "end": 120
+            "line": "internal/collector/collector.go:117",
+            "end": 127
           },
           {
             "role": "input",
@@ -2707,27 +2707,27 @@
           },
           {
             "role": "input",
-            "line": "internal/collector/collector.go:38"
+            "line": "internal/collector/collector.go:42"
           },
           {
             "role": "input",
-            "line": "internal/collector/collector.go:50"
+            "line": "internal/collector/collector.go:57"
           },
           {
             "role": "input",
-            "line": "internal/collector/collector.go:51"
+            "line": "internal/collector/collector.go:58"
           },
           {
             "role": "condition",
-            "line": "internal/collector/collector.go:55"
+            "line": "internal/collector/collector.go:62"
           },
           {
             "role": "input",
-            "line": "internal/collector/collector.go:56"
+            "line": "internal/collector/collector.go:63"
           },
           {
             "role": "assign",
-            "line": "internal/collector/collector.go:57"
+            "line": "internal/collector/collector.go:64"
           },
           {
             "role": "helper",
@@ -2845,8 +2845,8 @@
         "code": [
           {
             "role": "helper",
-            "line": "internal/collector/collector.go:110",
-            "end": 120
+            "line": "internal/collector/collector.go:117",
+            "end": 127
           },
           {
             "role": "input",
@@ -2941,12 +2941,12 @@
           },
           {
             "role": "assign",
-            "line": "internal/collector/collector.go:45"
+            "line": "internal/collector/collector.go:49"
           },
           {
             "role": "helper",
-            "line": "internal/collector/collector.go:110",
-            "end": 120
+            "line": "internal/collector/collector.go:117",
+            "end": 127
           }
         ]
       },
@@ -2957,8 +2957,12 @@
             "line": "internal/collector/collector.go:28"
           },
           {
+            "role": "condition",
+            "line": "internal/collector/collector.go:52"
+          },
+          {
             "role": "assign",
-            "line": "internal/collector/collector.go:45"
+            "line": "internal/collector/collector.go:53"
           }
         ]
       },
@@ -2970,13 +2974,13 @@
           },
           {
             "role": "assign",
-            "line": "internal/collector/collector.go:45"
+            "line": "internal/collector/collector.go:49"
           }
         ]
       },
       "/organization/sso_enabled": {
         "gaps": [
-          "internal/collector/collector.go:48"
+          "internal/collector/collector.go:55"
         ]
       },
       "/schema_version": {
@@ -2987,7 +2991,7 @@
           },
           {
             "role": "assign",
-            "line": "internal/collector/collector.go:42"
+            "line": "internal/collector/collector.go:46"
           }
         ]
       },
@@ -3003,39 +3007,39 @@
           },
           {
             "role": "input",
-            "line": "internal/collector/collector.go:38"
+            "line": "internal/collector/collector.go:42"
           },
           {
             "role": "input",
-            "line": "internal/collector/collector.go:40"
+            "line": "internal/collector/collector.go:44"
           },
           {
             "role": "assign",
-            "line": "internal/collector/collector.go:46"
-          },
-          {
-            "role": "input",
             "line": "internal/collector/collector.go:50"
           },
           {
-            "role": "condition",
-            "line": "internal/collector/collector.go:68"
-          },
-          {
-            "role": "condition",
-            "line": "internal/collector/collector.go:73"
-          },
-          {
             "role": "input",
-            "line": "internal/collector/collector.go:74"
+            "line": "internal/collector/collector.go:57"
           },
           {
             "role": "condition",
             "line": "internal/collector/collector.go:75"
           },
           {
+            "role": "condition",
+            "line": "internal/collector/collector.go:80"
+          },
+          {
+            "role": "input",
+            "line": "internal/collector/collector.go:81"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/collector.go:82"
+          },
+          {
             "role": "assign",
-            "line": "internal/collector/collector.go:77"
+            "line": "internal/collector/collector.go:84"
           },
           {
             "role": "condition",
@@ -3112,7 +3116,7 @@
           {
             "role": "helper",
             "line": "internal/collector/services.go:37",
-            "end": 101
+            "end": 105
           }
         ]
       },
@@ -3123,45 +3127,49 @@
         ],
         "code": [
           {
+            "role": "input",
+            "line": "internal/collector/services.go:38"
+          },
+          {
             "role": "condition",
-            "line": "internal/collector/services.go:44"
+            "line": "internal/collector/services.go:48"
           },
           {
             "role": "input",
-            "line": "internal/collector/services.go:54"
+            "line": "internal/collector/services.go:58"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:70"
+            "line": "internal/collector/services.go:74"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:73"
+            "line": "internal/collector/services.go:77"
           },
           {
             "role": "helper",
-            "line": "internal/collector/services.go:241",
-            "end": 270
+            "line": "internal/collector/services.go:245",
+            "end": 274
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:71"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:75"
         ]
       },
       "/services/*/grants/cloud_managed": {
         "code": [
           {
             "role": "input",
-            "line": "internal/collector/services.go:242"
+            "line": "internal/collector/services.go:246"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:266"
+            "line": "internal/collector/services.go:270"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:267"
+            "line": "internal/collector/services.go:271"
           }
         ]
       },
@@ -3173,12 +3181,12 @@
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:249"
+            "line": "internal/collector/services.go:253"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:71"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:75"
         ]
       },
       "/services/*/grants/cloud_managed/*/access_type": {
@@ -3189,43 +3197,27 @@
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:248"
+            "line": "internal/collector/services.go:252"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:71"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:75"
         ]
       },
       "/services/*/grants/cloud_managed/*/column": {
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:252"
+            "line": "internal/collector/services.go:256"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:71"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:75"
         ]
       },
       "/services/*/grants/cloud_managed/*/database": {
-        "operations": [
-          "clickhouse.db.grants.list",
-          "clickhouse.db.version.get"
-        ],
-        "code": [
-          {
-            "role": "assign",
-            "line": "internal/collector/services.go:250"
-          }
-        ],
-        "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:71"
-        ]
-      },
-      "/services/*/grants/cloud_managed/*/grant_option": {
         "operations": [
           "clickhouse.db.grants.list",
           "clickhouse.db.version.get"
@@ -3237,8 +3229,24 @@
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:71"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:75"
+        ]
+      },
+      "/services/*/grants/cloud_managed/*/grant_option": {
+        "operations": [
+          "clickhouse.db.grants.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:258"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:75"
         ]
       },
       "/services/*/grants/cloud_managed/*/is_partial_revoke": {
@@ -3249,12 +3257,12 @@
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:253"
+            "line": "internal/collector/services.go:257"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:71"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:75"
         ]
       },
       "/services/*/grants/cloud_managed/*/is_wildcard": {
@@ -3265,20 +3273,20 @@
         "code": [
           {
             "role": "condition",
-            "line": "internal/collector/services.go:256"
+            "line": "internal/collector/services.go:260"
           },
           {
             "role": "input",
-            "line": "internal/collector/services.go:257"
+            "line": "internal/collector/services.go:261"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:258"
+            "line": "internal/collector/services.go:262"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:71"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:75"
         ]
       },
       "/services/*/grants/cloud_managed/*/role_name": {
@@ -3289,24 +3297,24 @@
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:247"
+            "line": "internal/collector/services.go:251"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:71"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:75"
         ]
       },
       "/services/*/grants/cloud_managed/*/table": {
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:251"
+            "line": "internal/collector/services.go:255"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:71"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:75"
         ]
       },
       "/services/*/grants/cloud_managed/*/user_name": {
@@ -3317,12 +3325,12 @@
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:246"
+            "line": "internal/collector/services.go:250"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:71"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:75"
         ]
       },
       "/services/*/grants/cloud_managed_count": {
@@ -3333,16 +3341,16 @@
         "code": [
           {
             "role": "input",
-            "line": "internal/collector/services.go:242"
+            "line": "internal/collector/services.go:246"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:262"
+            "line": "internal/collector/services.go:266"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:71"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:75"
         ]
       },
       "/services/*/grants/customer_count": {
@@ -3353,16 +3361,16 @@
         "code": [
           {
             "role": "input",
-            "line": "internal/collector/services.go:242"
+            "line": "internal/collector/services.go:246"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:262"
+            "line": "internal/collector/services.go:266"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:71"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:75"
         ]
       },
       "/services/*/grants/grant_option_count": {
@@ -3378,39 +3386,39 @@
           },
           {
             "role": "input",
-            "line": "internal/collector/services.go:242"
+            "line": "internal/collector/services.go:246"
           },
           {
             "role": "input",
-            "line": "internal/collector/services.go:254"
+            "line": "internal/collector/services.go:258"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:263"
+            "line": "internal/collector/services.go:267"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:264"
+            "line": "internal/collector/services.go:268"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:71"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:75"
         ]
       },
       "/services/*/grants/inventory": {
         "code": [
           {
             "role": "input",
-            "line": "internal/collector/services.go:242"
+            "line": "internal/collector/services.go:246"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:266"
+            "line": "internal/collector/services.go:270"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:267"
+            "line": "internal/collector/services.go:271"
           }
         ]
       },
@@ -3422,12 +3430,12 @@
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:249"
+            "line": "internal/collector/services.go:253"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:71"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:75"
         ]
       },
       "/services/*/grants/inventory/*/access_type": {
@@ -3438,43 +3446,27 @@
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:248"
+            "line": "internal/collector/services.go:252"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:71"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:75"
         ]
       },
       "/services/*/grants/inventory/*/column": {
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:252"
+            "line": "internal/collector/services.go:256"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:71"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:75"
         ]
       },
       "/services/*/grants/inventory/*/database": {
-        "operations": [
-          "clickhouse.db.grants.list",
-          "clickhouse.db.version.get"
-        ],
-        "code": [
-          {
-            "role": "assign",
-            "line": "internal/collector/services.go:250"
-          }
-        ],
-        "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:71"
-        ]
-      },
-      "/services/*/grants/inventory/*/grant_option": {
         "operations": [
           "clickhouse.db.grants.list",
           "clickhouse.db.version.get"
@@ -3486,8 +3478,24 @@
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:71"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:75"
+        ]
+      },
+      "/services/*/grants/inventory/*/grant_option": {
+        "operations": [
+          "clickhouse.db.grants.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:258"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:75"
         ]
       },
       "/services/*/grants/inventory/*/is_partial_revoke": {
@@ -3498,12 +3506,12 @@
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:253"
+            "line": "internal/collector/services.go:257"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:71"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:75"
         ]
       },
       "/services/*/grants/inventory/*/is_wildcard": {
@@ -3514,39 +3522,23 @@
         "code": [
           {
             "role": "condition",
-            "line": "internal/collector/services.go:256"
+            "line": "internal/collector/services.go:260"
           },
           {
             "role": "input",
-            "line": "internal/collector/services.go:257"
+            "line": "internal/collector/services.go:261"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:258"
+            "line": "internal/collector/services.go:262"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:71"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:75"
         ]
       },
       "/services/*/grants/inventory/*/role_name": {
-        "operations": [
-          "clickhouse.db.grants.list",
-          "clickhouse.db.version.get"
-        ],
-        "code": [
-          {
-            "role": "assign",
-            "line": "internal/collector/services.go:247"
-          }
-        ],
-        "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:71"
-        ]
-      },
-      "/services/*/grants/inventory/*/table": {
         "operations": [
           "clickhouse.db.grants.list",
           "clickhouse.db.version.get"
@@ -3558,8 +3550,24 @@
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:71"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:75"
+        ]
+      },
+      "/services/*/grants/inventory/*/table": {
+        "operations": [
+          "clickhouse.db.grants.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:255"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:75"
         ]
       },
       "/services/*/grants/inventory/*/user_name": {
@@ -3570,12 +3578,12 @@
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:246"
+            "line": "internal/collector/services.go:250"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:71"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:75"
         ]
       },
       "/services/*/host": {
@@ -3633,8 +3641,16 @@
             "line": "internal/collector/config.go:84"
           },
           {
-            "role": "assign",
+            "role": "input",
             "line": "internal/collector/services.go:38"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:40"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:41"
           }
         ]
       },
@@ -3645,45 +3661,49 @@
         ],
         "code": [
           {
+            "role": "input",
+            "line": "internal/collector/services.go:38"
+          },
+          {
             "role": "condition",
-            "line": "internal/collector/services.go:44"
+            "line": "internal/collector/services.go:48"
           },
           {
             "role": "input",
-            "line": "internal/collector/services.go:54"
+            "line": "internal/collector/services.go:58"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:90"
+            "line": "internal/collector/services.go:94"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:93"
+            "line": "internal/collector/services.go:97"
           },
           {
             "role": "helper",
-            "line": "internal/collector/services.go:345",
-            "end": 361
+            "line": "internal/collector/services.go:349",
+            "end": 365
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:91"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:95"
         ]
       },
       "/services/*/quota_limits/cloud_managed": {
         "code": [
           {
             "role": "input",
-            "line": "internal/collector/services.go:346"
+            "line": "internal/collector/services.go:350"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:357"
+            "line": "internal/collector/services.go:361"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:358"
+            "line": "internal/collector/services.go:362"
           }
         ]
       },
@@ -3695,12 +3715,12 @@
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:351"
+            "line": "internal/collector/services.go:355"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:91"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:95"
         ]
       },
       "/services/*/quota_limits/cloud_managed/*/is_randomized_interval": {
@@ -3735,12 +3755,12 @@
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:352"
+            "line": "internal/collector/services.go:356"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:91"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:95"
         ]
       },
       "/services/*/quota_limits/cloud_managed/*/limits": {
@@ -3795,12 +3815,12 @@
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:353"
+            "line": "internal/collector/services.go:357"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:91"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:95"
         ]
       },
       "/services/*/quota_limits/cloud_managed/*/quota_name": {
@@ -3811,12 +3831,12 @@
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:350"
+            "line": "internal/collector/services.go:354"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:91"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:95"
         ]
       },
       "/services/*/quota_limits/cloud_managed_count": {
@@ -3827,16 +3847,16 @@
         "code": [
           {
             "role": "input",
-            "line": "internal/collector/services.go:346"
+            "line": "internal/collector/services.go:350"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:356"
+            "line": "internal/collector/services.go:360"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:91"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:95"
         ]
       },
       "/services/*/quota_limits/customer_count": {
@@ -3847,31 +3867,31 @@
         "code": [
           {
             "role": "input",
-            "line": "internal/collector/services.go:346"
+            "line": "internal/collector/services.go:350"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:356"
+            "line": "internal/collector/services.go:360"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:91"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:95"
         ]
       },
       "/services/*/quota_limits/inventory": {
         "code": [
           {
             "role": "input",
-            "line": "internal/collector/services.go:346"
+            "line": "internal/collector/services.go:350"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:357"
+            "line": "internal/collector/services.go:361"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:358"
+            "line": "internal/collector/services.go:362"
           }
         ]
       },
@@ -3883,12 +3903,12 @@
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:351"
+            "line": "internal/collector/services.go:355"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:91"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:95"
         ]
       },
       "/services/*/quota_limits/inventory/*/is_randomized_interval": {
@@ -3923,12 +3943,12 @@
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:352"
+            "line": "internal/collector/services.go:356"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:91"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:95"
         ]
       },
       "/services/*/quota_limits/inventory/*/limits/execution_time": {
@@ -3983,12 +4003,12 @@
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:353"
+            "line": "internal/collector/services.go:357"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:91"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:95"
         ]
       },
       "/services/*/quota_limits/inventory/*/limits/failed_sequential_authentications": {
@@ -4043,12 +4063,12 @@
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:353"
+            "line": "internal/collector/services.go:357"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:91"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:95"
         ]
       },
       "/services/*/quota_limits/inventory/*/limits/queries": {
@@ -4103,12 +4123,12 @@
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:353"
+            "line": "internal/collector/services.go:357"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:91"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:95"
         ]
       },
       "/services/*/quota_limits/inventory/*/quota_name": {
@@ -4119,12 +4139,12 @@
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:350"
+            "line": "internal/collector/services.go:354"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:91"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:95"
         ]
       },
       "/services/*/quotas": {
@@ -4134,45 +4154,49 @@
         ],
         "code": [
           {
+            "role": "input",
+            "line": "internal/collector/services.go:38"
+          },
+          {
             "role": "condition",
-            "line": "internal/collector/services.go:44"
+            "line": "internal/collector/services.go:48"
           },
           {
             "role": "input",
-            "line": "internal/collector/services.go:54"
+            "line": "internal/collector/services.go:58"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:85"
+            "line": "internal/collector/services.go:89"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:88"
+            "line": "internal/collector/services.go:92"
           },
           {
             "role": "helper",
-            "line": "internal/collector/services.go:324",
-            "end": 343
+            "line": "internal/collector/services.go:328",
+            "end": 347
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:86"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:90"
         ]
       },
       "/services/*/quotas/cloud_managed": {
         "code": [
           {
             "role": "input",
-            "line": "internal/collector/services.go:325"
+            "line": "internal/collector/services.go:329"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:339"
+            "line": "internal/collector/services.go:343"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:340"
+            "line": "internal/collector/services.go:344"
           }
         ]
       },
@@ -4184,12 +4208,12 @@
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:333"
+            "line": "internal/collector/services.go:337"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:86"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:90"
         ]
       },
       "/services/*/quotas/cloud_managed/*/apply_to_except": {
@@ -4200,19 +4224,19 @@
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:335"
+            "line": "internal/collector/services.go:339"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:86"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:90"
         ]
       },
       "/services/*/quotas/cloud_managed/*/apply_to_list": {
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:334"
+            "line": "internal/collector/services.go:338"
           }
         ]
       },
@@ -4224,12 +4248,12 @@
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:334"
+            "line": "internal/collector/services.go:338"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:86"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:90"
         ]
       },
       "/services/*/quotas/cloud_managed/*/durations/*": {
@@ -4240,135 +4264,15 @@
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:332"
+            "line": "internal/collector/services.go:336"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:86"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:90"
         ]
       },
       "/services/*/quotas/cloud_managed/*/keys/*": {
-        "operations": [
-          "clickhouse.db.quotas.list",
-          "clickhouse.db.version.get"
-        ],
-        "code": [
-          {
-            "role": "assign",
-            "line": "internal/collector/services.go:331"
-          }
-        ],
-        "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:86"
-        ]
-      },
-      "/services/*/quotas/cloud_managed/*/name": {
-        "operations": [
-          "clickhouse.db.quotas.list",
-          "clickhouse.db.version.get"
-        ],
-        "code": [
-          {
-            "role": "assign",
-            "line": "internal/collector/services.go:329"
-          }
-        ],
-        "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:86"
-        ]
-      },
-      "/services/*/quotas/cloud_managed/*/storage": {
-        "operations": [
-          "clickhouse.db.quotas.list",
-          "clickhouse.db.version.get"
-        ],
-        "code": [
-          {
-            "role": "assign",
-            "line": "internal/collector/services.go:330"
-          }
-        ],
-        "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:86"
-        ]
-      },
-      "/services/*/quotas/cloud_managed_count": {
-        "operations": [
-          "clickhouse.db.quotas.list",
-          "clickhouse.db.version.get"
-        ],
-        "code": [
-          {
-            "role": "input",
-            "line": "internal/collector/services.go:325"
-          },
-          {
-            "role": "assign",
-            "line": "internal/collector/services.go:338"
-          }
-        ],
-        "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:86"
-        ]
-      },
-      "/services/*/quotas/customer_count": {
-        "operations": [
-          "clickhouse.db.quotas.list",
-          "clickhouse.db.version.get"
-        ],
-        "code": [
-          {
-            "role": "input",
-            "line": "internal/collector/services.go:325"
-          },
-          {
-            "role": "assign",
-            "line": "internal/collector/services.go:338"
-          }
-        ],
-        "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:86"
-        ]
-      },
-      "/services/*/quotas/inventory": {
-        "code": [
-          {
-            "role": "input",
-            "line": "internal/collector/services.go:325"
-          },
-          {
-            "role": "condition",
-            "line": "internal/collector/services.go:339"
-          },
-          {
-            "role": "assign",
-            "line": "internal/collector/services.go:340"
-          }
-        ]
-      },
-      "/services/*/quotas/inventory/*/apply_to_all": {
-        "operations": [
-          "clickhouse.db.quotas.list",
-          "clickhouse.db.version.get"
-        ],
-        "code": [
-          {
-            "role": "assign",
-            "line": "internal/collector/services.go:333"
-          }
-        ],
-        "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:86"
-        ]
-      },
-      "/services/*/quotas/inventory/*/apply_to_except": {
         "operations": [
           "clickhouse.db.quotas.list",
           "clickhouse.db.version.get"
@@ -4380,11 +4284,27 @@
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:86"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:90"
         ]
       },
-      "/services/*/quotas/inventory/*/apply_to_list/*": {
+      "/services/*/quotas/cloud_managed/*/name": {
+        "operations": [
+          "clickhouse.db.quotas.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:333"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:90"
+        ]
+      },
+      "/services/*/quotas/cloud_managed/*/storage": {
         "operations": [
           "clickhouse.db.quotas.list",
           "clickhouse.db.version.get"
@@ -4396,8 +4316,112 @@
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:86"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:90"
+        ]
+      },
+      "/services/*/quotas/cloud_managed_count": {
+        "operations": [
+          "clickhouse.db.quotas.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:329"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:342"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:90"
+        ]
+      },
+      "/services/*/quotas/customer_count": {
+        "operations": [
+          "clickhouse.db.quotas.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:329"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:342"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:90"
+        ]
+      },
+      "/services/*/quotas/inventory": {
+        "code": [
+          {
+            "role": "input",
+            "line": "internal/collector/services.go:329"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:343"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:344"
+          }
+        ]
+      },
+      "/services/*/quotas/inventory/*/apply_to_all": {
+        "operations": [
+          "clickhouse.db.quotas.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:337"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:90"
+        ]
+      },
+      "/services/*/quotas/inventory/*/apply_to_except": {
+        "operations": [
+          "clickhouse.db.quotas.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:339"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:90"
+        ]
+      },
+      "/services/*/quotas/inventory/*/apply_to_list/*": {
+        "operations": [
+          "clickhouse.db.quotas.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:338"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:90"
         ]
       },
       "/services/*/quotas/inventory/*/durations/*": {
@@ -4408,12 +4432,12 @@
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:332"
+            "line": "internal/collector/services.go:336"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:86"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:90"
         ]
       },
       "/services/*/quotas/inventory/*/keys": {
@@ -4424,12 +4448,12 @@
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:331"
+            "line": "internal/collector/services.go:335"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:86"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:90"
         ]
       },
       "/services/*/quotas/inventory/*/name": {
@@ -4440,12 +4464,12 @@
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:329"
+            "line": "internal/collector/services.go:333"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:86"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:90"
         ]
       },
       "/services/*/quotas/inventory/*/storage": {
@@ -4456,12 +4480,12 @@
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:330"
+            "line": "internal/collector/services.go:334"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:86"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:90"
         ]
       },
       "/services/*/role_grants": {
@@ -4471,45 +4495,49 @@
         ],
         "code": [
           {
+            "role": "input",
+            "line": "internal/collector/services.go:38"
+          },
+          {
             "role": "condition",
-            "line": "internal/collector/services.go:44"
+            "line": "internal/collector/services.go:48"
           },
           {
             "role": "input",
-            "line": "internal/collector/services.go:54"
+            "line": "internal/collector/services.go:58"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:65"
+            "line": "internal/collector/services.go:69"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:68"
+            "line": "internal/collector/services.go:72"
           },
           {
             "role": "helper",
-            "line": "internal/collector/services.go:219",
-            "end": 239
+            "line": "internal/collector/services.go:223",
+            "end": 243
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:66"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:70"
         ]
       },
       "/services/*/role_grants/cloud_managed": {
         "code": [
           {
             "role": "input",
-            "line": "internal/collector/services.go:220"
+            "line": "internal/collector/services.go:224"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:235"
+            "line": "internal/collector/services.go:239"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:236"
+            "line": "internal/collector/services.go:240"
           }
         ]
       },
@@ -4521,12 +4549,12 @@
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:227"
+            "line": "internal/collector/services.go:231"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:66"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:70"
         ]
       },
       "/services/*/role_grants/cloud_managed/*/granted_role_name": {
@@ -4537,12 +4565,12 @@
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:226"
+            "line": "internal/collector/services.go:230"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:66"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:70"
         ]
       },
       "/services/*/role_grants/cloud_managed/*/role_name": {
@@ -4553,31 +4581,15 @@
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:225"
+            "line": "internal/collector/services.go:229"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:66"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:70"
         ]
       },
       "/services/*/role_grants/cloud_managed/*/user_name": {
-        "operations": [
-          "clickhouse.db.role_grants.list",
-          "clickhouse.db.version.get"
-        ],
-        "code": [
-          {
-            "role": "assign",
-            "line": "internal/collector/services.go:224"
-          }
-        ],
-        "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:66"
-        ]
-      },
-      "/services/*/role_grants/cloud_managed/*/with_admin_option": {
         "operations": [
           "clickhouse.db.role_grants.list",
           "clickhouse.db.version.get"
@@ -4589,8 +4601,24 @@
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:66"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:70"
+        ]
+      },
+      "/services/*/role_grants/cloud_managed/*/with_admin_option": {
+        "operations": [
+          "clickhouse.db.role_grants.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:232"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:70"
         ]
       },
       "/services/*/role_grants/cloud_managed_count": {
@@ -4601,16 +4629,16 @@
         "code": [
           {
             "role": "input",
-            "line": "internal/collector/services.go:220"
+            "line": "internal/collector/services.go:224"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:231"
+            "line": "internal/collector/services.go:235"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:66"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:70"
         ]
       },
       "/services/*/role_grants/customer_count": {
@@ -4621,31 +4649,31 @@
         "code": [
           {
             "role": "input",
-            "line": "internal/collector/services.go:220"
+            "line": "internal/collector/services.go:224"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:231"
+            "line": "internal/collector/services.go:235"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:66"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:70"
         ]
       },
       "/services/*/role_grants/inventory": {
         "code": [
           {
             "role": "input",
-            "line": "internal/collector/services.go:220"
+            "line": "internal/collector/services.go:224"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:235"
+            "line": "internal/collector/services.go:239"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:236"
+            "line": "internal/collector/services.go:240"
           }
         ]
       },
@@ -4657,12 +4685,12 @@
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:227"
+            "line": "internal/collector/services.go:231"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:66"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:70"
         ]
       },
       "/services/*/role_grants/inventory/*/granted_role_name": {
@@ -4673,43 +4701,27 @@
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:226"
+            "line": "internal/collector/services.go:230"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:66"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:70"
         ]
       },
       "/services/*/role_grants/inventory/*/role_name": {
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:225"
+            "line": "internal/collector/services.go:229"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:66"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:70"
         ]
       },
       "/services/*/role_grants/inventory/*/user_name": {
-        "operations": [
-          "clickhouse.db.role_grants.list",
-          "clickhouse.db.version.get"
-        ],
-        "code": [
-          {
-            "role": "assign",
-            "line": "internal/collector/services.go:224"
-          }
-        ],
-        "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:66"
-        ]
-      },
-      "/services/*/role_grants/inventory/*/with_admin_option": {
         "operations": [
           "clickhouse.db.role_grants.list",
           "clickhouse.db.version.get"
@@ -4721,8 +4733,24 @@
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:66"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:70"
+        ]
+      },
+      "/services/*/role_grants/inventory/*/with_admin_option": {
+        "operations": [
+          "clickhouse.db.role_grants.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:232"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:70"
         ]
       },
       "/services/*/role_grants/with_admin_option_count": {
@@ -4738,24 +4766,24 @@
           },
           {
             "role": "input",
-            "line": "internal/collector/services.go:220"
+            "line": "internal/collector/services.go:224"
           },
           {
             "role": "input",
-            "line": "internal/collector/services.go:228"
-          },
-          {
-            "role": "condition",
             "line": "internal/collector/services.go:232"
           },
           {
+            "role": "condition",
+            "line": "internal/collector/services.go:236"
+          },
+          {
             "role": "assign",
-            "line": "internal/collector/services.go:233"
+            "line": "internal/collector/services.go:237"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:66"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:70"
         ]
       },
       "/services/*/roles": {
@@ -4765,30 +4793,34 @@
         ],
         "code": [
           {
+            "role": "input",
+            "line": "internal/collector/services.go:38"
+          },
+          {
             "role": "condition",
-            "line": "internal/collector/services.go:44"
+            "line": "internal/collector/services.go:48"
           },
           {
             "role": "input",
-            "line": "internal/collector/services.go:54"
+            "line": "internal/collector/services.go:58"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:60"
+            "line": "internal/collector/services.go:64"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:63"
+            "line": "internal/collector/services.go:67"
           },
           {
             "role": "helper",
-            "line": "internal/collector/services.go:177",
-            "end": 194
+            "line": "internal/collector/services.go:181",
+            "end": 198
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:61"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:65"
         ]
       },
       "/services/*/roles/cloud_managed/*/name": {
@@ -4799,16 +4831,16 @@
         "code": [
           {
             "role": "condition",
-            "line": "internal/collector/services.go:180"
+            "line": "internal/collector/services.go:184"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:181"
+            "line": "internal/collector/services.go:185"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:61"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:65"
         ]
       },
       "/services/*/roles/cloud_managed/*/storage": {
@@ -4819,16 +4851,16 @@
         "code": [
           {
             "role": "condition",
-            "line": "internal/collector/services.go:180"
+            "line": "internal/collector/services.go:184"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:181"
+            "line": "internal/collector/services.go:185"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:61"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:65"
         ]
       },
       "/services/*/roles/cloud_managed_count": {
@@ -4843,20 +4875,20 @@
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:180"
+            "line": "internal/collector/services.go:184"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:182"
+            "line": "internal/collector/services.go:186"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:184"
+            "line": "internal/collector/services.go:188"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:61"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:65"
         ]
       },
       "/services/*/roles/customer_count": {
@@ -4867,51 +4899,51 @@
         "code": [
           {
             "role": "condition",
-            "line": "internal/collector/services.go:180"
+            "line": "internal/collector/services.go:184"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:182"
+            "line": "internal/collector/services.go:186"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:188"
+            "line": "internal/collector/services.go:192"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:61"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:65"
         ]
       },
       "/services/*/roles/inventory": {
         "code": [
           {
             "role": "input",
-            "line": "internal/collector/services.go:179"
+            "line": "internal/collector/services.go:183"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:180"
+            "line": "internal/collector/services.go:184"
           },
           {
             "role": "input",
-            "line": "internal/collector/services.go:181"
+            "line": "internal/collector/services.go:185"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:182"
+            "line": "internal/collector/services.go:186"
           },
           {
             "role": "input",
-            "line": "internal/collector/services.go:187"
+            "line": "internal/collector/services.go:191"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:190"
+            "line": "internal/collector/services.go:194"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:191"
+            "line": "internal/collector/services.go:195"
           }
         ]
       },
@@ -4923,16 +4955,16 @@
         "code": [
           {
             "role": "condition",
-            "line": "internal/collector/services.go:180"
+            "line": "internal/collector/services.go:184"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:181"
+            "line": "internal/collector/services.go:185"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:61"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:65"
         ]
       },
       "/services/*/roles/inventory/*/storage": {
@@ -4943,16 +4975,16 @@
         "code": [
           {
             "role": "condition",
-            "line": "internal/collector/services.go:180"
+            "line": "internal/collector/services.go:184"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:181"
+            "line": "internal/collector/services.go:185"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:61"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:65"
         ]
       },
       "/services/*/row_policies": {
@@ -4962,30 +4994,34 @@
         ],
         "code": [
           {
+            "role": "input",
+            "line": "internal/collector/services.go:38"
+          },
+          {
             "role": "condition",
-            "line": "internal/collector/services.go:44"
+            "line": "internal/collector/services.go:48"
           },
           {
             "role": "input",
-            "line": "internal/collector/services.go:54"
+            "line": "internal/collector/services.go:58"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:95"
+            "line": "internal/collector/services.go:99"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:98"
+            "line": "internal/collector/services.go:102"
           },
           {
             "role": "helper",
-            "line": "internal/collector/services.go:363",
-            "end": 384
+            "line": "internal/collector/services.go:367",
+            "end": 388
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:96"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:100"
         ]
       },
       "/services/*/row_policies/cloud_managed": {
@@ -4996,20 +5032,20 @@
         "code": [
           {
             "role": "input",
-            "line": "internal/collector/services.go:364"
+            "line": "internal/collector/services.go:368"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:380"
+            "line": "internal/collector/services.go:384"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:381"
+            "line": "internal/collector/services.go:385"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:96"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:100"
         ]
       },
       "/services/*/row_policies/cloud_managed_count": {
@@ -5020,16 +5056,16 @@
         "code": [
           {
             "role": "input",
-            "line": "internal/collector/services.go:364"
+            "line": "internal/collector/services.go:368"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:379"
+            "line": "internal/collector/services.go:383"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:96"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:100"
         ]
       },
       "/services/*/row_policies/customer_count": {
@@ -5040,31 +5076,31 @@
         "code": [
           {
             "role": "input",
-            "line": "internal/collector/services.go:364"
+            "line": "internal/collector/services.go:368"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:379"
+            "line": "internal/collector/services.go:383"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:96"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:100"
         ]
       },
       "/services/*/row_policies/inventory": {
         "code": [
           {
             "role": "input",
-            "line": "internal/collector/services.go:364"
+            "line": "internal/collector/services.go:368"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:380"
+            "line": "internal/collector/services.go:384"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:381"
+            "line": "internal/collector/services.go:385"
           }
         ]
       },
@@ -5076,12 +5112,12 @@
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:374"
+            "line": "internal/collector/services.go:378"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:96"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:100"
         ]
       },
       "/services/*/row_policies/inventory/*/apply_to_except": {
@@ -5092,12 +5128,12 @@
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:376"
+            "line": "internal/collector/services.go:380"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:96"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:100"
         ]
       },
       "/services/*/row_policies/inventory/*/apply_to_list/*": {
@@ -5108,12 +5144,12 @@
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:375"
+            "line": "internal/collector/services.go:379"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:96"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:100"
         ]
       },
       "/services/*/row_policies/inventory/*/database": {
@@ -5124,12 +5160,12 @@
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:370"
+            "line": "internal/collector/services.go:374"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:96"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:100"
         ]
       },
       "/services/*/row_policies/inventory/*/is_restrictive": {
@@ -5140,47 +5176,15 @@
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:373"
+            "line": "internal/collector/services.go:377"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:96"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:100"
         ]
       },
       "/services/*/row_policies/inventory/*/name": {
-        "operations": [
-          "clickhouse.db.row_policies.list",
-          "clickhouse.db.version.get"
-        ],
-        "code": [
-          {
-            "role": "assign",
-            "line": "internal/collector/services.go:368"
-          }
-        ],
-        "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:96"
-        ]
-      },
-      "/services/*/row_policies/inventory/*/short_name": {
-        "operations": [
-          "clickhouse.db.row_policies.list",
-          "clickhouse.db.version.get"
-        ],
-        "code": [
-          {
-            "role": "assign",
-            "line": "internal/collector/services.go:369"
-          }
-        ],
-        "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:96"
-        ]
-      },
-      "/services/*/row_policies/inventory/*/storage": {
         "operations": [
           "clickhouse.db.row_policies.list",
           "clickhouse.db.version.get"
@@ -5192,8 +5196,40 @@
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:96"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:100"
+        ]
+      },
+      "/services/*/row_policies/inventory/*/short_name": {
+        "operations": [
+          "clickhouse.db.row_policies.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:373"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:100"
+        ]
+      },
+      "/services/*/row_policies/inventory/*/storage": {
+        "operations": [
+          "clickhouse.db.row_policies.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:376"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:100"
         ]
       },
       "/services/*/row_policies/inventory/*/table": {
@@ -5204,12 +5240,12 @@
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:371"
+            "line": "internal/collector/services.go:375"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:96"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:100"
         ]
       },
       "/services/*/settings_profile_elements": {
@@ -5219,45 +5255,49 @@
         ],
         "code": [
           {
+            "role": "input",
+            "line": "internal/collector/services.go:38"
+          },
+          {
             "role": "condition",
-            "line": "internal/collector/services.go:44"
+            "line": "internal/collector/services.go:48"
           },
           {
             "role": "input",
-            "line": "internal/collector/services.go:54"
+            "line": "internal/collector/services.go:58"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:80"
+            "line": "internal/collector/services.go:84"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:83"
+            "line": "internal/collector/services.go:87"
           },
           {
             "role": "helper",
-            "line": "internal/collector/services.go:293",
-            "end": 322
+            "line": "internal/collector/services.go:297",
+            "end": 326
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:81"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:85"
         ]
       },
       "/services/*/settings_profile_elements/cloud_managed": {
         "code": [
           {
             "role": "input",
-            "line": "internal/collector/services.go:294"
+            "line": "internal/collector/services.go:298"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:318"
+            "line": "internal/collector/services.go:322"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:319"
+            "line": "internal/collector/services.go:323"
           }
         ]
       },
@@ -5265,99 +5305,39 @@
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:314"
+            "line": "internal/collector/services.go:318"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:81"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:85"
         ]
       },
       "/services/*/settings_profile_elements/cloud_managed/*/max": {
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:312"
+            "line": "internal/collector/services.go:316"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:81"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:85"
         ]
       },
       "/services/*/settings_profile_elements/cloud_managed/*/min": {
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:311"
+            "line": "internal/collector/services.go:315"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:81"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:85"
         ]
       },
       "/services/*/settings_profile_elements/cloud_managed/*/profile_name": {
-        "operations": [
-          "clickhouse.db.settings_profile_elements.list",
-          "clickhouse.db.version.get"
-        ],
-        "code": [
-          {
-            "role": "assign",
-            "line": "internal/collector/services.go:306"
-          }
-        ],
-        "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:81"
-        ]
-      },
-      "/services/*/settings_profile_elements/cloud_managed/*/role_name": {
-        "operations": [
-          "clickhouse.db.settings_profile_elements.list",
-          "clickhouse.db.version.get"
-        ],
-        "code": [
-          {
-            "role": "assign",
-            "line": "internal/collector/services.go:308"
-          }
-        ],
-        "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:81"
-        ]
-      },
-      "/services/*/settings_profile_elements/cloud_managed/*/setting_name": {
-        "operations": [
-          "clickhouse.db.settings_profile_elements.list",
-          "clickhouse.db.version.get"
-        ],
-        "code": [
-          {
-            "role": "assign",
-            "line": "internal/collector/services.go:309"
-          }
-        ],
-        "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:81"
-        ]
-      },
-      "/services/*/settings_profile_elements/cloud_managed/*/user_name": {
-        "code": [
-          {
-            "role": "assign",
-            "line": "internal/collector/services.go:307"
-          }
-        ],
-        "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:81"
-        ]
-      },
-      "/services/*/settings_profile_elements/cloud_managed/*/value": {
         "operations": [
           "clickhouse.db.settings_profile_elements.list",
           "clickhouse.db.version.get"
@@ -5369,11 +5349,27 @@
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:81"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:85"
         ]
       },
-      "/services/*/settings_profile_elements/cloud_managed/*/writability": {
+      "/services/*/settings_profile_elements/cloud_managed/*/role_name": {
+        "operations": [
+          "clickhouse.db.settings_profile_elements.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:312"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:85"
+        ]
+      },
+      "/services/*/settings_profile_elements/cloud_managed/*/setting_name": {
         "operations": [
           "clickhouse.db.settings_profile_elements.list",
           "clickhouse.db.version.get"
@@ -5385,8 +5381,52 @@
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:81"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:85"
+        ]
+      },
+      "/services/*/settings_profile_elements/cloud_managed/*/user_name": {
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:311"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:85"
+        ]
+      },
+      "/services/*/settings_profile_elements/cloud_managed/*/value": {
+        "operations": [
+          "clickhouse.db.settings_profile_elements.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:314"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:85"
+        ]
+      },
+      "/services/*/settings_profile_elements/cloud_managed/*/writability": {
+        "operations": [
+          "clickhouse.db.settings_profile_elements.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:317"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:85"
         ]
       },
       "/services/*/settings_profile_elements/cloud_managed_count": {
@@ -5397,16 +5437,16 @@
         "code": [
           {
             "role": "input",
-            "line": "internal/collector/services.go:294"
+            "line": "internal/collector/services.go:298"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:317"
+            "line": "internal/collector/services.go:321"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:81"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:85"
         ]
       },
       "/services/*/settings_profile_elements/customer_count": {
@@ -5417,31 +5457,31 @@
         "code": [
           {
             "role": "input",
-            "line": "internal/collector/services.go:294"
+            "line": "internal/collector/services.go:298"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:317"
+            "line": "internal/collector/services.go:321"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:81"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:85"
         ]
       },
       "/services/*/settings_profile_elements/inventory": {
         "code": [
           {
             "role": "input",
-            "line": "internal/collector/services.go:294"
+            "line": "internal/collector/services.go:298"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:318"
+            "line": "internal/collector/services.go:322"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:319"
+            "line": "internal/collector/services.go:323"
           }
         ]
       },
@@ -5453,12 +5493,12 @@
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:314"
+            "line": "internal/collector/services.go:318"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:81"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:85"
         ]
       },
       "/services/*/settings_profile_elements/inventory/*/max": {
@@ -5469,87 +5509,27 @@
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:312"
+            "line": "internal/collector/services.go:316"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:81"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:85"
         ]
       },
       "/services/*/settings_profile_elements/inventory/*/min": {
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:311"
+            "line": "internal/collector/services.go:315"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:81"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:85"
         ]
       },
       "/services/*/settings_profile_elements/inventory/*/profile_name": {
-        "operations": [
-          "clickhouse.db.settings_profile_elements.list",
-          "clickhouse.db.version.get"
-        ],
-        "code": [
-          {
-            "role": "assign",
-            "line": "internal/collector/services.go:306"
-          }
-        ],
-        "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:81"
-        ]
-      },
-      "/services/*/settings_profile_elements/inventory/*/role_name": {
-        "code": [
-          {
-            "role": "assign",
-            "line": "internal/collector/services.go:308"
-          }
-        ],
-        "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:81"
-        ]
-      },
-      "/services/*/settings_profile_elements/inventory/*/setting_name": {
-        "operations": [
-          "clickhouse.db.settings_profile_elements.list",
-          "clickhouse.db.version.get"
-        ],
-        "code": [
-          {
-            "role": "assign",
-            "line": "internal/collector/services.go:309"
-          }
-        ],
-        "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:81"
-        ]
-      },
-      "/services/*/settings_profile_elements/inventory/*/user_name": {
-        "operations": [
-          "clickhouse.db.settings_profile_elements.list",
-          "clickhouse.db.version.get"
-        ],
-        "code": [
-          {
-            "role": "assign",
-            "line": "internal/collector/services.go:307"
-          }
-        ],
-        "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:81"
-        ]
-      },
-      "/services/*/settings_profile_elements/inventory/*/value": {
         "operations": [
           "clickhouse.db.settings_profile_elements.list",
           "clickhouse.db.version.get"
@@ -5561,11 +5541,23 @@
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:81"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:85"
         ]
       },
-      "/services/*/settings_profile_elements/inventory/*/writability": {
+      "/services/*/settings_profile_elements/inventory/*/role_name": {
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:312"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:85"
+        ]
+      },
+      "/services/*/settings_profile_elements/inventory/*/setting_name": {
         "operations": [
           "clickhouse.db.settings_profile_elements.list",
           "clickhouse.db.version.get"
@@ -5577,8 +5569,56 @@
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:81"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:85"
+        ]
+      },
+      "/services/*/settings_profile_elements/inventory/*/user_name": {
+        "operations": [
+          "clickhouse.db.settings_profile_elements.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:311"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:85"
+        ]
+      },
+      "/services/*/settings_profile_elements/inventory/*/value": {
+        "operations": [
+          "clickhouse.db.settings_profile_elements.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:314"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:85"
+        ]
+      },
+      "/services/*/settings_profile_elements/inventory/*/writability": {
+        "operations": [
+          "clickhouse.db.settings_profile_elements.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:317"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:85"
         ]
       },
       "/services/*/settings_profiles": {
@@ -5588,45 +5628,49 @@
         ],
         "code": [
           {
+            "role": "input",
+            "line": "internal/collector/services.go:38"
+          },
+          {
             "role": "condition",
-            "line": "internal/collector/services.go:44"
+            "line": "internal/collector/services.go:48"
           },
           {
             "role": "input",
-            "line": "internal/collector/services.go:54"
+            "line": "internal/collector/services.go:58"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:75"
+            "line": "internal/collector/services.go:79"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:78"
+            "line": "internal/collector/services.go:82"
           },
           {
             "role": "helper",
-            "line": "internal/collector/services.go:272",
-            "end": 289
+            "line": "internal/collector/services.go:276",
+            "end": 293
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:76"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:80"
         ]
       },
       "/services/*/settings_profiles/cloud_managed": {
         "code": [
           {
             "role": "input",
-            "line": "internal/collector/services.go:273"
+            "line": "internal/collector/services.go:277"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:285"
+            "line": "internal/collector/services.go:289"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:286"
+            "line": "internal/collector/services.go:290"
           }
         ]
       },
@@ -5638,15 +5682,47 @@
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:279"
+            "line": "internal/collector/services.go:283"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:76"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:80"
         ]
       },
       "/services/*/settings_profiles/cloud_managed/*/apply_to_except": {
+        "operations": [
+          "clickhouse.db.settings_profiles.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:285"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:80"
+        ]
+      },
+      "/services/*/settings_profiles/cloud_managed/*/apply_to_list": {
+        "operations": [
+          "clickhouse.db.settings_profiles.list",
+          "clickhouse.db.version.get"
+        ],
+        "code": [
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:284"
+          }
+        ],
+        "gaps": [
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:80"
+        ]
+      },
+      "/services/*/settings_profiles/cloud_managed/*/name": {
         "operations": [
           "clickhouse.db.settings_profiles.list",
           "clickhouse.db.version.get"
@@ -5658,40 +5734,8 @@
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:76"
-        ]
-      },
-      "/services/*/settings_profiles/cloud_managed/*/apply_to_list": {
-        "operations": [
-          "clickhouse.db.settings_profiles.list",
-          "clickhouse.db.version.get"
-        ],
-        "code": [
-          {
-            "role": "assign",
-            "line": "internal/collector/services.go:280"
-          }
-        ],
-        "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:76"
-        ]
-      },
-      "/services/*/settings_profiles/cloud_managed/*/name": {
-        "operations": [
-          "clickhouse.db.settings_profiles.list",
-          "clickhouse.db.version.get"
-        ],
-        "code": [
-          {
-            "role": "assign",
-            "line": "internal/collector/services.go:277"
-          }
-        ],
-        "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:76"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:80"
         ]
       },
       "/services/*/settings_profiles/cloud_managed/*/storage": {
@@ -5702,12 +5746,12 @@
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:278"
+            "line": "internal/collector/services.go:282"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:76"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:80"
         ]
       },
       "/services/*/settings_profiles/cloud_managed_count": {
@@ -5718,16 +5762,16 @@
         "code": [
           {
             "role": "input",
-            "line": "internal/collector/services.go:273"
+            "line": "internal/collector/services.go:277"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:284"
+            "line": "internal/collector/services.go:288"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:76"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:80"
         ]
       },
       "/services/*/settings_profiles/customer_count": {
@@ -5738,31 +5782,31 @@
         "code": [
           {
             "role": "input",
-            "line": "internal/collector/services.go:273"
+            "line": "internal/collector/services.go:277"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:284"
+            "line": "internal/collector/services.go:288"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:76"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:80"
         ]
       },
       "/services/*/settings_profiles/inventory": {
         "code": [
           {
             "role": "input",
-            "line": "internal/collector/services.go:273"
+            "line": "internal/collector/services.go:277"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:285"
+            "line": "internal/collector/services.go:289"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:286"
+            "line": "internal/collector/services.go:290"
           }
         ]
       },
@@ -5774,12 +5818,12 @@
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:279"
+            "line": "internal/collector/services.go:283"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:76"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:80"
         ]
       },
       "/services/*/settings_profiles/inventory/*/apply_to_except": {
@@ -5790,12 +5834,12 @@
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:281"
+            "line": "internal/collector/services.go:285"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:76"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:80"
         ]
       },
       "/services/*/settings_profiles/inventory/*/apply_to_except/*": {
@@ -5806,12 +5850,12 @@
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:281"
+            "line": "internal/collector/services.go:285"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:76"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:80"
         ]
       },
       "/services/*/settings_profiles/inventory/*/apply_to_list": {
@@ -5822,12 +5866,12 @@
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:280"
+            "line": "internal/collector/services.go:284"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:76"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:80"
         ]
       },
       "/services/*/settings_profiles/inventory/*/apply_to_list/*": {
@@ -5838,12 +5882,12 @@
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:280"
+            "line": "internal/collector/services.go:284"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:76"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:80"
         ]
       },
       "/services/*/settings_profiles/inventory/*/name": {
@@ -5854,12 +5898,12 @@
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:277"
+            "line": "internal/collector/services.go:281"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:76"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:80"
         ]
       },
       "/services/*/settings_profiles/inventory/*/storage": {
@@ -5870,12 +5914,12 @@
         "code": [
           {
             "role": "assign",
-            "line": "internal/collector/services.go:278"
+            "line": "internal/collector/services.go:282"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:76"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:80"
         ]
       },
       "/services/*/user": {
@@ -5946,7 +5990,7 @@
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:38"
+            "line": "internal/collector/services.go:39"
           }
         ]
       },
@@ -5957,30 +6001,34 @@
         ],
         "code": [
           {
+            "role": "input",
+            "line": "internal/collector/services.go:38"
+          },
+          {
             "role": "condition",
-            "line": "internal/collector/services.go:44"
+            "line": "internal/collector/services.go:48"
           },
           {
             "role": "input",
-            "line": "internal/collector/services.go:54"
-          },
-          {
-            "role": "condition",
-            "line": "internal/collector/services.go:55"
-          },
-          {
-            "role": "assign",
             "line": "internal/collector/services.go:58"
           },
           {
+            "role": "condition",
+            "line": "internal/collector/services.go:59"
+          },
+          {
+            "role": "assign",
+            "line": "internal/collector/services.go:62"
+          },
+          {
             "role": "helper",
-            "line": "internal/collector/services.go:133",
-            "end": 175
+            "line": "internal/collector/services.go:137",
+            "end": 179
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:56"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:60"
         ]
       },
       "/services/*/users/any_host_count": {
@@ -5996,24 +6044,24 @@
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:136"
+            "line": "internal/collector/services.go:140"
           },
           {
             "role": "input",
-            "line": "internal/collector/services.go:145"
+            "line": "internal/collector/services.go:149"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:160"
+            "line": "internal/collector/services.go:164"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:169"
+            "line": "internal/collector/services.go:173"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:56"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:60"
         ]
       },
       "/services/*/users/cloud_managed/*/any_host": {
@@ -6024,40 +6072,40 @@
         "code": [
           {
             "role": "condition",
-            "line": "internal/collector/services.go:136"
+            "line": "internal/collector/services.go:140"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:145"
+            "line": "internal/collector/services.go:149"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:56"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:60"
         ]
       },
       "/services/*/users/cloud_managed/*/auth_methods/*/second_factor": {
         "code": [
           {
             "role": "condition",
-            "line": "internal/collector/services.go:136"
+            "line": "internal/collector/services.go:140"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:147"
+            "line": "internal/collector/services.go:151"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:152"
+            "line": "internal/collector/services.go:156"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:153"
+            "line": "internal/collector/services.go:157"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:56"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:60"
         ]
       },
       "/services/*/users/cloud_managed/*/auth_methods/*/type": {
@@ -6068,44 +6116,44 @@
         "code": [
           {
             "role": "condition",
-            "line": "internal/collector/services.go:136"
+            "line": "internal/collector/services.go:140"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:147"
+            "line": "internal/collector/services.go:151"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:148"
+            "line": "internal/collector/services.go:152"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:56"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:60"
         ]
       },
       "/services/*/users/cloud_managed/*/auth_methods/*/valid_until": {
         "code": [
           {
             "role": "condition",
-            "line": "internal/collector/services.go:136"
+            "line": "internal/collector/services.go:140"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:147"
+            "line": "internal/collector/services.go:151"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:149"
+            "line": "internal/collector/services.go:153"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:150"
+            "line": "internal/collector/services.go:154"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:56"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:60"
         ]
       },
       "/services/*/users/cloud_managed/*/host_ip": {
@@ -6116,16 +6164,16 @@
         "code": [
           {
             "role": "condition",
-            "line": "internal/collector/services.go:136"
+            "line": "internal/collector/services.go:140"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:141"
+            "line": "internal/collector/services.go:145"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:56"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:60"
         ]
       },
       "/services/*/users/cloud_managed/*/host_ip/*": {
@@ -6136,16 +6184,16 @@
         "code": [
           {
             "role": "condition",
-            "line": "internal/collector/services.go:136"
+            "line": "internal/collector/services.go:140"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:141"
+            "line": "internal/collector/services.go:145"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:56"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:60"
         ]
       },
       "/services/*/users/cloud_managed/*/host_names": {
@@ -6156,16 +6204,16 @@
         "code": [
           {
             "role": "condition",
-            "line": "internal/collector/services.go:136"
+            "line": "internal/collector/services.go:140"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:142"
+            "line": "internal/collector/services.go:146"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:56"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:60"
         ]
       },
       "/services/*/users/cloud_managed/*/host_names/*": {
@@ -6176,16 +6224,16 @@
         "code": [
           {
             "role": "condition",
-            "line": "internal/collector/services.go:136"
+            "line": "internal/collector/services.go:140"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:142"
+            "line": "internal/collector/services.go:146"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:56"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:60"
         ]
       },
       "/services/*/users/cloud_managed/*/host_names_like": {
@@ -6196,16 +6244,16 @@
         "code": [
           {
             "role": "condition",
-            "line": "internal/collector/services.go:136"
+            "line": "internal/collector/services.go:140"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:144"
+            "line": "internal/collector/services.go:148"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:56"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:60"
         ]
       },
       "/services/*/users/cloud_managed/*/host_names_regexp": {
@@ -6216,16 +6264,16 @@
         "code": [
           {
             "role": "condition",
-            "line": "internal/collector/services.go:136"
+            "line": "internal/collector/services.go:140"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:143"
+            "line": "internal/collector/services.go:147"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:56"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:60"
         ]
       },
       "/services/*/users/cloud_managed/*/name": {
@@ -6236,16 +6284,16 @@
         "code": [
           {
             "role": "condition",
-            "line": "internal/collector/services.go:136"
+            "line": "internal/collector/services.go:140"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:138"
+            "line": "internal/collector/services.go:142"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:56"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:60"
         ]
       },
       "/services/*/users/cloud_managed/*/no_password": {
@@ -6256,32 +6304,32 @@
         "code": [
           {
             "role": "condition",
-            "line": "internal/collector/services.go:136"
+            "line": "internal/collector/services.go:140"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:147"
+            "line": "internal/collector/services.go:151"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:149"
+            "line": "internal/collector/services.go:153"
           },
           {
             "role": "input",
-            "line": "internal/collector/services.go:150"
+            "line": "internal/collector/services.go:154"
           },
           {
             "role": "input",
-            "line": "internal/collector/services.go:156"
+            "line": "internal/collector/services.go:160"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:157"
+            "line": "internal/collector/services.go:161"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:56"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:60"
         ]
       },
       "/services/*/users/cloud_managed/*/plaintext_password": {
@@ -6292,20 +6340,20 @@
         "code": [
           {
             "role": "condition",
-            "line": "internal/collector/services.go:136"
+            "line": "internal/collector/services.go:140"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:147"
+            "line": "internal/collector/services.go:151"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:158"
+            "line": "internal/collector/services.go:162"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:56"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:60"
         ]
       },
       "/services/*/users/cloud_managed/*/storage": {
@@ -6316,16 +6364,16 @@
         "code": [
           {
             "role": "condition",
-            "line": "internal/collector/services.go:136"
+            "line": "internal/collector/services.go:140"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:139"
+            "line": "internal/collector/services.go:143"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:56"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:60"
         ]
       },
       "/services/*/users/cloud_managed_count": {
@@ -6336,20 +6384,20 @@
         "code": [
           {
             "role": "condition",
-            "line": "internal/collector/services.go:136"
+            "line": "internal/collector/services.go:140"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:160"
+            "line": "internal/collector/services.go:164"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:162"
+            "line": "internal/collector/services.go:166"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:56"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:60"
         ]
       },
       "/services/*/users/customer_count": {
@@ -6360,51 +6408,51 @@
         "code": [
           {
             "role": "condition",
-            "line": "internal/collector/services.go:136"
+            "line": "internal/collector/services.go:140"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:160"
+            "line": "internal/collector/services.go:164"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:166"
+            "line": "internal/collector/services.go:170"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:56"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:60"
         ]
       },
       "/services/*/users/inventory": {
         "code": [
           {
             "role": "input",
-            "line": "internal/collector/services.go:135"
+            "line": "internal/collector/services.go:139"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:136"
+            "line": "internal/collector/services.go:140"
           },
           {
             "role": "input",
-            "line": "internal/collector/services.go:137"
+            "line": "internal/collector/services.go:141"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:160"
+            "line": "internal/collector/services.go:164"
           },
           {
             "role": "input",
-            "line": "internal/collector/services.go:165"
+            "line": "internal/collector/services.go:169"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:171"
+            "line": "internal/collector/services.go:175"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:172"
+            "line": "internal/collector/services.go:176"
           }
         ]
       },
@@ -6416,16 +6464,16 @@
         "code": [
           {
             "role": "condition",
-            "line": "internal/collector/services.go:136"
+            "line": "internal/collector/services.go:140"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:145"
+            "line": "internal/collector/services.go:149"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:56"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:60"
         ]
       },
       "/services/*/users/inventory/*/auth_methods/*/second_factor": {
@@ -6436,24 +6484,24 @@
         "code": [
           {
             "role": "condition",
-            "line": "internal/collector/services.go:136"
+            "line": "internal/collector/services.go:140"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:147"
+            "line": "internal/collector/services.go:151"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:152"
+            "line": "internal/collector/services.go:156"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:153"
+            "line": "internal/collector/services.go:157"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:56"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:60"
         ]
       },
       "/services/*/users/inventory/*/auth_methods/*/type": {
@@ -6464,20 +6512,20 @@
         "code": [
           {
             "role": "condition",
-            "line": "internal/collector/services.go:136"
+            "line": "internal/collector/services.go:140"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:147"
+            "line": "internal/collector/services.go:151"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:148"
+            "line": "internal/collector/services.go:152"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:56"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:60"
         ]
       },
       "/services/*/users/inventory/*/auth_methods/*/valid_until": {
@@ -6488,24 +6536,24 @@
         "code": [
           {
             "role": "condition",
-            "line": "internal/collector/services.go:136"
+            "line": "internal/collector/services.go:140"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:147"
+            "line": "internal/collector/services.go:151"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:149"
+            "line": "internal/collector/services.go:153"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:150"
+            "line": "internal/collector/services.go:154"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:56"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:60"
         ]
       },
       "/services/*/users/inventory/*/host_ip": {
@@ -6516,16 +6564,16 @@
         "code": [
           {
             "role": "condition",
-            "line": "internal/collector/services.go:136"
+            "line": "internal/collector/services.go:140"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:141"
+            "line": "internal/collector/services.go:145"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:56"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:60"
         ]
       },
       "/services/*/users/inventory/*/host_ip/*": {
@@ -6536,16 +6584,16 @@
         "code": [
           {
             "role": "condition",
-            "line": "internal/collector/services.go:136"
+            "line": "internal/collector/services.go:140"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:141"
+            "line": "internal/collector/services.go:145"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:56"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:60"
         ]
       },
       "/services/*/users/inventory/*/host_names": {
@@ -6556,16 +6604,16 @@
         "code": [
           {
             "role": "condition",
-            "line": "internal/collector/services.go:136"
+            "line": "internal/collector/services.go:140"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:142"
+            "line": "internal/collector/services.go:146"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:56"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:60"
         ]
       },
       "/services/*/users/inventory/*/host_names/*": {
@@ -6576,16 +6624,16 @@
         "code": [
           {
             "role": "condition",
-            "line": "internal/collector/services.go:136"
+            "line": "internal/collector/services.go:140"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:142"
+            "line": "internal/collector/services.go:146"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:56"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:60"
         ]
       },
       "/services/*/users/inventory/*/host_names_like": {
@@ -6596,16 +6644,16 @@
         "code": [
           {
             "role": "condition",
-            "line": "internal/collector/services.go:136"
+            "line": "internal/collector/services.go:140"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:144"
+            "line": "internal/collector/services.go:148"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:56"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:60"
         ]
       },
       "/services/*/users/inventory/*/host_names_like/*": {
@@ -6616,16 +6664,16 @@
         "code": [
           {
             "role": "condition",
-            "line": "internal/collector/services.go:136"
+            "line": "internal/collector/services.go:140"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:144"
+            "line": "internal/collector/services.go:148"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:56"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:60"
         ]
       },
       "/services/*/users/inventory/*/host_names_regexp": {
@@ -6636,16 +6684,16 @@
         "code": [
           {
             "role": "condition",
-            "line": "internal/collector/services.go:136"
+            "line": "internal/collector/services.go:140"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:143"
+            "line": "internal/collector/services.go:147"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:56"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:60"
         ]
       },
       "/services/*/users/inventory/*/host_names_regexp/*": {
@@ -6656,16 +6704,16 @@
         "code": [
           {
             "role": "condition",
-            "line": "internal/collector/services.go:136"
+            "line": "internal/collector/services.go:140"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:143"
+            "line": "internal/collector/services.go:147"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:56"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:60"
         ]
       },
       "/services/*/users/inventory/*/name": {
@@ -6676,16 +6724,16 @@
         "code": [
           {
             "role": "condition",
-            "line": "internal/collector/services.go:136"
+            "line": "internal/collector/services.go:140"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:138"
+            "line": "internal/collector/services.go:142"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:56"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:60"
         ]
       },
       "/services/*/users/inventory/*/no_password": {
@@ -6696,32 +6744,32 @@
         "code": [
           {
             "role": "condition",
-            "line": "internal/collector/services.go:136"
+            "line": "internal/collector/services.go:140"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:147"
+            "line": "internal/collector/services.go:151"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:149"
+            "line": "internal/collector/services.go:153"
           },
           {
             "role": "input",
-            "line": "internal/collector/services.go:150"
+            "line": "internal/collector/services.go:154"
           },
           {
             "role": "input",
-            "line": "internal/collector/services.go:156"
+            "line": "internal/collector/services.go:160"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:157"
+            "line": "internal/collector/services.go:161"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:56"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:60"
         ]
       },
       "/services/*/users/inventory/*/plaintext_password": {
@@ -6732,20 +6780,20 @@
         "code": [
           {
             "role": "condition",
-            "line": "internal/collector/services.go:136"
+            "line": "internal/collector/services.go:140"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:147"
+            "line": "internal/collector/services.go:151"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:158"
+            "line": "internal/collector/services.go:162"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:56"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:60"
         ]
       },
       "/services/*/users/inventory/*/storage": {
@@ -6756,16 +6804,16 @@
         "code": [
           {
             "role": "condition",
-            "line": "internal/collector/services.go:136"
+            "line": "internal/collector/services.go:140"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:139"
+            "line": "internal/collector/services.go:143"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:56"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:60"
         ]
       },
       "/services/*/users/no_password_count": {
@@ -6781,40 +6829,40 @@
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:136"
+            "line": "internal/collector/services.go:140"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:147"
+            "line": "internal/collector/services.go:151"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:149"
+            "line": "internal/collector/services.go:153"
           },
           {
             "role": "input",
-            "line": "internal/collector/services.go:150"
+            "line": "internal/collector/services.go:154"
           },
           {
             "role": "input",
-            "line": "internal/collector/services.go:156"
-          },
-          {
-            "role": "input",
-            "line": "internal/collector/services.go:157"
-          },
-          {
-            "role": "condition",
             "line": "internal/collector/services.go:160"
           },
           {
+            "role": "input",
+            "line": "internal/collector/services.go:161"
+          },
+          {
+            "role": "condition",
+            "line": "internal/collector/services.go:164"
+          },
+          {
             "role": "assign",
-            "line": "internal/collector/services.go:167"
+            "line": "internal/collector/services.go:171"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:56"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:60"
         ]
       },
       "/services/*/users/plaintext_password_count": {
@@ -6830,28 +6878,28 @@
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:136"
+            "line": "internal/collector/services.go:140"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:147"
+            "line": "internal/collector/services.go:151"
           },
           {
             "role": "input",
-            "line": "internal/collector/services.go:158"
+            "line": "internal/collector/services.go:162"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:160"
+            "line": "internal/collector/services.go:164"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:168"
+            "line": "internal/collector/services.go:172"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:48",
-          "internal/collector/services.go:56"
+          "internal/collector/services.go:52",
+          "internal/collector/services.go:60"
         ]
       },
       "/services/*/version": {
@@ -6861,23 +6909,23 @@
         "code": [
           {
             "role": "input",
-            "line": "internal/collector/services.go:41"
+            "line": "internal/collector/services.go:45"
           },
           {
             "role": "input",
-            "line": "internal/collector/services.go:42"
+            "line": "internal/collector/services.go:46"
           },
           {
             "role": "condition",
-            "line": "internal/collector/services.go:44"
+            "line": "internal/collector/services.go:48"
           },
           {
             "role": "assign",
-            "line": "internal/collector/services.go:52"
+            "line": "internal/collector/services.go:56"
           }
         ],
         "gaps": [
-          "internal/collector/services.go:46"
+          "internal/collector/services.go:50"
         ]
       }
     }
@@ -6982,41 +7030,43 @@
     "internal/collector/access.go:253": "}",
     "internal/collector/collector.go:28": "\tif err != nil {",
     "internal/collector/collector.go:31": "\trec := componentsdk.Records(ctx)",
-    "internal/collector/collector.go:38": "\tgaps := gapLog{rec: rec}",
-    "internal/collector/collector.go:40": "\tnow := componentsdk.Now(ctx).UTC()",
-    "internal/collector/collector.go:42": "\t\tSchemaVersion:    SchemaVersion,",
-    "internal/collector/collector.go:43": "\t\tCollectedAt:      now.Format(time.RFC3339),",
-    "internal/collector/collector.go:44": "\t\tCollectedAtLevel: string(ctx.Level()),",
-    "internal/collector/collector.go:45": "\t\tOrganization:     Organization{ID: org.ID, Name: org.Name, CreatedAt: timestamp(org.CreatedAt)},",
-    "internal/collector/collector.go:46": "\t\tServices:         []Service{},",
-    "internal/collector/collector.go:48": "\tgaps.noAPI(\"/organization/sso_enabled\", \"ClickHouse Cloud has no API that reports whether the organization signs members in with SAML SSO.\")",
-    "internal/collector/collector.go:50": "\tdetails := componentsdk.Selected(ctx, componentsdk.Location{Path: artifactPath})",
-    "internal/collector/collector.go:51": "\taccess := componentsdk.Selected(ctx, componentsdk.Location{Schema: accessSchema, Path: accessPath})",
-    "internal/collector/collector.go:55": "\tif details || access {",
-    "internal/collector/collector.go:56": "\t\tpeople, step := componentsdk.StartCollectorStep(ctx, \"members\", \"Members and invitations\")",
-    "internal/collector/collector.go:57": "\t\tout.Members, members = readMembers(people, cloud, gaps)",
-    "internal/collector/collector.go:58": "\t\tif details {",
-    "internal/collector/collector.go:59": "\t\t\tout.Invitations = readInvitations(people, cloud, gaps, now)",
-    "internal/collector/collector.go:63": "\t\tapiKeys, step := componentsdk.StartCollectorStep(ctx, \"api_keys\", \"API keys\")",
-    "internal/collector/collector.go:64": "\t\tout.APIKeys, keys = readAPIKeys(apiKeys, cloud, gaps)",
-    "internal/collector/collector.go:68": "\tif details {",
-    "internal/collector/collector.go:69": "\t\troles, step := componentsdk.StartCollectorStep(ctx, \"console_roles\", \"Console roles\")",
-    "internal/collector/collector.go:70": "\t\tout.ConsoleRoles = readConsoleRoles(roles, cloud, gaps)",
-    "internal/collector/collector.go:73": "\t\tif len(databases) \u003e 0 {",
-    "internal/collector/collector.go:74": "\t\t\tdbs, step := componentsdk.StartCollectorStep(ctx, \"databases\", \"Database access\")",
-    "internal/collector/collector.go:75": "\t\t\tfor i, db := range databases {",
-    "internal/collector/collector.go:77": "\t\t\t\tout.Services = append(out.Services, readService(dbs, db, gaps, now, i, cfg.Services[i]))",
-    "internal/collector/collector.go:110": "func timestamp(raw string) *string {",
-    "internal/collector/collector.go:111": "\tif raw == \"\" {",
-    "internal/collector/collector.go:112": "\t\treturn nil",
-    "internal/collector/collector.go:113": "\t}",
-    "internal/collector/collector.go:114": "\tt, err := time.Parse(time.RFC3339Nano, raw)",
-    "internal/collector/collector.go:115": "\tif err != nil {",
-    "internal/collector/collector.go:116": "\t\treturn \u0026raw",
-    "internal/collector/collector.go:117": "\t}",
-    "internal/collector/collector.go:118": "\ts := t.UTC().Format(time.RFC3339)",
-    "internal/collector/collector.go:119": "\treturn \u0026s",
-    "internal/collector/collector.go:120": "}",
+    "internal/collector/collector.go:42": "\tgaps := gapLog{rec: rec}",
+    "internal/collector/collector.go:44": "\tnow := componentsdk.Now(ctx).UTC()",
+    "internal/collector/collector.go:46": "\t\tSchemaVersion:    SchemaVersion,",
+    "internal/collector/collector.go:47": "\t\tCollectedAt:      now.Format(time.RFC3339),",
+    "internal/collector/collector.go:48": "\t\tCollectedAtLevel: string(ctx.Level()),",
+    "internal/collector/collector.go:49": "\t\tOrganization:     Organization{Name: org.Name, CreatedAt: timestamp(org.CreatedAt)},",
+    "internal/collector/collector.go:50": "\t\tServices:         []Service{},",
+    "internal/collector/collector.go:52": "\tif atAudit(ctx) {",
+    "internal/collector/collector.go:53": "\t\tout.Organization.ID = org.ID",
+    "internal/collector/collector.go:55": "\tgaps.noAPI(\"/organization/sso_enabled\", \"ClickHouse Cloud has no API that reports whether the organization signs members in with SAML SSO.\")",
+    "internal/collector/collector.go:57": "\tdetails := componentsdk.Selected(ctx, componentsdk.Location{Path: artifactPath})",
+    "internal/collector/collector.go:58": "\taccess := componentsdk.Selected(ctx, componentsdk.Location{Schema: accessSchema, Path: accessPath})",
+    "internal/collector/collector.go:62": "\tif details || access {",
+    "internal/collector/collector.go:63": "\t\tpeople, step := componentsdk.StartCollectorStep(ctx, \"members\", \"Members and invitations\")",
+    "internal/collector/collector.go:64": "\t\tout.Members, members = readMembers(people, cloud, gaps)",
+    "internal/collector/collector.go:65": "\t\tif details {",
+    "internal/collector/collector.go:66": "\t\t\tout.Invitations = readInvitations(people, cloud, gaps, now)",
+    "internal/collector/collector.go:70": "\t\tapiKeys, step := componentsdk.StartCollectorStep(ctx, \"api_keys\", \"API keys\")",
+    "internal/collector/collector.go:71": "\t\tout.APIKeys, keys = readAPIKeys(apiKeys, cloud, gaps)",
+    "internal/collector/collector.go:75": "\tif details {",
+    "internal/collector/collector.go:76": "\t\troles, step := componentsdk.StartCollectorStep(ctx, \"console_roles\", \"Console roles\")",
+    "internal/collector/collector.go:77": "\t\tout.ConsoleRoles = readConsoleRoles(roles, cloud, gaps)",
+    "internal/collector/collector.go:80": "\t\tif len(databases) \u003e 0 {",
+    "internal/collector/collector.go:81": "\t\t\tdbs, step := componentsdk.StartCollectorStep(ctx, \"databases\", \"Database access\")",
+    "internal/collector/collector.go:82": "\t\t\tfor i, db := range databases {",
+    "internal/collector/collector.go:84": "\t\t\t\tout.Services = append(out.Services, readService(dbs, db, gaps, now, i, cfg.Services[i]))",
+    "internal/collector/collector.go:117": "func timestamp(raw string) *string {",
+    "internal/collector/collector.go:118": "\tif raw == \"\" {",
+    "internal/collector/collector.go:119": "\t\treturn nil",
+    "internal/collector/collector.go:120": "\t}",
+    "internal/collector/collector.go:121": "\tt, err := time.Parse(time.RFC3339Nano, raw)",
+    "internal/collector/collector.go:122": "\tif err != nil {",
+    "internal/collector/collector.go:123": "\t\treturn \u0026raw",
+    "internal/collector/collector.go:124": "\t}",
+    "internal/collector/collector.go:125": "\ts := t.UTC().Format(time.RFC3339)",
+    "internal/collector/collector.go:126": "\treturn \u0026s",
+    "internal/collector/collector.go:127": "}",
     "internal/collector/config.go:43": "\tif !ok || !organizationIDPattern.MatchString(organizationID) {",
     "internal/collector/config.go:48": "\trawServices, present := raw[\"services\"]",
     "internal/collector/config.go:49": "\tif !present || rawServices == nil {",
@@ -7201,288 +7251,292 @@
     "internal/collector/console.go:246": "}",
     "internal/collector/services.go:22": "var cloudManagedRoles = []string{\"clickpipes_system\", \"default_role\", \"sql_console_admin\", \"sql_console_read_only\"}",
     "internal/collector/services.go:37": "func readService(ctx componentsdk.CollectorContext, db *clickhouse.Database, gaps gapLog, now time.Time, index int, cfg ServiceConfig) Service {",
-    "internal/collector/services.go:38": "\tsvc := Service{Host: cfg.Host, User: cfg.User}",
-    "internal/collector/services.go:39": "\tbase := fmt.Sprintf(\"/services/%d/\", index)",
-    "internal/collector/services.go:40": "",
-    "internal/collector/services.go:41": "\twakeCtx, cancel := context.WithTimeout(ctx.Context(), wakeBudget)",
-    "internal/collector/services.go:42": "\tversion, err := db.Version(wakeCtx)",
-    "internal/collector/services.go:43": "\tcancel()",
-    "internal/collector/services.go:44": "\tif err != nil {",
-    "internal/collector/services.go:45": "\t\twarning := componentsdk.Warning(reachWarning(err, cfg.User))",
-    "internal/collector/services.go:46": "\t\tgaps.notCollected(err, base+\"version\", warning)",
-    "internal/collector/services.go:47": "\t\tfor _, part := range serviceParts {",
-    "internal/collector/services.go:48": "\t\t\tgaps.notCollected(err, base+part, warning)",
-    "internal/collector/services.go:49": "\t\t}",
-    "internal/collector/services.go:50": "\t\treturn svc",
-    "internal/collector/services.go:51": "\t}",
-    "internal/collector/services.go:52": "\tsvc.Version = version",
-    "internal/collector/services.go:53": "",
-    "internal/collector/services.go:54": "\tc, audit := ctx.Context(), atAudit(ctx)",
-    "internal/collector/services.go:55": "\tif users, err := db.Users(c); err != nil {",
-    "internal/collector/services.go:56": "\t\tgaps.notCollected(err, base+\"users\", grantWarning(err, cfg.User, \"SHOW USERS\"))",
-    "internal/collector/services.go:57": "\t} else {",
-    "internal/collector/services.go:58": "\t\tsvc.Users = databaseUsers(users, now, audit)",
-    "internal/collector/services.go:59": "\t}",
-    "internal/collector/services.go:60": "\tif roles, err := db.Roles(c); err != nil {",
-    "internal/collector/services.go:61": "\t\tgaps.notCollected(err, base+\"roles\", grantWarning(err, cfg.User, \"SHOW ROLES\"))",
-    "internal/collector/services.go:62": "\t} else {",
-    "internal/collector/services.go:63": "\t\tsvc.Roles = databaseRoles(roles, audit)",
-    "internal/collector/services.go:64": "\t}",
-    "internal/collector/services.go:65": "\tif grants, err := db.RoleGrants(c); err != nil {",
-    "internal/collector/services.go:66": "\t\tgaps.notCollected(err, base+\"role_grants\", grantWarning(err, cfg.User, \"SELECT ON system.role_grants\"))",
-    "internal/collector/services.go:67": "\t} else {",
-    "internal/collector/services.go:68": "\t\tsvc.RoleGrants = roleGrants(grants, audit)",
-    "internal/collector/services.go:69": "\t}",
-    "internal/collector/services.go:70": "\tif grants, err := db.Grants(c); err != nil {",
-    "internal/collector/services.go:71": "\t\tgaps.notCollected(err, base+\"grants\", grantWarning(err, cfg.User, \"SELECT ON system.grants\"))",
-    "internal/collector/services.go:72": "\t} else {",
-    "internal/collector/services.go:73": "\t\tsvc.Grants = privilegeGrants(grants, audit)",
-    "internal/collector/services.go:74": "\t}",
-    "internal/collector/services.go:75": "\tif profiles, err := db.SettingsProfiles(c); err != nil {",
-    "internal/collector/services.go:76": "\t\tgaps.notCollected(err, base+\"settings_profiles\", grantWarning(err, cfg.User, \"SHOW SETTINGS PROFILES\"))",
-    "internal/collector/services.go:77": "\t} else {",
-    "internal/collector/services.go:78": "\t\tsvc.SettingsProfiles = settingsProfiles(profiles, audit)",
-    "internal/collector/services.go:79": "\t}",
-    "internal/collector/services.go:80": "\tif elements, err := db.SettingsProfileElements(c); err != nil {",
-    "internal/collector/services.go:81": "\t\tgaps.notCollected(err, base+\"settings_profile_elements\", grantWarning(err, cfg.User, \"SELECT ON system.settings_profile_elements\"))",
-    "internal/collector/services.go:82": "\t} else {",
-    "internal/collector/services.go:83": "\t\tsvc.SettingsProfileElements = settingsProfileElements(elements, audit)",
-    "internal/collector/services.go:84": "\t}",
-    "internal/collector/services.go:85": "\tif quotas, err := db.Quotas(c); err != nil {",
-    "internal/collector/services.go:86": "\t\tgaps.notCollected(err, base+\"quotas\", grantWarning(err, cfg.User, \"SHOW QUOTAS\"))",
-    "internal/collector/services.go:87": "\t} else {",
-    "internal/collector/services.go:88": "\t\tsvc.Quotas = quotaList(quotas, audit)",
-    "internal/collector/services.go:89": "\t}",
-    "internal/collector/services.go:90": "\tif limits, err := db.QuotaLimits(c); err != nil {",
-    "internal/collector/services.go:91": "\t\tgaps.notCollected(err, base+\"quota_limits\", grantWarning(err, cfg.User, \"SELECT ON system.quota_limits\"))",
-    "internal/collector/services.go:92": "\t} else {",
-    "internal/collector/services.go:93": "\t\tsvc.QuotaLimits = quotaLimits(limits, audit)",
-    "internal/collector/services.go:94": "\t}",
-    "internal/collector/services.go:95": "\tif policies, err := db.RowPolicies(c); err != nil {",
-    "internal/collector/services.go:96": "\t\tgaps.notCollected(err, base+\"row_policies\", grantWarning(err, cfg.User, \"SHOW ROW POLICIES\"))",
-    "internal/collector/services.go:97": "\t} else {",
-    "internal/collector/services.go:98": "\t\tsvc.RowPolicies = rowPolicies(policies, audit)",
-    "internal/collector/services.go:99": "\t}",
-    "internal/collector/services.go:100": "\treturn svc",
-    "internal/collector/services.go:101": "}",
-    "internal/collector/services.go:133": "func databaseUsers(users []clickhouse.User, now time.Time, audit bool) *DatabaseUsers {",
-    "internal/collector/services.go:134": "\tout := \u0026DatabaseUsers{}",
-    "internal/collector/services.go:135": "\tcustomer, cloud := []DatabaseUser{}, []DatabaseUser{}",
-    "internal/collector/services.go:136": "\tfor _, u := range users {",
-    "internal/collector/services.go:137": "\t\trow := DatabaseUser{",
-    "internal/collector/services.go:138": "\t\t\tName:            u.Name,",
-    "internal/collector/services.go:139": "\t\t\tStorage:         u.Storage,",
-    "internal/collector/services.go:140": "\t\t\tAuthMethods:     make([]AuthMethod, len(u.AuthTypes)),",
-    "internal/collector/services.go:141": "\t\t\tHostIP:          u.HostIP,",
-    "internal/collector/services.go:142": "\t\t\tHostNames:       u.HostNames,",
-    "internal/collector/services.go:143": "\t\t\tHostNamesRegexp: u.HostNamesRegexp,",
-    "internal/collector/services.go:144": "\t\t\tHostNamesLike:   u.HostNamesLike,",
-    "internal/collector/services.go:145": "\t\t\tAnyHost:         slices.Contains(u.HostIP, \"::/0\") || slices.Contains(u.HostIP, anyAddress),",
-    "internal/collector/services.go:146": "\t\t}",
-    "internal/collector/services.go:147": "\t\tfor i, authType := range u.AuthTypes {",
-    "internal/collector/services.go:148": "\t\t\tmethod := AuthMethod{Type: authType}",
-    "internal/collector/services.go:149": "\t\t\tif until := u.ValidUntil[i]; until != noExpiry {",
-    "internal/collector/services.go:150": "\t\t\t\tmethod.ValidUntil = \u0026until",
-    "internal/collector/services.go:151": "\t\t\t}",
-    "internal/collector/services.go:152": "\t\t\tif factor := u.SecondFactors[i]; factor != \"\" {",
-    "internal/collector/services.go:153": "\t\t\t\tmethod.SecondFactor = \u0026factor",
-    "internal/collector/services.go:154": "\t\t\t}",
-    "internal/collector/services.go:155": "\t\t\trow.AuthMethods[i] = method",
-    "internal/collector/services.go:156": "\t\t\texpired := method.ValidUntil != nil \u0026\u0026 passed(*method.ValidUntil, now)",
-    "internal/collector/services.go:157": "\t\t\trow.NoPassword = row.NoPassword || (authType == \"no_password\" \u0026\u0026 !expired)",
-    "internal/collector/services.go:158": "\t\t\trow.PlaintextPassword = row.PlaintextPassword || authType == \"plaintext_password\"",
-    "internal/collector/services.go:159": "\t\t}",
-    "internal/collector/services.go:160": "\t\tif u.Storage == cloudManagedStorage {",
-    "internal/collector/services.go:161": "\t\t\tcloud = append(cloud, row)",
-    "internal/collector/services.go:162": "\t\t\tout.CloudManagedCount++",
-    "internal/collector/services.go:163": "\t\t\tcontinue",
-    "internal/collector/services.go:164": "\t\t}",
-    "internal/collector/services.go:165": "\t\tcustomer = append(customer, row)",
-    "internal/collector/services.go:166": "\t\tout.CustomerCount++",
-    "internal/collector/services.go:167": "\t\tout.NoPasswordCount += count(row.NoPassword)",
-    "internal/collector/services.go:168": "\t\tout.PlaintextPasswordCount += count(row.PlaintextPassword)",
-    "internal/collector/services.go:169": "\t\tout.AnyHostCount += count(row.AnyHost)",
-    "internal/collector/services.go:170": "\t}",
-    "internal/collector/services.go:171": "\tif audit {",
-    "internal/collector/services.go:172": "\t\tout.Inventory, out.CloudManaged = customer, cloud",
-    "internal/collector/services.go:173": "\t}",
-    "internal/collector/services.go:174": "\treturn out",
-    "internal/collector/services.go:175": "}",
-    "internal/collector/services.go:177": "func databaseRoles(roles []clickhouse.DatabaseRole, audit bool) *DatabaseRoles {",
-    "internal/collector/services.go:178": "\tout := \u0026DatabaseRoles{}",
-    "internal/collector/services.go:179": "\tcustomer, cloud := []DatabaseRole{}, []DatabaseRole{}",
-    "internal/collector/services.go:180": "\tfor _, r := range roles {",
-    "internal/collector/services.go:181": "\t\trow := DatabaseRole{Name: r.Name, Storage: r.Storage}",
-    "internal/collector/services.go:182": "\t\tif slices.Contains(cloudManagedRoles, r.Name) {",
-    "internal/collector/services.go:183": "\t\t\tcloud = append(cloud, row)",
-    "internal/collector/services.go:184": "\t\t\tout.CloudManagedCount++",
-    "internal/collector/services.go:185": "\t\t\tcontinue",
-    "internal/collector/services.go:186": "\t\t}",
-    "internal/collector/services.go:187": "\t\tcustomer = append(customer, row)",
-    "internal/collector/services.go:188": "\t\tout.CustomerCount++",
-    "internal/collector/services.go:189": "\t}",
-    "internal/collector/services.go:190": "\tif audit {",
-    "internal/collector/services.go:191": "\t\tout.Inventory, out.CloudManaged = customer, cloud",
-    "internal/collector/services.go:192": "\t}",
-    "internal/collector/services.go:193": "\treturn out",
-    "internal/collector/services.go:194": "}",
-    "internal/collector/services.go:219": "func roleGrants(grants []clickhouse.RoleGrant, audit bool) *RoleGrants {",
-    "internal/collector/services.go:220": "\tcustomer, cloud := split(grants,",
-    "internal/collector/services.go:221": "\t\tfunc(g clickhouse.RoleGrant) bool { return cloudGrantee(g.RoleName, g.UserStorage) },",
-    "internal/collector/services.go:222": "\t\tfunc(g clickhouse.RoleGrant) RoleGrant {",
-    "internal/collector/services.go:223": "\t\t\treturn RoleGrant{",
-    "internal/collector/services.go:224": "\t\t\t\tUserName:             g.UserName,",
-    "internal/collector/services.go:225": "\t\t\t\tRoleName:             g.RoleName,",
-    "internal/collector/services.go:226": "\t\t\t\tGrantedRoleName:      g.GrantedRoleName,",
-    "internal/collector/services.go:227": "\t\t\t\tGrantedRoleIsDefault: bool(g.GrantedRoleIsDefault),",
-    "internal/collector/services.go:228": "\t\t\t\tWithAdminOption:      bool(g.WithAdminOption),",
-    "internal/collector/services.go:229": "\t\t\t}",
-    "internal/collector/services.go:230": "\t\t})",
-    "internal/collector/services.go:231": "\tout := \u0026RoleGrants{CustomerCount: len(customer), CloudManagedCount: len(cloud)}",
-    "internal/collector/services.go:232": "\tfor _, g := range customer {",
-    "internal/collector/services.go:233": "\t\tout.WithAdminOptionCount += count(g.WithAdminOption)",
-    "internal/collector/services.go:234": "\t}",
-    "internal/collector/services.go:235": "\tif audit {",
-    "internal/collector/services.go:236": "\t\tout.Inventory, out.CloudManaged = customer, cloud",
-    "internal/collector/services.go:237": "\t}",
-    "internal/collector/services.go:238": "\treturn out",
-    "internal/collector/services.go:239": "}",
-    "internal/collector/services.go:241": "func privilegeGrants(grants []clickhouse.Grant, audit bool) *Grants {",
-    "internal/collector/services.go:242": "\tcustomer, cloud := split(grants,",
-    "internal/collector/services.go:243": "\t\tfunc(g clickhouse.Grant) bool { return cloudGrantee(g.RoleName, g.UserStorage) },",
-    "internal/collector/services.go:244": "\t\tfunc(g clickhouse.Grant) Grant {",
-    "internal/collector/services.go:245": "\t\t\tout := Grant{",
-    "internal/collector/services.go:246": "\t\t\t\tUserName:        g.UserName,",
-    "internal/collector/services.go:247": "\t\t\t\tRoleName:        g.RoleName,",
-    "internal/collector/services.go:248": "\t\t\t\tAccessType:      g.AccessType,",
-    "internal/collector/services.go:249": "\t\t\t\tAccessObject:    g.AccessObject,",
-    "internal/collector/services.go:250": "\t\t\t\tDatabase:        g.Database,",
-    "internal/collector/services.go:251": "\t\t\t\tTable:           g.Table,",
-    "internal/collector/services.go:252": "\t\t\t\tColumn:          g.Column,",
-    "internal/collector/services.go:253": "\t\t\t\tIsPartialRevoke: bool(g.IsPartialRevoke),",
-    "internal/collector/services.go:254": "\t\t\t\tGrantOption:     bool(g.GrantOption),",
-    "internal/collector/services.go:255": "\t\t\t}",
-    "internal/collector/services.go:256": "\t\t\tif g.IsWildcard != nil {",
-    "internal/collector/services.go:257": "\t\t\t\twildcard := bool(*g.IsWildcard)",
-    "internal/collector/services.go:258": "\t\t\t\tout.IsWildcard = \u0026wildcard",
+    "internal/collector/services.go:38": "\taudit := atAudit(ctx)",
+    "internal/collector/services.go:39": "\tsvc := Service{User: cfg.User}",
+    "internal/collector/services.go:40": "\tif audit {",
+    "internal/collector/services.go:41": "\t\tsvc.Host = cfg.Host",
+    "internal/collector/services.go:42": "\t}",
+    "internal/collector/services.go:43": "\tbase := fmt.Sprintf(\"/services/%d/\", index)",
+    "internal/collector/services.go:44": "",
+    "internal/collector/services.go:45": "\twakeCtx, cancel := context.WithTimeout(ctx.Context(), wakeBudget)",
+    "internal/collector/services.go:46": "\tversion, err := db.Version(wakeCtx)",
+    "internal/collector/services.go:47": "\tcancel()",
+    "internal/collector/services.go:48": "\tif err != nil {",
+    "internal/collector/services.go:49": "\t\twarning := componentsdk.Warning(reachWarning(err, cfg.User))",
+    "internal/collector/services.go:50": "\t\tgaps.notCollected(err, base+\"version\", warning)",
+    "internal/collector/services.go:51": "\t\tfor _, part := range serviceParts {",
+    "internal/collector/services.go:52": "\t\t\tgaps.notCollected(err, base+part, warning)",
+    "internal/collector/services.go:53": "\t\t}",
+    "internal/collector/services.go:54": "\t\treturn svc",
+    "internal/collector/services.go:55": "\t}",
+    "internal/collector/services.go:56": "\tsvc.Version = version",
+    "internal/collector/services.go:57": "",
+    "internal/collector/services.go:58": "\tc := ctx.Context()",
+    "internal/collector/services.go:59": "\tif users, err := db.Users(c); err != nil {",
+    "internal/collector/services.go:60": "\t\tgaps.notCollected(err, base+\"users\", grantWarning(err, cfg.User, \"SHOW USERS\"))",
+    "internal/collector/services.go:61": "\t} else {",
+    "internal/collector/services.go:62": "\t\tsvc.Users = databaseUsers(users, now, audit)",
+    "internal/collector/services.go:63": "\t}",
+    "internal/collector/services.go:64": "\tif roles, err := db.Roles(c); err != nil {",
+    "internal/collector/services.go:65": "\t\tgaps.notCollected(err, base+\"roles\", grantWarning(err, cfg.User, \"SHOW ROLES\"))",
+    "internal/collector/services.go:66": "\t} else {",
+    "internal/collector/services.go:67": "\t\tsvc.Roles = databaseRoles(roles, audit)",
+    "internal/collector/services.go:68": "\t}",
+    "internal/collector/services.go:69": "\tif grants, err := db.RoleGrants(c); err != nil {",
+    "internal/collector/services.go:70": "\t\tgaps.notCollected(err, base+\"role_grants\", grantWarning(err, cfg.User, \"SELECT ON system.role_grants\"))",
+    "internal/collector/services.go:71": "\t} else {",
+    "internal/collector/services.go:72": "\t\tsvc.RoleGrants = roleGrants(grants, audit)",
+    "internal/collector/services.go:73": "\t}",
+    "internal/collector/services.go:74": "\tif grants, err := db.Grants(c); err != nil {",
+    "internal/collector/services.go:75": "\t\tgaps.notCollected(err, base+\"grants\", grantWarning(err, cfg.User, \"SELECT ON system.grants\"))",
+    "internal/collector/services.go:76": "\t} else {",
+    "internal/collector/services.go:77": "\t\tsvc.Grants = privilegeGrants(grants, audit)",
+    "internal/collector/services.go:78": "\t}",
+    "internal/collector/services.go:79": "\tif profiles, err := db.SettingsProfiles(c); err != nil {",
+    "internal/collector/services.go:80": "\t\tgaps.notCollected(err, base+\"settings_profiles\", grantWarning(err, cfg.User, \"SHOW SETTINGS PROFILES\"))",
+    "internal/collector/services.go:81": "\t} else {",
+    "internal/collector/services.go:82": "\t\tsvc.SettingsProfiles = settingsProfiles(profiles, audit)",
+    "internal/collector/services.go:83": "\t}",
+    "internal/collector/services.go:84": "\tif elements, err := db.SettingsProfileElements(c); err != nil {",
+    "internal/collector/services.go:85": "\t\tgaps.notCollected(err, base+\"settings_profile_elements\", grantWarning(err, cfg.User, \"SELECT ON system.settings_profile_elements\"))",
+    "internal/collector/services.go:86": "\t} else {",
+    "internal/collector/services.go:87": "\t\tsvc.SettingsProfileElements = settingsProfileElements(elements, audit)",
+    "internal/collector/services.go:88": "\t}",
+    "internal/collector/services.go:89": "\tif quotas, err := db.Quotas(c); err != nil {",
+    "internal/collector/services.go:90": "\t\tgaps.notCollected(err, base+\"quotas\", grantWarning(err, cfg.User, \"SHOW QUOTAS\"))",
+    "internal/collector/services.go:91": "\t} else {",
+    "internal/collector/services.go:92": "\t\tsvc.Quotas = quotaList(quotas, audit)",
+    "internal/collector/services.go:93": "\t}",
+    "internal/collector/services.go:94": "\tif limits, err := db.QuotaLimits(c); err != nil {",
+    "internal/collector/services.go:95": "\t\tgaps.notCollected(err, base+\"quota_limits\", grantWarning(err, cfg.User, \"SELECT ON system.quota_limits\"))",
+    "internal/collector/services.go:96": "\t} else {",
+    "internal/collector/services.go:97": "\t\tsvc.QuotaLimits = quotaLimits(limits, audit)",
+    "internal/collector/services.go:98": "\t}",
+    "internal/collector/services.go:99": "\tif policies, err := db.RowPolicies(c); err != nil {",
+    "internal/collector/services.go:100": "\t\tgaps.notCollected(err, base+\"row_policies\", grantWarning(err, cfg.User, \"SHOW ROW POLICIES\"))",
+    "internal/collector/services.go:101": "\t} else {",
+    "internal/collector/services.go:102": "\t\tsvc.RowPolicies = rowPolicies(policies, audit)",
+    "internal/collector/services.go:103": "\t}",
+    "internal/collector/services.go:104": "\treturn svc",
+    "internal/collector/services.go:105": "}",
+    "internal/collector/services.go:137": "func databaseUsers(users []clickhouse.User, now time.Time, audit bool) *DatabaseUsers {",
+    "internal/collector/services.go:138": "\tout := \u0026DatabaseUsers{}",
+    "internal/collector/services.go:139": "\tcustomer, cloud := []DatabaseUser{}, []DatabaseUser{}",
+    "internal/collector/services.go:140": "\tfor _, u := range users {",
+    "internal/collector/services.go:141": "\t\trow := DatabaseUser{",
+    "internal/collector/services.go:142": "\t\t\tName:            u.Name,",
+    "internal/collector/services.go:143": "\t\t\tStorage:         u.Storage,",
+    "internal/collector/services.go:144": "\t\t\tAuthMethods:     make([]AuthMethod, len(u.AuthTypes)),",
+    "internal/collector/services.go:145": "\t\t\tHostIP:          u.HostIP,",
+    "internal/collector/services.go:146": "\t\t\tHostNames:       u.HostNames,",
+    "internal/collector/services.go:147": "\t\t\tHostNamesRegexp: u.HostNamesRegexp,",
+    "internal/collector/services.go:148": "\t\t\tHostNamesLike:   u.HostNamesLike,",
+    "internal/collector/services.go:149": "\t\t\tAnyHost:         slices.Contains(u.HostIP, \"::/0\") || slices.Contains(u.HostIP, anyAddress),",
+    "internal/collector/services.go:150": "\t\t}",
+    "internal/collector/services.go:151": "\t\tfor i, authType := range u.AuthTypes {",
+    "internal/collector/services.go:152": "\t\t\tmethod := AuthMethod{Type: authType}",
+    "internal/collector/services.go:153": "\t\t\tif until := u.ValidUntil[i]; until != noExpiry {",
+    "internal/collector/services.go:154": "\t\t\t\tmethod.ValidUntil = \u0026until",
+    "internal/collector/services.go:155": "\t\t\t}",
+    "internal/collector/services.go:156": "\t\t\tif factor := u.SecondFactors[i]; factor != \"\" {",
+    "internal/collector/services.go:157": "\t\t\t\tmethod.SecondFactor = \u0026factor",
+    "internal/collector/services.go:158": "\t\t\t}",
+    "internal/collector/services.go:159": "\t\t\trow.AuthMethods[i] = method",
+    "internal/collector/services.go:160": "\t\t\texpired := method.ValidUntil != nil \u0026\u0026 passed(*method.ValidUntil, now)",
+    "internal/collector/services.go:161": "\t\t\trow.NoPassword = row.NoPassword || (authType == \"no_password\" \u0026\u0026 !expired)",
+    "internal/collector/services.go:162": "\t\t\trow.PlaintextPassword = row.PlaintextPassword || authType == \"plaintext_password\"",
+    "internal/collector/services.go:163": "\t\t}",
+    "internal/collector/services.go:164": "\t\tif u.Storage == cloudManagedStorage {",
+    "internal/collector/services.go:165": "\t\t\tcloud = append(cloud, row)",
+    "internal/collector/services.go:166": "\t\t\tout.CloudManagedCount++",
+    "internal/collector/services.go:167": "\t\t\tcontinue",
+    "internal/collector/services.go:168": "\t\t}",
+    "internal/collector/services.go:169": "\t\tcustomer = append(customer, row)",
+    "internal/collector/services.go:170": "\t\tout.CustomerCount++",
+    "internal/collector/services.go:171": "\t\tout.NoPasswordCount += count(row.NoPassword)",
+    "internal/collector/services.go:172": "\t\tout.PlaintextPasswordCount += count(row.PlaintextPassword)",
+    "internal/collector/services.go:173": "\t\tout.AnyHostCount += count(row.AnyHost)",
+    "internal/collector/services.go:174": "\t}",
+    "internal/collector/services.go:175": "\tif audit {",
+    "internal/collector/services.go:176": "\t\tout.Inventory, out.CloudManaged = customer, cloud",
+    "internal/collector/services.go:177": "\t}",
+    "internal/collector/services.go:178": "\treturn out",
+    "internal/collector/services.go:179": "}",
+    "internal/collector/services.go:181": "func databaseRoles(roles []clickhouse.DatabaseRole, audit bool) *DatabaseRoles {",
+    "internal/collector/services.go:182": "\tout := \u0026DatabaseRoles{}",
+    "internal/collector/services.go:183": "\tcustomer, cloud := []DatabaseRole{}, []DatabaseRole{}",
+    "internal/collector/services.go:184": "\tfor _, r := range roles {",
+    "internal/collector/services.go:185": "\t\trow := DatabaseRole{Name: r.Name, Storage: r.Storage}",
+    "internal/collector/services.go:186": "\t\tif slices.Contains(cloudManagedRoles, r.Name) {",
+    "internal/collector/services.go:187": "\t\t\tcloud = append(cloud, row)",
+    "internal/collector/services.go:188": "\t\t\tout.CloudManagedCount++",
+    "internal/collector/services.go:189": "\t\t\tcontinue",
+    "internal/collector/services.go:190": "\t\t}",
+    "internal/collector/services.go:191": "\t\tcustomer = append(customer, row)",
+    "internal/collector/services.go:192": "\t\tout.CustomerCount++",
+    "internal/collector/services.go:193": "\t}",
+    "internal/collector/services.go:194": "\tif audit {",
+    "internal/collector/services.go:195": "\t\tout.Inventory, out.CloudManaged = customer, cloud",
+    "internal/collector/services.go:196": "\t}",
+    "internal/collector/services.go:197": "\treturn out",
+    "internal/collector/services.go:198": "}",
+    "internal/collector/services.go:223": "func roleGrants(grants []clickhouse.RoleGrant, audit bool) *RoleGrants {",
+    "internal/collector/services.go:224": "\tcustomer, cloud := split(grants,",
+    "internal/collector/services.go:225": "\t\tfunc(g clickhouse.RoleGrant) bool { return cloudGrantee(g.RoleName, g.UserStorage) },",
+    "internal/collector/services.go:226": "\t\tfunc(g clickhouse.RoleGrant) RoleGrant {",
+    "internal/collector/services.go:227": "\t\t\treturn RoleGrant{",
+    "internal/collector/services.go:228": "\t\t\t\tUserName:             g.UserName,",
+    "internal/collector/services.go:229": "\t\t\t\tRoleName:             g.RoleName,",
+    "internal/collector/services.go:230": "\t\t\t\tGrantedRoleName:      g.GrantedRoleName,",
+    "internal/collector/services.go:231": "\t\t\t\tGrantedRoleIsDefault: bool(g.GrantedRoleIsDefault),",
+    "internal/collector/services.go:232": "\t\t\t\tWithAdminOption:      bool(g.WithAdminOption),",
+    "internal/collector/services.go:233": "\t\t\t}",
+    "internal/collector/services.go:234": "\t\t})",
+    "internal/collector/services.go:235": "\tout := \u0026RoleGrants{CustomerCount: len(customer), CloudManagedCount: len(cloud)}",
+    "internal/collector/services.go:236": "\tfor _, g := range customer {",
+    "internal/collector/services.go:237": "\t\tout.WithAdminOptionCount += count(g.WithAdminOption)",
+    "internal/collector/services.go:238": "\t}",
+    "internal/collector/services.go:239": "\tif audit {",
+    "internal/collector/services.go:240": "\t\tout.Inventory, out.CloudManaged = customer, cloud",
+    "internal/collector/services.go:241": "\t}",
+    "internal/collector/services.go:242": "\treturn out",
+    "internal/collector/services.go:243": "}",
+    "internal/collector/services.go:245": "func privilegeGrants(grants []clickhouse.Grant, audit bool) *Grants {",
+    "internal/collector/services.go:246": "\tcustomer, cloud := split(grants,",
+    "internal/collector/services.go:247": "\t\tfunc(g clickhouse.Grant) bool { return cloudGrantee(g.RoleName, g.UserStorage) },",
+    "internal/collector/services.go:248": "\t\tfunc(g clickhouse.Grant) Grant {",
+    "internal/collector/services.go:249": "\t\t\tout := Grant{",
+    "internal/collector/services.go:250": "\t\t\t\tUserName:        g.UserName,",
+    "internal/collector/services.go:251": "\t\t\t\tRoleName:        g.RoleName,",
+    "internal/collector/services.go:252": "\t\t\t\tAccessType:      g.AccessType,",
+    "internal/collector/services.go:253": "\t\t\t\tAccessObject:    g.AccessObject,",
+    "internal/collector/services.go:254": "\t\t\t\tDatabase:        g.Database,",
+    "internal/collector/services.go:255": "\t\t\t\tTable:           g.Table,",
+    "internal/collector/services.go:256": "\t\t\t\tColumn:          g.Column,",
+    "internal/collector/services.go:257": "\t\t\t\tIsPartialRevoke: bool(g.IsPartialRevoke),",
+    "internal/collector/services.go:258": "\t\t\t\tGrantOption:     bool(g.GrantOption),",
     "internal/collector/services.go:259": "\t\t\t}",
-    "internal/collector/services.go:260": "\t\t\treturn out",
-    "internal/collector/services.go:261": "\t\t})",
-    "internal/collector/services.go:262": "\tout := \u0026Grants{CustomerCount: len(customer), CloudManagedCount: len(cloud)}",
-    "internal/collector/services.go:263": "\tfor _, g := range customer {",
-    "internal/collector/services.go:264": "\t\tout.GrantOptionCount += count(g.GrantOption)",
-    "internal/collector/services.go:265": "\t}",
-    "internal/collector/services.go:266": "\tif audit {",
-    "internal/collector/services.go:267": "\t\tout.Inventory, out.CloudManaged = customer, cloud",
-    "internal/collector/services.go:268": "\t}",
-    "internal/collector/services.go:269": "\treturn out",
-    "internal/collector/services.go:270": "}",
-    "internal/collector/services.go:272": "func settingsProfiles(profiles []clickhouse.SettingsProfile, audit bool) *SettingsProfiles {",
-    "internal/collector/services.go:273": "\tcustomer, cloud := split(profiles,",
-    "internal/collector/services.go:274": "\t\tfunc(p clickhouse.SettingsProfile) bool { return p.Storage == cloudManagedStorage },",
-    "internal/collector/services.go:275": "\t\tfunc(p clickhouse.SettingsProfile) SettingsProfile {",
-    "internal/collector/services.go:276": "\t\t\treturn SettingsProfile{",
-    "internal/collector/services.go:277": "\t\t\t\tName:          p.Name,",
-    "internal/collector/services.go:278": "\t\t\t\tStorage:       p.Storage,",
-    "internal/collector/services.go:279": "\t\t\t\tApplyToAll:    bool(p.ApplyToAll),",
-    "internal/collector/services.go:280": "\t\t\t\tApplyToList:   p.ApplyToList,",
-    "internal/collector/services.go:281": "\t\t\t\tApplyToExcept: p.ApplyToExcept,",
-    "internal/collector/services.go:282": "\t\t\t}",
-    "internal/collector/services.go:283": "\t\t})",
-    "internal/collector/services.go:284": "\tout := \u0026SettingsProfiles{CustomerCount: len(customer), CloudManagedCount: len(cloud)}",
-    "internal/collector/services.go:285": "\tif audit {",
-    "internal/collector/services.go:286": "\t\tout.Inventory, out.CloudManaged = customer, cloud",
-    "internal/collector/services.go:287": "\t}",
-    "internal/collector/services.go:288": "\treturn out",
-    "internal/collector/services.go:289": "}",
-    "internal/collector/services.go:293": "func settingsProfileElements(elements []clickhouse.SettingsProfileElement, audit bool) *SettingsProfileElements {",
-    "internal/collector/services.go:294": "\tcustomer, cloud := split(elements,",
-    "internal/collector/services.go:295": "\t\tfunc(e clickhouse.SettingsProfileElement) bool {",
-    "internal/collector/services.go:296": "\t\t\tswitch {",
-    "internal/collector/services.go:297": "\t\t\tcase e.ProfileName != nil:",
-    "internal/collector/services.go:298": "\t\t\t\treturn e.ProfileStorage == cloudManagedStorage",
-    "internal/collector/services.go:299": "\t\t\tcase e.RoleName != nil:",
-    "internal/collector/services.go:300": "\t\t\t\treturn slices.Contains(cloudManagedRoles, *e.RoleName)",
-    "internal/collector/services.go:301": "\t\t\t}",
-    "internal/collector/services.go:302": "\t\t\treturn e.UserStorage == cloudManagedStorage",
-    "internal/collector/services.go:303": "\t\t},",
-    "internal/collector/services.go:304": "\t\tfunc(e clickhouse.SettingsProfileElement) SettingsProfileElement {",
-    "internal/collector/services.go:305": "\t\t\treturn SettingsProfileElement{",
-    "internal/collector/services.go:306": "\t\t\t\tProfileName:    e.ProfileName,",
-    "internal/collector/services.go:307": "\t\t\t\tUserName:       e.UserName,",
-    "internal/collector/services.go:308": "\t\t\t\tRoleName:       e.RoleName,",
-    "internal/collector/services.go:309": "\t\t\t\tSettingName:    e.SettingName,",
-    "internal/collector/services.go:310": "\t\t\t\tValue:          e.Value,",
-    "internal/collector/services.go:311": "\t\t\t\tMin:            e.Min,",
-    "internal/collector/services.go:312": "\t\t\t\tMax:            e.Max,",
-    "internal/collector/services.go:313": "\t\t\t\tWritability:    e.Writability,",
-    "internal/collector/services.go:314": "\t\t\t\tInheritProfile: e.InheritProfile,",
-    "internal/collector/services.go:315": "\t\t\t}",
-    "internal/collector/services.go:316": "\t\t})",
-    "internal/collector/services.go:317": "\tout := \u0026SettingsProfileElements{CustomerCount: len(customer), CloudManagedCount: len(cloud)}",
-    "internal/collector/services.go:318": "\tif audit {",
-    "internal/collector/services.go:319": "\t\tout.Inventory, out.CloudManaged = customer, cloud",
-    "internal/collector/services.go:320": "\t}",
-    "internal/collector/services.go:321": "\treturn out",
-    "internal/collector/services.go:322": "}",
-    "internal/collector/services.go:324": "func quotaList(quotas []clickhouse.Quota, audit bool) *Quotas {",
-    "internal/collector/services.go:325": "\tcustomer, cloud := split(quotas,",
-    "internal/collector/services.go:326": "\t\tfunc(q clickhouse.Quota) bool { return q.Storage == cloudManagedStorage },",
-    "internal/collector/services.go:327": "\t\tfunc(q clickhouse.Quota) Quota {",
-    "internal/collector/services.go:328": "\t\t\treturn Quota{",
-    "internal/collector/services.go:329": "\t\t\t\tName:          q.Name,",
-    "internal/collector/services.go:330": "\t\t\t\tStorage:       q.Storage,",
-    "internal/collector/services.go:331": "\t\t\t\tKeys:          q.Keys,",
-    "internal/collector/services.go:332": "\t\t\t\tDurations:     q.Durations,",
-    "internal/collector/services.go:333": "\t\t\t\tApplyToAll:    bool(q.ApplyToAll),",
-    "internal/collector/services.go:334": "\t\t\t\tApplyToList:   q.ApplyToList,",
-    "internal/collector/services.go:335": "\t\t\t\tApplyToExcept: q.ApplyToExcept,",
-    "internal/collector/services.go:336": "\t\t\t}",
-    "internal/collector/services.go:337": "\t\t})",
-    "internal/collector/services.go:338": "\tout := \u0026Quotas{CustomerCount: len(customer), CloudManagedCount: len(cloud)}",
-    "internal/collector/services.go:339": "\tif audit {",
-    "internal/collector/services.go:340": "\t\tout.Inventory, out.CloudManaged = customer, cloud",
-    "internal/collector/services.go:341": "\t}",
-    "internal/collector/services.go:342": "\treturn out",
-    "internal/collector/services.go:343": "}",
-    "internal/collector/services.go:345": "func quotaLimits(limits []clickhouse.QuotaLimit, audit bool) *QuotaLimits {",
-    "internal/collector/services.go:346": "\tcustomer, cloud := split(limits,",
-    "internal/collector/services.go:347": "\t\tfunc(l clickhouse.QuotaLimit) bool { return l.QuotaStorage == cloudManagedStorage },",
-    "internal/collector/services.go:348": "\t\tfunc(l clickhouse.QuotaLimit) QuotaLimit {",
-    "internal/collector/services.go:349": "\t\t\treturn QuotaLimit{",
-    "internal/collector/services.go:350": "\t\t\t\tQuotaName:            l.QuotaName,",
-    "internal/collector/services.go:351": "\t\t\t\tDuration:             l.Duration,",
-    "internal/collector/services.go:352": "\t\t\t\tIsRandomizedInterval: l.IsRandomizedInterval,",
-    "internal/collector/services.go:353": "\t\t\t\tLimits:               l.Limits,",
-    "internal/collector/services.go:354": "\t\t\t}",
-    "internal/collector/services.go:355": "\t\t})",
-    "internal/collector/services.go:356": "\tout := \u0026QuotaLimits{CustomerCount: len(customer), CloudManagedCount: len(cloud)}",
-    "internal/collector/services.go:357": "\tif audit {",
-    "internal/collector/services.go:358": "\t\tout.Inventory, out.CloudManaged = customer, cloud",
-    "internal/collector/services.go:359": "\t}",
-    "internal/collector/services.go:360": "\treturn out",
-    "internal/collector/services.go:361": "}",
-    "internal/collector/services.go:363": "func rowPolicies(policies []clickhouse.RowPolicy, audit bool) *RowPolicies {",
-    "internal/collector/services.go:364": "\tcustomer, cloud := split(policies,",
-    "internal/collector/services.go:365": "\t\tfunc(p clickhouse.RowPolicy) bool { return p.Storage == cloudManagedStorage },",
-    "internal/collector/services.go:366": "\t\tfunc(p clickhouse.RowPolicy) RowPolicy {",
-    "internal/collector/services.go:367": "\t\t\treturn RowPolicy{",
-    "internal/collector/services.go:368": "\t\t\t\tName:          p.Name,",
-    "internal/collector/services.go:369": "\t\t\t\tShortName:     p.ShortName,",
-    "internal/collector/services.go:370": "\t\t\t\tDatabase:      p.Database,",
-    "internal/collector/services.go:371": "\t\t\t\tTable:         p.Table,",
-    "internal/collector/services.go:372": "\t\t\t\tStorage:       p.Storage,",
-    "internal/collector/services.go:373": "\t\t\t\tIsRestrictive: bool(p.IsRestrictive),",
-    "internal/collector/services.go:374": "\t\t\t\tApplyToAll:    bool(p.ApplyToAll),",
-    "internal/collector/services.go:375": "\t\t\t\tApplyToList:   p.ApplyToList,",
-    "internal/collector/services.go:376": "\t\t\t\tApplyToExcept: p.ApplyToExcept,",
-    "internal/collector/services.go:377": "\t\t\t}",
-    "internal/collector/services.go:378": "\t\t})",
-    "internal/collector/services.go:379": "\tout := \u0026RowPolicies{CustomerCount: len(customer), CloudManagedCount: len(cloud)}",
-    "internal/collector/services.go:380": "\tif audit {",
-    "internal/collector/services.go:381": "\t\tout.Inventory, out.CloudManaged = customer, cloud",
-    "internal/collector/services.go:382": "\t}",
-    "internal/collector/services.go:383": "\treturn out",
-    "internal/collector/services.go:384": "}"
+    "internal/collector/services.go:260": "\t\t\tif g.IsWildcard != nil {",
+    "internal/collector/services.go:261": "\t\t\t\twildcard := bool(*g.IsWildcard)",
+    "internal/collector/services.go:262": "\t\t\t\tout.IsWildcard = \u0026wildcard",
+    "internal/collector/services.go:263": "\t\t\t}",
+    "internal/collector/services.go:264": "\t\t\treturn out",
+    "internal/collector/services.go:265": "\t\t})",
+    "internal/collector/services.go:266": "\tout := \u0026Grants{CustomerCount: len(customer), CloudManagedCount: len(cloud)}",
+    "internal/collector/services.go:267": "\tfor _, g := range customer {",
+    "internal/collector/services.go:268": "\t\tout.GrantOptionCount += count(g.GrantOption)",
+    "internal/collector/services.go:269": "\t}",
+    "internal/collector/services.go:270": "\tif audit {",
+    "internal/collector/services.go:271": "\t\tout.Inventory, out.CloudManaged = customer, cloud",
+    "internal/collector/services.go:272": "\t}",
+    "internal/collector/services.go:273": "\treturn out",
+    "internal/collector/services.go:274": "}",
+    "internal/collector/services.go:276": "func settingsProfiles(profiles []clickhouse.SettingsProfile, audit bool) *SettingsProfiles {",
+    "internal/collector/services.go:277": "\tcustomer, cloud := split(profiles,",
+    "internal/collector/services.go:278": "\t\tfunc(p clickhouse.SettingsProfile) bool { return p.Storage == cloudManagedStorage },",
+    "internal/collector/services.go:279": "\t\tfunc(p clickhouse.SettingsProfile) SettingsProfile {",
+    "internal/collector/services.go:280": "\t\t\treturn SettingsProfile{",
+    "internal/collector/services.go:281": "\t\t\t\tName:          p.Name,",
+    "internal/collector/services.go:282": "\t\t\t\tStorage:       p.Storage,",
+    "internal/collector/services.go:283": "\t\t\t\tApplyToAll:    bool(p.ApplyToAll),",
+    "internal/collector/services.go:284": "\t\t\t\tApplyToList:   p.ApplyToList,",
+    "internal/collector/services.go:285": "\t\t\t\tApplyToExcept: p.ApplyToExcept,",
+    "internal/collector/services.go:286": "\t\t\t}",
+    "internal/collector/services.go:287": "\t\t})",
+    "internal/collector/services.go:288": "\tout := \u0026SettingsProfiles{CustomerCount: len(customer), CloudManagedCount: len(cloud)}",
+    "internal/collector/services.go:289": "\tif audit {",
+    "internal/collector/services.go:290": "\t\tout.Inventory, out.CloudManaged = customer, cloud",
+    "internal/collector/services.go:291": "\t}",
+    "internal/collector/services.go:292": "\treturn out",
+    "internal/collector/services.go:293": "}",
+    "internal/collector/services.go:297": "func settingsProfileElements(elements []clickhouse.SettingsProfileElement, audit bool) *SettingsProfileElements {",
+    "internal/collector/services.go:298": "\tcustomer, cloud := split(elements,",
+    "internal/collector/services.go:299": "\t\tfunc(e clickhouse.SettingsProfileElement) bool {",
+    "internal/collector/services.go:300": "\t\t\tswitch {",
+    "internal/collector/services.go:301": "\t\t\tcase e.ProfileName != nil:",
+    "internal/collector/services.go:302": "\t\t\t\treturn e.ProfileStorage == cloudManagedStorage",
+    "internal/collector/services.go:303": "\t\t\tcase e.RoleName != nil:",
+    "internal/collector/services.go:304": "\t\t\t\treturn slices.Contains(cloudManagedRoles, *e.RoleName)",
+    "internal/collector/services.go:305": "\t\t\t}",
+    "internal/collector/services.go:306": "\t\t\treturn e.UserStorage == cloudManagedStorage",
+    "internal/collector/services.go:307": "\t\t},",
+    "internal/collector/services.go:308": "\t\tfunc(e clickhouse.SettingsProfileElement) SettingsProfileElement {",
+    "internal/collector/services.go:309": "\t\t\treturn SettingsProfileElement{",
+    "internal/collector/services.go:310": "\t\t\t\tProfileName:    e.ProfileName,",
+    "internal/collector/services.go:311": "\t\t\t\tUserName:       e.UserName,",
+    "internal/collector/services.go:312": "\t\t\t\tRoleName:       e.RoleName,",
+    "internal/collector/services.go:313": "\t\t\t\tSettingName:    e.SettingName,",
+    "internal/collector/services.go:314": "\t\t\t\tValue:          e.Value,",
+    "internal/collector/services.go:315": "\t\t\t\tMin:            e.Min,",
+    "internal/collector/services.go:316": "\t\t\t\tMax:            e.Max,",
+    "internal/collector/services.go:317": "\t\t\t\tWritability:    e.Writability,",
+    "internal/collector/services.go:318": "\t\t\t\tInheritProfile: e.InheritProfile,",
+    "internal/collector/services.go:319": "\t\t\t}",
+    "internal/collector/services.go:320": "\t\t})",
+    "internal/collector/services.go:321": "\tout := \u0026SettingsProfileElements{CustomerCount: len(customer), CloudManagedCount: len(cloud)}",
+    "internal/collector/services.go:322": "\tif audit {",
+    "internal/collector/services.go:323": "\t\tout.Inventory, out.CloudManaged = customer, cloud",
+    "internal/collector/services.go:324": "\t}",
+    "internal/collector/services.go:325": "\treturn out",
+    "internal/collector/services.go:326": "}",
+    "internal/collector/services.go:328": "func quotaList(quotas []clickhouse.Quota, audit bool) *Quotas {",
+    "internal/collector/services.go:329": "\tcustomer, cloud := split(quotas,",
+    "internal/collector/services.go:330": "\t\tfunc(q clickhouse.Quota) bool { return q.Storage == cloudManagedStorage },",
+    "internal/collector/services.go:331": "\t\tfunc(q clickhouse.Quota) Quota {",
+    "internal/collector/services.go:332": "\t\t\treturn Quota{",
+    "internal/collector/services.go:333": "\t\t\t\tName:          q.Name,",
+    "internal/collector/services.go:334": "\t\t\t\tStorage:       q.Storage,",
+    "internal/collector/services.go:335": "\t\t\t\tKeys:          q.Keys,",
+    "internal/collector/services.go:336": "\t\t\t\tDurations:     q.Durations,",
+    "internal/collector/services.go:337": "\t\t\t\tApplyToAll:    bool(q.ApplyToAll),",
+    "internal/collector/services.go:338": "\t\t\t\tApplyToList:   q.ApplyToList,",
+    "internal/collector/services.go:339": "\t\t\t\tApplyToExcept: q.ApplyToExcept,",
+    "internal/collector/services.go:340": "\t\t\t}",
+    "internal/collector/services.go:341": "\t\t})",
+    "internal/collector/services.go:342": "\tout := \u0026Quotas{CustomerCount: len(customer), CloudManagedCount: len(cloud)}",
+    "internal/collector/services.go:343": "\tif audit {",
+    "internal/collector/services.go:344": "\t\tout.Inventory, out.CloudManaged = customer, cloud",
+    "internal/collector/services.go:345": "\t}",
+    "internal/collector/services.go:346": "\treturn out",
+    "internal/collector/services.go:347": "}",
+    "internal/collector/services.go:349": "func quotaLimits(limits []clickhouse.QuotaLimit, audit bool) *QuotaLimits {",
+    "internal/collector/services.go:350": "\tcustomer, cloud := split(limits,",
+    "internal/collector/services.go:351": "\t\tfunc(l clickhouse.QuotaLimit) bool { return l.QuotaStorage == cloudManagedStorage },",
+    "internal/collector/services.go:352": "\t\tfunc(l clickhouse.QuotaLimit) QuotaLimit {",
+    "internal/collector/services.go:353": "\t\t\treturn QuotaLimit{",
+    "internal/collector/services.go:354": "\t\t\t\tQuotaName:            l.QuotaName,",
+    "internal/collector/services.go:355": "\t\t\t\tDuration:             l.Duration,",
+    "internal/collector/services.go:356": "\t\t\t\tIsRandomizedInterval: l.IsRandomizedInterval,",
+    "internal/collector/services.go:357": "\t\t\t\tLimits:               l.Limits,",
+    "internal/collector/services.go:358": "\t\t\t}",
+    "internal/collector/services.go:359": "\t\t})",
+    "internal/collector/services.go:360": "\tout := \u0026QuotaLimits{CustomerCount: len(customer), CloudManagedCount: len(cloud)}",
+    "internal/collector/services.go:361": "\tif audit {",
+    "internal/collector/services.go:362": "\t\tout.Inventory, out.CloudManaged = customer, cloud",
+    "internal/collector/services.go:363": "\t}",
+    "internal/collector/services.go:364": "\treturn out",
+    "internal/collector/services.go:365": "}",
+    "internal/collector/services.go:367": "func rowPolicies(policies []clickhouse.RowPolicy, audit bool) *RowPolicies {",
+    "internal/collector/services.go:368": "\tcustomer, cloud := split(policies,",
+    "internal/collector/services.go:369": "\t\tfunc(p clickhouse.RowPolicy) bool { return p.Storage == cloudManagedStorage },",
+    "internal/collector/services.go:370": "\t\tfunc(p clickhouse.RowPolicy) RowPolicy {",
+    "internal/collector/services.go:371": "\t\t\treturn RowPolicy{",
+    "internal/collector/services.go:372": "\t\t\t\tName:          p.Name,",
+    "internal/collector/services.go:373": "\t\t\t\tShortName:     p.ShortName,",
+    "internal/collector/services.go:374": "\t\t\t\tDatabase:      p.Database,",
+    "internal/collector/services.go:375": "\t\t\t\tTable:         p.Table,",
+    "internal/collector/services.go:376": "\t\t\t\tStorage:       p.Storage,",
+    "internal/collector/services.go:377": "\t\t\t\tIsRestrictive: bool(p.IsRestrictive),",
+    "internal/collector/services.go:378": "\t\t\t\tApplyToAll:    bool(p.ApplyToAll),",
+    "internal/collector/services.go:379": "\t\t\t\tApplyToList:   p.ApplyToList,",
+    "internal/collector/services.go:380": "\t\t\t\tApplyToExcept: p.ApplyToExcept,",
+    "internal/collector/services.go:381": "\t\t\t}",
+    "internal/collector/services.go:382": "\t\t})",
+    "internal/collector/services.go:383": "\tout := \u0026RowPolicies{CustomerCount: len(customer), CloudManagedCount: len(cloud)}",
+    "internal/collector/services.go:384": "\tif audit {",
+    "internal/collector/services.go:385": "\t\tout.Inventory, out.CloudManaged = customer, cloud",
+    "internal/collector/services.go:386": "\t}",
+    "internal/collector/services.go:387": "\treturn out",
+    "internal/collector/services.go:388": "}"
   }
 }

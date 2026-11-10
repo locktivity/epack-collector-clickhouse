@@ -20,9 +20,10 @@ type Output struct {
 	Services         []Service     `json:"services"`
 }
 
-// Organization is the organization the collector signed in to.
+// Organization is the organization the collector signed in to. Its ID is
+// left out below the audit level.
 type Organization struct {
-	ID        string  `json:"id"`
+	ID        string  `json:"id,omitempty"`
 	Name      string  `json:"name"`
 	CreatedAt *string `json:"created_at"`
 	// SSOEnabled is always null, with a gap: ClickHouse Cloud has no API
@@ -131,9 +132,9 @@ type ConsolePolicyTags struct {
 
 // Service is what the collector read from one configured service. Every
 // part but the host and the user is left out, with a gap, when the service
-// could not be reached.
+// could not be reached. The host is left out below the audit level.
 type Service struct {
-	Host                    string                   `json:"host"`
+	Host                    string                   `json:"host,omitempty"`
 	User                    string                   `json:"user"`
 	Version                 string                   `json:"version,omitempty"`
 	Users                   *DatabaseUsers           `json:"users,omitempty"`
