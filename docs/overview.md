@@ -33,7 +33,7 @@ The ClickHouse Cloud API reports the following for each service, and the collect
 
 ## Access posture
 
-`artifacts/clickhouse.access-posture.json` holds the console's members, admins, and API keys in the `evidencepack/access-posture@v1` form. Its admins are the members who hold the system Admin role. Its credentials are the API keys that are enabled and have not expired.
+`artifacts/clickhouse.access-posture.json` holds the console's members, admins, and API keys in the `evidencepack/access-posture@v1` form. Its admins are the members who can change who has access to the organization, or change or delete every service: those who hold the system Admin role, and those whose console roles allow `control-plane:organization:manage` on the organization, `control-plane:service:manage` or `control-plane:service:delete` on every service, or `control-plane:postgres-service:manage` on every Postgres service. When the console roles can't be read, the admin count and share are left out with a `partial` gap. Its credentials are the API keys that are enabled and have not expired.
 
 - A key never expires when it has no expiry date.
 - A key is unused when it was never used or was last used more than 90 days before the run.

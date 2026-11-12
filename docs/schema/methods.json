@@ -1,8 +1,8 @@
 {
   "/members/members_present": "Checks whether the Cloud API's list of organization members has any members.",
   "/members/member_count": "Counts the members in the Cloud API's list of organization members.",
-  "/admins/admins_present": "Checks whether any listed member holds the system Admin role.",
-  "/admins/admin_count": "Counts the listed members who hold the system Admin role.",
+  "/admins/admins_present": "Checks whether any listed member is an admin. A member is an admin when they hold the system Admin role, or when a console role they hold allows control-plane:organization:manage on the organization, control-plane:service:manage or control-plane:service:delete on every service, or control-plane:postgres-service:manage on every Postgres service, with no DENY policy on the same permission and resources.",
+  "/admins/admin_count": "Counts the listed members who are admins. A member is an admin when they hold the system Admin role, or when a console role they hold allows control-plane:organization:manage on the organization, control-plane:service:manage or control-plane:service:delete on every service, or control-plane:postgres-service:manage on every Postgres service, with no DENY policy on the same permission and resources.",
   "/admins/admin_share_pct": "Divides admin_count by members.member_count, rounded up.",
   "/credentials/credentials_present": "Checks whether the Cloud API's list of API keys, every page included, has a key that is enabled and has not expired.",
   "/credentials/credential_count": "Counts the listed API keys that are enabled and whose expireAt, if set, is later than the run.",

@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## v0.2.2
+
+- In the access file, a member counts as an admin when they can change who has access to the organization, or change or delete every service. That is a member with the system Admin role, or one whose console roles allow `control-plane:organization:manage` on the organization, `control-plane:service:manage` or `control-plane:service:delete` on every service, or `control-plane:postgres-service:manage` on every Postgres service, with no DENY policy on the same permission and resources. A member with the Service Admin role, or a custom role with these permissions, now counts. The detailed artifact's `members.admin_count` still counts the system Admin role only.
+- A run that writes the access file reads the console roles even when `collect` lists only `access-posture`. When they can't be read, `admin_count` and `admin_share_pct` are left out with a `partial` gap, and so is `admins_present` when no member holds the system Admin role.
 - The collector is built on Go 1.26.11.
 
 ## v0.2.1
