@@ -17,6 +17,14 @@ From each service you list, read with SQL over HTTPS as a read-only database use
 
 ClickHouse Cloud creates its own database users, roles, settings profiles, and quotas in every service. The collector lists them apart from the customer's, with the grants, settings, and limits that belong to them, and counts them separately. Cloud's own are the users, profiles, quotas, and row policies stored in `users_xml`, and the roles `clickpipes_system`, `default_role`, `sql_console_admin`, and `sql_console_read_only`. Cloud also creates the `default` and `sql-console` users, and they count as the customer's.
 
+## Not collected
+
+The ClickHouse Cloud API reports the following for each service, and the collector does not read them. It writes no `cloud-posture` file.
+
+- **Service network access.** Each service's IP access list and the private endpoints attached to it.
+- **Backups.** Each service's backup schedule and how long its backups are kept.
+- **Customer-managed encryption.** Whether a service uses Transparent Data Encryption, and whether its key is one the customer manages. ClickHouse Cloud offers both on the Enterprise plan.
+
 ## What it never collects
 
 - Passwords, password hashes, SSH keys, and API key secrets.
