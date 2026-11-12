@@ -39,20 +39,95 @@ func stringPtr(s string) *string { return &s }
 
 func TestAccessAdminsAreAdminRoleMembers(t *testing.T) {
 	members := []Member{{Email: "a@example.com", Admin: true}, {Email: "b@example.com"}, {Email: "c@example.com"}}
-	m, a := accessMembers(members, true)
+	m, a := accessMembers(gapLog{rec: &componentsdk.Recorder{}}, members, nil, nil, true)
 	if !m.MembersPresent || *m.MemberCount != 3 {
 		t.Errorf("members %+v, want 3 present", m)
 	}
-	if !a.AdminsPresent || *a.AdminCount != 1 || *a.AdminSharePct.Value != 34 {
+	if !*a.AdminsPresent || *a.AdminCount != 1 || *a.AdminSharePct.Value != 34 {
 		t.Errorf("admins %+v, want 1 admin at 34%%, rounded up", a)
 	}
 
-	m, a = accessMembers([]Member{{Email: "a@example.com"}}, false)
+	m, a = accessMembers(gapLog{rec: &componentsdk.Recorder{}}, []Member{{Email: "a@example.com"}}, nil, nil, false)
 	if m.MemberCount != nil || a.AdminCount != nil {
 		t.Errorf("counts below audit: members %+v, admins %+v", m, a)
 	}
-	if a.AdminsPresent || *a.AdminSharePct.Value != 0 {
+	if *a.AdminsPresent || *a.AdminSharePct.Value != 0 {
 		t.Errorf("admins %+v, want none at 0%%", a)
+	}
+}
+
+// policyRole is a role with one policy that allows or denies permission on
+// resource.
+func policyRole(id, allowDeny, permission, resource string) clickhouse.Role {
+	return clickhouse.Role{ID: id, Name: id, Type: "custom", Policies: []clickhouse.Policy{
+		{AllowDeny: allowDeny, Permissions: []string{permission}, Resources: []string{resource}},
+	}}
+}
+
+// A member without the system Admin role is an admin when a role they hold
+// allows changing who has access to the organization, or changing or
+// deleting every service. Viewing, billing, or managing one service is not
+// enough, and a DENY policy takes an allowed permission away.
+func TestAccessAdminsFromRolePolicies(t *testing.T) {
+	roles := []clickhouse.Role{
+		policyRole("r-org-manage", "ALLOW", "control-plane:organization:manage", "organization/8c1f2a4e"),
+		policyRole("r-service-delete", "ALLOW", "control-plane:service:delete", "instance/*"),
+		policyRole("r-postgres-manage", "ALLOW", "control-plane:postgres-service:manage", "postgres/*"),
+		policyRole("r-one-service", "ALLOW", "control-plane:service:manage", "instance/0b9e"),
+		policyRole("r-view", "ALLOW", "control-plane:service:view", "instance/*"),
+		policyRole("r-billing", "ALLOW", "control-plane:organization:manage-billing", "organization/8c1f2a4e"),
+		policyRole("r-deny-delete", "DENY", "control-plane:service:delete", "instance/*"),
+	}
+	cases := map[string]struct {
+		roleIDs []string
+		admin   bool
+	}{
+		"organization manage":        {[]string{"r-org-manage"}, true},
+		"delete every service":       {[]string{"r-service-delete"}, true},
+		"manage every Postgres":      {[]string{"r-postgres-manage"}, true},
+		"manage one service":         {[]string{"r-one-service"}, false},
+		"view every service":         {[]string{"r-view"}, false},
+		"billing":                    {[]string{"r-billing"}, false},
+		"delete denied by a role":    {[]string{"r-service-delete", "r-deny-delete"}, false},
+		"a role the list leaves out": {[]string{"r-unknown"}, false},
+	}
+	for name, tc := range cases {
+		t.Run(name, func(t *testing.T) {
+			rec := &componentsdk.Recorder{}
+			_, a := accessMembers(gapLog{rec: rec}, []Member{{Email: "a@example.com", roleIDs: tc.roleIDs}}, roles, nil, true)
+			if want := count(tc.admin); *a.AdminCount != want || *a.AdminsPresent != tc.admin {
+				t.Errorf("admins %+v, want admin %t", a, tc.admin)
+			}
+			if gaps := rec.Gaps(); len(gaps) != 0 {
+				t.Errorf("gaps %+v, want none", gaps)
+			}
+		})
+	}
+}
+
+// When the roles can't be read, whether a member without the system Admin
+// role is an admin is unknown. The admin count and share are left out with
+// a partial gap, and a member with the system Admin role still makes
+// admins_present true.
+func TestAccessAdminsWithoutRoles(t *testing.T) {
+	refused := componentsdk.CodeError(componentsdk.CodePermissionDenied, clickhouse.ErrRolesHidden)
+	members := []Member{{Email: "a@example.com", Admin: true}, {Email: "b@example.com"}, {Email: "c@example.com"}}
+	rec := &componentsdk.Recorder{}
+	_, a := accessMembers(gapLog{rec: rec}, members, nil, refused, true)
+	if a.AdminsPresent == nil || !*a.AdminsPresent || a.AdminCount != nil || a.AdminSharePct.Read {
+		t.Errorf("admins %+v, want admins_present alone", a)
+	}
+	gaps := rec.Gaps()
+	pointers := []string{}
+	for _, g := range gaps {
+		pointers = append(pointers, g.Pointer)
+		if g.Status != componentsdk.GapPartial || g.Unmeasured != 2 || g.Code != componentsdk.CodePermissionDenied {
+			t.Errorf("gap %+v, want partial permission_denied with 2 unmeasured", g)
+		}
+	}
+	slices.Sort(pointers)
+	if want := []string{"/admins/admin_count", "/admins/admin_share_pct"}; !slices.Equal(pointers, want) {
+		t.Errorf("gaps on %v, want %v", pointers, want)
 	}
 }
 
@@ -199,7 +274,7 @@ func TestAccessPostureValuesLeftOut(t *testing.T) {
 	members := []Member{{Email: "a@example.com", Admin: true}}
 	for _, level := range []componentsdk.Level{componentsdk.LevelTrust, componentsdk.LevelAudit} {
 		rec := &componentsdk.Recorder{}
-		doc := accessJSON(t, accessPosture(gapLog{rec: rec}, level, now, members, []APIKey{}))
+		doc := accessJSON(t, accessPosture(gapLog{rec: rec}, level, now, members, nil, nil, []APIKey{}))
 		for _, section := range []string{"sign_in", "root", "connected_apps", "scopes"} {
 			if _, ok := doc[section]; ok {
 				t.Errorf("%s: %s is written", level, section)
@@ -237,7 +312,7 @@ func TestAccessPostureValuesLeftOut(t *testing.T) {
 
 func TestAccessPostureLeavesOutUnreadLists(t *testing.T) {
 	now := time.Date(2026, 10, 22, 12, 0, 0, 0, time.UTC)
-	doc := accessJSON(t, accessPosture(gapLog{rec: &componentsdk.Recorder{}}, componentsdk.LevelAudit, now, nil, nil))
+	doc := accessJSON(t, accessPosture(gapLog{rec: &componentsdk.Recorder{}}, componentsdk.LevelAudit, now, nil, nil, nil, nil))
 	for _, section := range []string{"members", "admins", "credentials"} {
 		if _, ok := doc[section]; ok {
 			t.Errorf("%s is written although its list was not read", section)

@@ -71,6 +71,7 @@ func TestCollectorKit(t *testing.T) {
 			kitOlderServerGrants(),
 			kitSQLConsoleRoles(),
 			kitNoRolesListed(),
+			kitCustomAdminRole(),
 			kitExpiredNoPassword(),
 			kitAPIKeysFail("API keys call fails with a server error", http.StatusInternalServerError, apiError(500, "INTERNAL_SERVER_ERROR"), map[string]any{
 				"code": "vendor_error", "missing_permission": collectortest.Absent, "warning": collectortest.Absent,
@@ -366,12 +367,37 @@ func kitSQLConsoleRoles() collectortest.Scenario {
 	}
 }
 
+// kitCustomAdminRole gives the custom sandbox-auditor role, held by
+// member3, the permission to delete every service. member3 can then delete
+// any service, so they count as an admin beside the member with the system
+// Admin role.
+func kitCustomAdminRole() collectortest.Scenario {
+	roles := strings.Replace(kitRolesBody, `"permissions": ["control-plane:service:view"]`, `"permissions": ["control-plane:service:view", "control-plane:service:delete"]`, 1)
+	return collectortest.Scenario{
+		Name:      "custom role that deletes every service",
+		Responses: append(kitConsole(collectortest.Response{URL: kitAPI + "/roles", Body: apiBody(roles)}), kitDatabase()...),
+		Expect: map[string]map[string]any{
+			accessPath:   {"/admins": map[string]any{"admins_present": true, "admin_count": 2, "admin_share_pct": 50}},
+			artifactPath: {"/members/admin_count": 1},
+		},
+	}
+}
+
 // kitNoRolesListed answers the roles call with an empty list. Every
 // organization has the system roles, so the roles are left out with a
-// permission_denied gap, as the members are when none are listed.
+// permission_denied gap, as the members are when none are listed. Without
+// the roles, whether the three members without the system Admin role are
+// admins is unknown, so the access-posture file leaves out the admin count
+// and share with a partial gap.
 func kitNoRolesListed() collectortest.Scenario {
 	result := map[string]any{}
-	kitGap(result, len(kitAccessGaps()), map[string]any{
+	access := kitAccessGaps("/admins/admin_count", "/admins/admin_share_pct")
+	for _, pointer := range []string{"/admins/admin_count", "/admins/admin_share_pct"} {
+		kitGap(result, slices.Index(access, pointer), map[string]any{
+			"pointer": pointer, "status": "partial", "unmeasured": 3, "code": "permission_denied", "operation": clickhouse.OpListRoles,
+		})
+	}
+	kitGap(result, len(access), map[string]any{
 		"pointer": "/console_roles", "code": "permission_denied", "operation": clickhouse.OpListRoles,
 		"missing_permission": clickhouse.PermissionManageOrganization,
 		"warning":            "Reading console role definitions needs control-plane:organization:manage, which can also change the organization.",
@@ -380,7 +406,11 @@ func kitNoRolesListed() collectortest.Scenario {
 	return collectortest.Scenario{
 		Name:      "roles call lists no roles",
 		Responses: append(kitConsole(collectortest.Response{URL: kitAPI + "/roles", Body: apiBody(`[]`)}), kitDatabase()...),
-		Expect:    map[string]map[string]any{artifactPath: {"/console_roles": collectortest.Absent}, kitResultPath: result},
+		Expect: map[string]map[string]any{
+			artifactPath:  {"/console_roles": collectortest.Absent},
+			accessPath:    {"/admins/admins_present": true, "/admins/admin_count": collectortest.Absent, "/admins/admin_share_pct": collectortest.Absent},
+			kitResultPath: result,
+		},
 	}
 }
 
@@ -759,15 +789,16 @@ func kitKeyWithoutCreationTime() collectortest.Scenario {
 }
 
 // kitCollectAccessOnly has the collect config key list only the
-// access-posture file. The run reads only the members and the API keys,
-// which the file needs.
+// access-posture file. The run reads only the members, the API keys, and
+// the console roles, which the file needs.
 func kitCollectAccessOnly() collectortest.Scenario {
 	console := kitConsole(kitRolesAllowed())
 	result := map[string]any{
 		"/steps/0/name":     "sign_in",
 		"/steps/1/name":     "members",
 		"/steps/2/name":     "api_keys",
-		"/steps/3":          collectortest.Absent,
+		"/steps/3/name":     "console_roles",
+		"/steps/4":          collectortest.Absent,
 		"/collect/listed":   []any{"access-posture"},
 		"/collect/left_out": []any{"details"},
 	}
@@ -776,7 +807,7 @@ func kitCollectAccessOnly() collectortest.Scenario {
 	return collectortest.Scenario{
 		Name:      "collect lists only access-posture",
 		Config:    map[string]any{"collect": []any{"access-posture"}},
-		Responses: []collectortest.Response{console[0], console[1], console[3], console[4]},
+		Responses: []collectortest.Response{console[0], console[1], console[3], console[4], console[5]},
 		Expect: map[string]map[string]any{
 			accessPath:    {"/members/member_count": 4, "/credentials/credential_count": 5},
 			kitResultPath: result,

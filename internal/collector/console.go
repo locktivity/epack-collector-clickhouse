@@ -43,6 +43,9 @@ func readMembers(ctx componentsdk.CollectorContext, cloud *clickhouse.Cloud, gap
 	for i, m := range members {
 		roles := roleRefs(m.AssignedRoles)
 		rows[i] = Member{Email: strings.ToLower(m.Email), Roles: roles, Admin: holdsAdmin(roles), JoinedAt: timestamp(m.JoinedAt)}
+		for _, r := range m.AssignedRoles {
+			rows[i].roleIDs = append(rows[i].roleIDs, r.RoleID)
+		}
 		if rows[i].Admin {
 			out.AdminCount++
 		}
@@ -141,12 +144,12 @@ func readAPIKeys(ctx componentsdk.CollectorContext, cloud *clickhouse.Cloud, gap
 	return out, rows
 }
 
-// readConsoleRoles lists the console roles and what they grant. The Cloud
-// API serves them only to a key with control-plane:organization:manage,
-// which can also change the organization, so a read-only key is refused and
-// the roles are left out with a gap.
-func readConsoleRoles(ctx componentsdk.CollectorContext, cloud *clickhouse.Cloud, gaps gapLog) *ConsoleRoles {
-	roles, err := cloud.ListRoles(ctx.Context())
+// consoleRoles writes the console roles, listed with err, and what they
+// grant. The Cloud API serves them only to a key with
+// control-plane:organization:manage, which can also change the
+// organization, so a read-only key is refused and the roles are left out
+// with a gap.
+func consoleRoles(ctx componentsdk.CollectorContext, roles []clickhouse.Role, err error, gaps gapLog) *ConsoleRoles {
 	if err != nil {
 		gaps.notCollected(err, "/console_roles", hiddenListPermission(err, clickhouse.ErrRolesHidden), manageWarning(err, "console role definitions"))
 		return nil

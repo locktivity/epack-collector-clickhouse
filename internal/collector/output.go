@@ -47,6 +47,10 @@ type Member struct {
 	Roles    []RoleRef `json:"roles"`
 	Admin    bool      `json:"admin"`
 	JoinedAt *string   `json:"joined_at"`
+
+	// roleIDs are the IDs of the roles the member holds, which the
+	// access-posture file reads their policies by.
+	roleIDs []string
 }
 
 // RoleRef names a console role assigned to a member, an invitation, or an

@@ -72,11 +72,18 @@ func collect(ctx componentsdk.CollectorContext, cfg Config, cloud *clickhouse.Cl
 		step.End()
 	}
 
-	if details {
-		roles, step := componentsdk.StartCollectorStep(ctx, "console_roles", "Console roles")
-		out.ConsoleRoles = readConsoleRoles(roles, cloud, gaps)
+	var roles []clickhouse.Role
+	var rolesErr error
+	if details || access {
+		rolesCtx, step := componentsdk.StartCollectorStep(ctx, "console_roles", "Console roles")
+		roles, rolesErr = cloud.ListRoles(rolesCtx.Context())
+		if details {
+			out.ConsoleRoles = consoleRoles(rolesCtx, roles, rolesErr, gaps)
+		}
 		step.End()
+	}
 
+	if details {
 		if len(databases) > 0 {
 			dbs, step := componentsdk.StartCollectorStep(ctx, "databases", "Database access")
 			for i, db := range databases {
@@ -89,7 +96,7 @@ func collect(ctx componentsdk.CollectorContext, cfg Config, cloud *clickhouse.Cl
 
 	var posture *AccessPosture
 	if access {
-		posture = accessPosture(gaps, ctx.Level(), now, members, keys)
+		posture = accessPosture(gaps, ctx.Level(), now, members, roles, rolesErr, keys)
 	}
 	return out, posture, nil
 }
