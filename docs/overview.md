@@ -17,13 +17,15 @@ From each service you list, read with SQL over HTTPS as a read-only database use
 
 ClickHouse Cloud creates its own database users, roles, settings profiles, and quotas in every service. The collector lists them apart from the customer's, with the grants, settings, and limits that belong to them, and counts them separately. Cloud's own are the users, profiles, quotas, and row policies stored in `users_xml`, and the roles `clickpipes_system`, `default_role`, `sql_console_admin`, and `sql_console_read_only`. Cloud also creates the `default` and `sql-console` users, and they count as the customer's.
 
-## Not collected
+## Not Collected
 
-The ClickHouse Cloud API reports the following for each service, and the collector does not read them. It writes no `cloud-posture` file.
+ClickHouse Cloud offers the following through its API, and the collector does not read them.
 
-- **Service network access.** Each service's IP access list and the private endpoints attached to it.
-- **Backups.** Each service's backup schedule and how long its backups are kept.
-- **Customer-managed encryption.** Whether a service uses Transparent Data Encryption, and whether its key is one the customer manages. ClickHouse Cloud offers both on the Enterprise plan.
+- **Service settings and backups.** Each service's IP access list, private endpoints, JWT providers and server settings as the Cloud API describes them, whether it encrypts with a customer-managed key, which ClickHouse Cloud offers on the Enterprise plan, and its backup and snapshot configuration. The collector reads the organization's members, roles, API keys and invitations, and each configured service's database users, roles, grants, settings profiles, quotas and row policies through SQL. It writes no cloud-posture file.
+- **Organization activity and exposed queries.** The organization's activity log, and the saved queries exposed as HTTP endpoints with the roles allowed to call them.
+- **Other ClickHouse Cloud products.** ClickPipes ingestion pipelines, bring-your-own-cloud infrastructure, Postgres services and ClickStack, each a product beside the ClickHouse services the collector covers.
+
+The coverage reference lists what the collector reads of the ClickHouse Cloud API, and everything else the API offers with why it is left out, checked against ClickHouse Cloud's published API description: https://github.com/locktivity/epack-collector-clickhouse/blob/main/docs/coverage.md
 
 ## What it never collects
 
