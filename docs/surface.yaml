@@ -1,0 +1,118 @@
+vendor: ClickHouse Cloud
+spec:
+  source: https://api.clickhouse.cloud/v1
+  path: the OpenAPI document the API serves at its root
+  revision: info.version 1.0, fetched 2026-11-13
+  sha256: 702beeaae2d2fd5851ee4d66779470323dca9831af2c5410e0a495b48ef0c328
+scope:
+  methods: [get]
+
+# What the overview's Not Collected section says. Each headline folds one
+# or more not_collected items into a sentence a buyer needs; the coverage
+# reference holds every item.
+overview:
+  - title: Service settings and backups
+    says: >-
+      Each service's IP access list, private endpoints, JWT providers and
+      server settings as the Cloud API describes them, whether it encrypts
+      with a customer-managed key, which ClickHouse Cloud offers on the
+      Enterprise plan, and its backup and snapshot configuration. The
+      collector reads the organization's members, roles, API keys and
+      invitations, and each configured service's database users, roles,
+      grants, settings profiles, quotas and row policies through SQL. It
+      writes no cloud-posture file.
+    items: [Service settings, Backups and snapshots]
+  - title: Organization activity and exposed queries
+    says: >-
+      The organization's activity log, and the saved queries exposed as HTTP
+      endpoints with the roles allowed to call them.
+    items: [Organization activity, Query API endpoints and saved queries]
+  - title: Other ClickHouse Cloud products
+    says: >-
+      ClickPipes ingestion pipelines, bring-your-own-cloud infrastructure,
+      Postgres services and ClickStack, each a product beside the ClickHouse
+      services the collector covers.
+    items: [ClickPipes, Bring your own cloud, Postgres services, ClickStack]
+
+not_collected:
+  - title: Service settings
+    says: >-
+      Each service as the Cloud API describes it: its IP access list,
+      endpoints and private endpoint configuration, the JWT providers it
+      trusts for sign-in, its ClickHouse server settings, its replica-aware
+      routing, and its encryption key settings. The collector reads each
+      configured service through SQL, as the database user the configuration
+      names.
+    operations: [instanceGetList, instanceGet, instancePrivateEndpointConfigGet, instanceQueryEndpointGet, jwtProviderGetList, jwtProviderGet, serviceClickhouseSettingsListGet, serviceClickhouseSettingGet, serviceClickhouseSettingsSchemaGet, replicaAwareRoutingGet]
+  - title: Backups and snapshots
+    says: >-
+      Each service's backup configuration, backup bucket and backup history,
+      and its snapshot configuration and snapshots.
+    tags: [Backup, Snapshot]
+  - title: Organization activity
+    says: >-
+      The organization's activity log: who changed what in the Cloud console
+      and API, and when, including member sign-ins. Reading it needs the
+      view-activities permission, which the collector's API key does not
+      hold.
+    operations: [activityGetList, activityGet]
+  - title: Query API endpoints and saved queries
+    says: >-
+      The saved queries exposed as HTTP endpoints, and the roles allowed to
+      call each.
+    tags: [Query API endpoints, Saved queries]
+  - title: ClickPipes
+    says: >-
+      ClickPipes ingestion pipelines, their settings and source connections,
+      reverse private endpoints, and change data capture scaling.
+    tags: [ClickPipes]
+  - title: Bring your own cloud
+    says: >-
+      Bring-your-own-cloud infrastructure: its details, private endpoint
+      configuration, provisioning progress, tags, and the access the customer
+      has authorized ClickHouse to it.
+    operations: [organizationByocInfrastructureGet, organizationByocInfrastructurePrivateEndpointConfigGet, organizationByocInfrastructureProgressGet, organizationByocInfrastructureTagsGet, organizationByocInfrastructureCustomerAuthorizedAccessGet]
+  - title: Postgres services
+    says: >-
+      The organization's Postgres services: their configuration, CA
+      certificates, backups and server logs.
+    tags: [Postgres]
+  - title: ClickStack
+    says: >-
+      The ClickStack observability product: its roles, sources, dashboards,
+      alerts, saved searches and webhooks.
+    tags: [ClickStack]
+
+irrelevant:
+  - reason: Metrics, billing, quotas, notifications and capacity settings
+    tags: [Prometheus, Billing, Notifications]
+    operations: [organizationQuotasGetList, organizationQuotaGet, organizationPublicPreviewsGetList, serviceProfilesList, scalingScheduleGet, upgradeWindowGet]
+  - reason: User-defined functions, which are code rather than access
+    tags: [UDF]
+  - reason: Detail of, or another view on, what the collector already reads
+    operations: [openapiKeyGet, organizationRoleGet, invitationGet, memberGet, whoamiGet, organizationGetList]
+
+# The collector reads each service's database users, roles, grants, settings
+# profiles, quotas and row policies with SQL over the service's HTTPS
+# interface, which the Cloud API description does not cover.
+unmatched:
+  - operation: clickhouse.db.version.get
+    reason: A SQL query to the service's HTTPS interface, which the Cloud API description does not cover.
+  - operation: clickhouse.db.users.list
+    reason: A SQL query to the service's HTTPS interface, which the Cloud API description does not cover.
+  - operation: clickhouse.db.roles.list
+    reason: A SQL query to the service's HTTPS interface, which the Cloud API description does not cover.
+  - operation: clickhouse.db.role_grants.list
+    reason: A SQL query to the service's HTTPS interface, which the Cloud API description does not cover.
+  - operation: clickhouse.db.grants.list
+    reason: A SQL query to the service's HTTPS interface, which the Cloud API description does not cover.
+  - operation: clickhouse.db.settings_profiles.list
+    reason: A SQL query to the service's HTTPS interface, which the Cloud API description does not cover.
+  - operation: clickhouse.db.settings_profile_elements.list
+    reason: A SQL query to the service's HTTPS interface, which the Cloud API description does not cover.
+  - operation: clickhouse.db.quotas.list
+    reason: A SQL query to the service's HTTPS interface, which the Cloud API description does not cover.
+  - operation: clickhouse.db.quota_limits.list
+    reason: A SQL query to the service's HTTPS interface, which the Cloud API description does not cover.
+  - operation: clickhouse.db.row_policies.list
+    reason: A SQL query to the service's HTTPS interface, which the Cloud API description does not cover.
