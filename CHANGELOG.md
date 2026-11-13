@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## v0.2.3
+
 - In the access file, an API key has write access when it holds the system Admin role, or console roles that would make a member who held them an admin, such as a custom role that allows `control-plane:organization:manage`. Only the system Admin role counted before. When the console roles can't be read, `write_access_credential_count` and `write_access_pct` are left out with a `partial` gap. A key is still unrestricted only with the system Admin role.
 - The collector is built on epack v0.11.3.
 
