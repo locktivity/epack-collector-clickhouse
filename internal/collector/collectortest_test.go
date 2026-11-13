@@ -24,6 +24,10 @@ import (
 // sandbox was made.
 var kitNow = time.Date(2026, 10, 22, 12, 0, 0, 0, time.UTC)
 
+// kitUnsetLimit says why a quota limit sent as null means the quota sets
+// none.
+const kitUnsetLimit = "A quota interval sets only the limits it names, and system.quota_limits holds NULL in each Nullable max_ column it leaves unset; the sandbox recording shows both."
+
 // kitResultPath is where the kit's runs write their collector result.
 const kitResultPath = "artifacts/clickhouse.collector-result.json"
 
@@ -41,11 +45,27 @@ var kitServiceParts = append([]string{"version"}, serviceParts...)
 // and the credential and sensitivity rules.
 func TestCollectorKit(t *testing.T) {
 	collectortest.Run(t, collectortest.Suite{
-		Spec:    Spec("test", "collectortest"),
-		Run:     Run,
-		Config:  kitConfig(),
-		Secrets: kitSecrets(),
-		Clock:   kitNow,
+		Spec:        Spec("test", "collectortest"),
+		Run:         Run,
+		Config:      kitConfig(),
+		Secrets:     kitSecrets(),
+		Clock:       kitNow,
+		FieldFaults: true,
+		Populations: []collectortest.Population{
+			{Operation: clickhouse.OpListInvitations, List: "/result", Reason: "An organization with no invitations waiting lists none."},
+			{Operation: clickhouse.OpListKeys, List: "/result/*/assignedRoles", Reason: "A key can hold no console role; the sandbox recording lists three."},
+			{Operation: clickhouse.OpListKeys, List: "/result/*/ipAccessList", Reason: "A key created through the Cloud API with no IP access list has none, and no address can use it, as docs/configuration.md says."},
+			{Operation: clickhouse.OpListRoles, List: "/result/*/actors", Reason: "A role no member or key holds lists no actors; the sandbox recording lists eight such system roles."},
+			{Operation: clickhouse.OpListUsers, List: "/data/*/host_ip", Reason: "A user allowed only by host name, or from no host, has no host_ip entries; the sandbox recording lists management-internal."},
+			{Operation: clickhouse.OpListQuotas, List: "/data/*/durations", Reason: "CREATE QUOTA's FOR INTERVAL clause is optional, so a quota can have no intervals: https://clickhouse.com/docs/sql-reference/statements/create/quota"},
+		},
+		Omissions: []collectortest.Omission{
+			{Operation: clickhouse.OpListKeys, Field: "/result/*/expireAt", Reason: "\"If not present, null or is empty the key never expires\": ApiKey.expireAt in https://clickhouse.com/docs/cloud/manage/api/swagger"},
+			{Operation: clickhouse.OpListKeys, Field: "/result/*/usedAt", Reason: "\"If not present the key was never used\": ApiKey.usedAt in https://clickhouse.com/docs/cloud/manage/api/swagger"},
+			{Operation: clickhouse.OpListQuotaLimits, Field: "/data/*/max_queries", Reason: kitUnsetLimit},
+			{Operation: clickhouse.OpListQuotaLimits, Field: "/data/*/max_execution_time", Reason: kitUnsetLimit},
+			{Operation: clickhouse.OpListQuotaLimits, Field: "/data/*/max_failed_sequential_authentications", Reason: kitUnsetLimit},
+		},
 		Scenarios: append([]collectortest.Scenario{
 			kitClean(),
 			kitLeastPrivilegeKey(),
@@ -775,9 +795,9 @@ func kitNoUsableKeys() collectortest.Scenario {
 	}
 }
 
-// kitKeyWithoutCreationTime lists a key with no createdAt, so the keys
-// overdue for rotation cannot be counted. That count and its percentage are
-// left out with a partial gap, and the other credential values are written.
+// kitKeyWithoutCreationTime lists a key with no createdAt, which the API
+// reference says every key has. The list is not an answer, so the API keys
+// and the credential values are left out, and the members are written.
 func kitKeyWithoutCreationTime() collectortest.Scenario {
 	keys := `[
 		{"id": "7a4b5c60-0000-4000-8000-000000000007", "name": "no-created-at", "state": "enabled", "usedAt": "2026-10-20T08:00:00Z",
@@ -785,25 +805,18 @@ func kitKeyWithoutCreationTime() collectortest.Scenario {
 		{"id": "7a4b5c60-0000-4000-8000-000000000008", "name": "with-created-at", "state": "enabled", "createdAt": "2026-10-01T09:00:00Z",
 		 "assignedRoles": [], "ipAccessList": [{"source": "203.0.113.0/24", "description": "Office"}]}
 	]`
-	access := kitAccessGaps("/credentials/rotation_overdue_credential_count", "/credentials/rotation_overdue_pct")
-	result := map[string]any{}
-	for _, pointer := range []string{"/credentials/rotation_overdue_credential_count", "/credentials/rotation_overdue_pct"} {
-		kitGap(result, slices.Index(access, pointer), map[string]any{
-			"pointer": pointer, "status": "partial", "code": "invalid_response", "unmeasured": 1,
-			"detail": "clickhouse.keys.list: 1 of the listed keys have no createdAt, or one that is not an RFC 3339 time",
-		})
-	}
 	return collectortest.Scenario{
 		Name:      "API key without a creation time",
 		Responses: append(kitKeysAnswered(keys), kitDatabase()...),
 		Expect: map[string]map[string]any{
-			accessPath: {
-				"/credentials/credential_count":                  2,
-				"/credentials/unused_credential_count":           1,
-				"/credentials/rotation_overdue_credential_count": collectortest.Absent,
-				"/credentials/rotation_overdue_pct":              collectortest.Absent,
+			artifactPath: {
+				"/api_keys":            collectortest.Absent,
+				"/members/total_count": 4,
 			},
-			kitResultPath: result,
+			accessPath: {
+				"/credentials":        collectortest.Absent,
+				"/admins/admin_count": 1,
+			},
 		},
 	}
 }

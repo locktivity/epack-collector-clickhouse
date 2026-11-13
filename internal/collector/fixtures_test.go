@@ -1,8 +1,10 @@
 package collector
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
+	"sort"
 	"strings"
 
 	"github.com/locktivity/epack/componentsdk/collectortest"
@@ -46,9 +48,50 @@ func apiError(status int, message string) string {
 	return fmt.Sprintf(`{"status": %d, "error": %q, "requestId": "0b6f7c1e-3a2d-4c5b-8e9f-102132435466"}`, status, message)
 }
 
-// sqlBody is a FORMAT JSON result holding rows, each a JSON object.
+// sqlBody is a FORMAT JSON result holding rows, each a JSON object, with
+// the meta ClickHouse writes for their columns.
 func sqlBody(rows ...string) string {
-	return `{"meta": [], "data": [` + strings.Join(rows, ",\n") + fmt.Sprintf(`], "rows": %d, "statistics": {"elapsed": 0.001, "rows_read": %d, "bytes_read": 512}}`, len(rows), len(rows))
+	return `{"meta": ` + sqlMeta(rows) + `, "data": [` + strings.Join(rows, ",\n") + fmt.Sprintf(`], "rows": %d, "statistics": {"elapsed": 0.001, "rows_read": %d, "bytes_read": 512}}`, len(rows), len(rows))
+}
+
+// sqlMeta describes the columns of rows, which share them. A column is
+// Nullable when a row holds null in it.
+func sqlMeta(rows []string) string {
+	var names []string
+	types := map[string]string{}
+	nullable := map[string]bool{}
+	for _, row := range rows {
+		var values map[string]json.RawMessage
+		if err := json.Unmarshal([]byte(row), &values); err != nil {
+			panic(fmt.Sprintf("a kit row is not an object: %v\n%s", err, row))
+		}
+		for name, value := range values {
+			if _, seen := types[name]; !seen {
+				names = append(names, name)
+				types[name] = "String"
+			}
+			switch value[0] {
+			case 'n':
+				nullable[name] = true
+			case '[':
+				types[name] = "Array(String)"
+			case '"':
+			default:
+				types[name] = "UInt64"
+			}
+		}
+	}
+	sort.Strings(names)
+	meta := make([]map[string]string, len(names))
+	for i, name := range names {
+		t := types[name]
+		if nullable[name] {
+			t = "Nullable(" + t + ")"
+		}
+		meta[i] = map[string]string{"name": name, "type": t}
+	}
+	out, _ := json.Marshal(meta)
+	return string(out)
 }
 
 // sqlError is a failed query's answer: ClickHouse's message in the body and

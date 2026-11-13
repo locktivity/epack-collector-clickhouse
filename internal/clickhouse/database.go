@@ -440,9 +440,10 @@ func query[T any](ctx context.Context, d *Database, client *http.Client, op, sql
 		return nil, resp, componentsdk.ResponseError(resp, newDatabaseError(resp, body))
 	}
 	var result struct {
-		Data      []T    `json:"data"`
-		Rows      *int   `json:"rows"`
-		Exception string `json:"exception"`
+		Meta      []column          `json:"meta"`
+		Data      []json.RawMessage `json:"data"`
+		Rows      *int              `json:"rows"`
+		Exception string            `json:"exception"`
 	}
 	if err := json.NewDecoder(io.LimitReader(resp.Body, maxResponseBytes)).Decode(&result); err != nil {
 		return nil, resp, componentsdk.ResponseError(resp, fmt.Errorf("%s: decoding the response: %w", op, err))
@@ -450,12 +451,52 @@ func query[T any](ctx context.Context, d *Database, client *http.Client, op, sql
 	switch {
 	case result.Exception != "":
 		return nil, resp, componentsdk.ResponseError(resp, componentsdk.CodeError(componentsdk.CodeVendorError, fmt.Errorf("%s: the query failed after it started: %s", op, firstLine(result.Exception))))
-	case result.Data == nil || result.Rows == nil:
-		return nil, resp, componentsdk.ResponseError(resp, invalidResponse(op, "has no data or rows"))
+	case result.Meta == nil || result.Data == nil || result.Rows == nil:
+		return nil, resp, componentsdk.ResponseError(resp, invalidResponse(op, "has no meta, data, or rows"))
 	case *result.Rows != len(result.Data):
 		return nil, resp, componentsdk.ResponseError(resp, invalidResponse(op, fmt.Sprintf("says %d rows and holds %d", *result.Rows, len(result.Data))))
 	}
-	return result.Data, resp, nil
+	rows := make([]T, len(result.Data))
+	for i, raw := range result.Data {
+		if problem := matchColumns(raw, result.Meta); problem != "" {
+			return nil, resp, componentsdk.ResponseError(resp, invalidResponse(op, problem))
+		}
+		if err := json.Unmarshal(raw, &rows[i]); err != nil {
+			return nil, resp, componentsdk.ResponseError(resp, fmt.Errorf("%s: decoding the response: %w", op, err))
+		}
+	}
+	return rows, resp, nil
+}
+
+// column is the meta FORMAT JSON writes for one selected column.
+type column struct {
+	Name string `json:"name"`
+	Type string `json:"type"`
+}
+
+// matchColumns says how row differs from meta, or returns "" when it holds
+// each column meta lists and nothing else, with null only in a Nullable one.
+// FORMAT JSON writes every selected column in every row, so a row that
+// differs did not come from the query, and reading it would turn a missing
+// storage or flag into a value.
+func matchColumns(row json.RawMessage, meta []column) string {
+	var values map[string]json.RawMessage
+	if err := json.Unmarshal(row, &values); err != nil {
+		return "lists a row that is not an object"
+	}
+	if len(values) != len(meta) {
+		return fmt.Sprintf("lists a row with %d columns, and its meta lists %d", len(values), len(meta))
+	}
+	for _, c := range meta {
+		value, ok := values[c.Name]
+		if !ok {
+			return "lists a row with no " + c.Name
+		}
+		if string(value) == "null" && !strings.HasPrefix(strings.TrimPrefix(c.Type, "LowCardinality("), "Nullable(") {
+			return fmt.Sprintf("lists a row with a null %s, a %s column", c.Name, c.Type)
+		}
+	}
+	return ""
 }
 
 // DatabaseError is a service's answer to a query with a status other than

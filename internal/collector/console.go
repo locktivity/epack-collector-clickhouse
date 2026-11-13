@@ -18,9 +18,6 @@ var membersHiddenWarning = "ClickHouse Cloud's API reference says " + clickhouse
 	" is enough to list members (" + clickhouse.MembersDocs + "). In practice the API returns an empty list unless the key's role also has " +
 	clickhouse.PermissionManageOrganization + ", which can also change the organization. This looks like a bug in ClickHouse Cloud."
 
-// adminRole is the system role with every permission in the organization.
-const adminRole = "Admin"
-
 // anyAddress is the IP access list entry that admits every IPv4 address.
 const anyAddress = "0.0.0.0/0"
 
@@ -219,7 +216,7 @@ func roleRefs(assigned []clickhouse.AssignedRole) []RoleRef {
 
 func holdsAdmin(roles []RoleRef) bool {
 	for _, r := range roles {
-		if r.Type == "system" && r.Name == adminRole {
+		if r.Type == "system" && r.Name == clickhouse.AdminRole {
 			return true
 		}
 	}

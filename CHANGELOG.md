@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- A service's answer is left out with an `invalid_response` gap when a row doesn't hold exactly the columns its `meta` lists, or holds null in a column that isn't Nullable. Through v0.2.3 a row with no `storage` or `user_storage` counted as the customer's, and a missing flag such as `grant_option` or `with_admin_option` read as false.
+- The API keys are left out with an `invalid_response` gap when a key has no `createdAt`, or a `createdAt`, `expireAt` or `usedAt` that isn't an RFC 3339 time. Through v0.2.3 such a key left out only the unused and rotation overdue values, with a `partial` gap that named no call. An empty list of keys is a `permission_denied` gap, since the key the collector signs in with is always listed. Through v0.2.3 it counted as no keys.
+- The members, invitations, and API keys are left out with an `invalid_response` gap when one of their console roles has no ID, name, or type, or an IP access list entry has no source. So are the members when none holds the system Admin role, and the console roles when one has no `actors` list. Through v0.2.3 these read as holding no Admin role and as no members or keys.
+
 ## v0.2.3
 
 - In the access file, an API key has write access when it holds the system Admin role, or console roles that would make a member who held them an admin, such as a custom role that allows `control-plane:organization:manage`. Only the system Admin role counted before. When the console roles can't be read, `write_access_credential_count` and `write_access_pct` are left out with a `partial` gap. A key is still unrestricted only with the system Admin role.
