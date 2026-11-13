@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- In the access file, an API key has write access when it holds the system Admin role, or console roles that would make a member who held them an admin, such as a custom role that allows `control-plane:organization:manage`. Only the system Admin role counted before. When the console roles can't be read, `write_access_credential_count` and `write_access_pct` are left out with a `partial` gap. A key is still unrestricted only with the system Admin role.
+- The collector is built on epack v0.11.3.
+
 ## v0.2.2
 
 - In the access file, a member counts as an admin when they can change who has access to the organization, or change or delete every service. That is a member with the system Admin role, or one whose console roles allow `control-plane:organization:manage` on the organization, `control-plane:service:manage` or `control-plane:service:delete` on every service, or `control-plane:postgres-service:manage` on every Postgres service, with no DENY policy on the same permission and resources. A member with the Service Admin role, or a custom role with these permissions, now counts. The detailed artifact's `members.admin_count` still counts the system Admin role only.

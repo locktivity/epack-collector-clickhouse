@@ -130,10 +130,13 @@ func TestCollectorKit(t *testing.T) {
 // kitLeastPrivilegeKey is a read-only key, with control-plane:organization:view
 // and view-api-keys only. The Cloud API lists no members to it and refuses
 // it the console roles, so both are left out with permission_denied gaps
-// naming control-plane:organization:manage.
+// naming control-plane:organization:manage. Without the roles, whether the
+// two keys with custom roles have write access is unknown, so the write
+// access count and share are left out with a partial gap.
 func kitLeastPrivilegeKey() collectortest.Scenario {
 	result := kitStepPins()
-	access := kitAccessGaps("/admins", "/members")
+	access := kitAccessGaps("/admins", "/members", kitWriteAccessGaps[0], kitWriteAccessGaps[1])
+	kitWriteAccessUnknown(result, access)
 	details := len(access)
 	kitGap(result, details, map[string]any{
 		"pointer": "/console_roles", "status": "not_collected",
@@ -177,6 +180,7 @@ func kitLeastPrivilegeKey() collectortest.Scenario {
 				"/members":                      collectortest.Absent,
 				"/admins":                       collectortest.Absent,
 				"/credentials/credential_count": 5,
+				"/credentials/write_access_credential_count": collectortest.Absent,
 			},
 			kitResultPath: result,
 		},
@@ -391,7 +395,8 @@ func kitCustomAdminRole() collectortest.Scenario {
 // and share with a partial gap.
 func kitNoRolesListed() collectortest.Scenario {
 	result := map[string]any{}
-	access := kitAccessGaps("/admins/admin_count", "/admins/admin_share_pct")
+	access := kitAccessGaps("/admins/admin_count", "/admins/admin_share_pct", kitWriteAccessGaps[0], kitWriteAccessGaps[1])
+	kitWriteAccessUnknown(result, access)
 	for _, pointer := range []string{"/admins/admin_count", "/admins/admin_share_pct"} {
 		kitGap(result, slices.Index(access, pointer), map[string]any{
 			"pointer": pointer, "status": "partial", "unmeasured": 3, "code": "permission_denied", "operation": clickhouse.OpListRoles,
@@ -473,6 +478,21 @@ func kitAccessGaps(left ...string) []string {
 	}
 	slices.Sort(pointers)
 	return pointers
+}
+
+// kitWriteAccessGaps are the access-posture values a run leaves out when it
+// can't read the console roles of keys with custom roles.
+var kitWriteAccessGaps = []string{"/credentials/write_access_credential_count", "/credentials/write_access_pct"}
+
+// kitWriteAccessUnknown pins the partial gaps on the write access values
+// when the console roles can't be read: the kit's epack-collector and
+// sandbox-auditor keys hold custom roles.
+func kitWriteAccessUnknown(result map[string]any, access []string) {
+	for _, pointer := range kitWriteAccessGaps {
+		kitGap(result, slices.Index(access, pointer), map[string]any{
+			"pointer": pointer, "status": "partial", "unmeasured": 2, "code": "permission_denied", "operation": clickhouse.OpListRoles,
+		})
+	}
 }
 
 // kitGap pins fields of the result's gap at index.

@@ -101,6 +101,10 @@ type APIKey struct {
 	AnyAddress   bool      `json:"any_address"`
 	LastUsedAt   *string   `json:"last_used_at"`
 	NeverUsed    bool      `json:"never_used"`
+
+	// roleIDs are the IDs of the roles the key holds, which the
+	// access-posture file reads their policies by.
+	roleIDs []string
 }
 
 // ConsoleRoles rolls up the organization's console roles.

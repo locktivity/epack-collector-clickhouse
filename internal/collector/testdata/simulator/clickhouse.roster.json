@@ -1,0 +1,270 @@
+{
+  "version": 1,
+  "vendor": "clickhouse",
+  "source": "The organization checklist.md and terraform/ build: four members who sign in with email and a password, the owner and the reader with authenticator-app MFA, two custom console roles, six API keys and one Basic service, with seed/seed.sql's database users beside them. ClickHouse Cloud reports when a key was made but the key ages each day, so the roster leaves it out, and the members' last sign-ins are unsettled. The expiring key's expires_in_days is one day before its 2030 expiry would be far enough to stay in range.",
+  "providers": {
+    "access-posture": "clickhouse"
+  },
+  "accounts": {
+    "owner": {
+      "kind": "member",
+      "enabled": true,
+      "roles": [
+        "Admin"
+      ],
+      "logins": "password",
+      "tag": "ch-owner",
+      "case": "Created the org at sign-up (checklist step 1). Admin, with authenticator-app MFA.",
+      "mfa": "totp"
+    },
+    "reader": {
+      "kind": "member",
+      "enabled": true,
+      "roles": [
+        "Member",
+        "Service Reader"
+      ],
+      "logins": "password",
+      "tag": "ch-reader",
+      "case": "Invited and accepted (checklist step 4). Member and Service reader, with authenticator-app MFA.",
+      "mfa": "totp"
+    },
+    "auditor": {
+      "kind": "member",
+      "enabled": true,
+      "roles": [
+        "Member",
+        "sandbox-auditor"
+      ],
+      "logins": "password",
+      "tag": "ch-auditor",
+      "case": "Invited and accepted as a Member (checklist step 4). Terraform adds the custom sandbox-auditor role. No MFA."
+    },
+    "billing": {
+      "kind": "member",
+      "enabled": true,
+      "roles": [
+        "Billing"
+      ],
+      "logins": "password",
+      "tag": "ch-billing",
+      "case": "Invited and accepted (checklist step 4). Billing only. No MFA."
+    }
+  },
+  "unsettled": {
+    "owner": [
+      "signed_in"
+    ],
+    "reader": [
+      "signed_in"
+    ],
+    "auditor": [
+      "signed_in"
+    ],
+    "billing": [
+      "signed_in"
+    ]
+  },
+  "workspace": {
+    "name": "sandbox-org",
+    "system_type": "database",
+    "credentials": {
+      "admin": {
+        "name": "sandbox-admin",
+        "permissions": "Admin",
+        "allowed_sources": [
+          "0.0.0.0/0"
+        ],
+        "case": "Created by hand (checklist step 2) for Terraform and the seed scripts. Admin, no expiry, used every night.",
+        "last_used_days_ago": 0
+      },
+      "collector": {
+        "name": "epack-collector",
+        "permissions": "epack-collector",
+        "allowed_sources": [
+          "0.0.0.0/0"
+        ],
+        "case": "terraform/main.tf. The collector's key: the custom epack-collector role only, which includes control-plane:organization:manage so the key can list members and console roles. No expiry, usable from anywhere, used every night.",
+        "last_used_days_ago": 0,
+        "collector": true
+      },
+      "auditor": {
+        "name": "sandbox-auditor",
+        "permissions": "sandbox-auditor",
+        "allowed_sources": [
+          "0.0.0.0/0"
+        ],
+        "case": "terraform/main.tf. The custom sandbox-auditor role. Never used."
+      },
+      "disabled": {
+        "name": "sandbox-disabled",
+        "permissions": "no_roles",
+        "allowed_sources": [
+          "0.0.0.0/0"
+        ],
+        "case": "terraform/main.tf. Disabled, with no roles.",
+        "active": false
+      },
+      "expiring": {
+        "name": "sandbox-expiring",
+        "permissions": "no_roles",
+        "allowed_sources": [
+          "0.0.0.0/0"
+        ],
+        "case": "terraform/main.tf. Expires at the start of 2030, with no roles.",
+        "expires_in_days": 1100,
+        "expire_at": "2030-01-01T00:00:00Z"
+      },
+      "ip_limited": {
+        "name": "sandbox-ip-limited",
+        "permissions": "no_roles",
+        "allowed_sources": [
+          "203.0.113.0/24"
+        ],
+        "case": "terraform/main.tf. Usable only from 203.0.113.0/24, a documentation range, so never used. No roles."
+      }
+    },
+    "invitations": {
+      "pending": {
+        "tag": "ch-pending",
+        "case": "Never accepted. before-collect.sh creates it again whenever it is missing or expires within a day.",
+        "roles": [
+          "Member"
+        ]
+      }
+    },
+    "service": {
+      "name": "epack-sandbox",
+      "case": "terraform/main.tf. One Basic service that idles after 5 minutes. before-collect.sh opens it to the current runner only."
+    },
+    "database": {
+      "users": {
+        "default": {
+          "case": "Created with the service. default_role. Its password is SANDBOX_CLICKHOUSE_DEFAULT_PASSWORD.",
+          "auth": [
+            "sha256_password"
+          ],
+          "roles": [
+            "default_role"
+          ]
+        },
+        "epack_collector": {
+          "case": "seed/seed.sql. The collector's read-only user: role access_reader and readonly = 1.",
+          "auth": [
+            "sha256_password"
+          ],
+          "roles": [
+            "access_reader"
+          ]
+        },
+        "analyst": {
+          "case": "seed/seed.sql. Password only, role app_reader.",
+          "auth": [
+            "sha256_password"
+          ],
+          "roles": [
+            "app_reader"
+          ]
+        },
+        "ops_admin": {
+          "case": "seed/seed.sql. A password that expires at the start of 2030, and role user_admin WITH ADMIN OPTION.",
+          "auth": [
+            "sha256_password"
+          ],
+          "roles": [
+            "user_admin"
+          ],
+          "valid_until": "2030-01-01 00:00:00"
+        },
+        "deploy_bot": {
+          "case": "seed/seed.sql. SSH key only, no roles.",
+          "auth": [
+            "ssh_key"
+          ],
+          "roles": []
+        },
+        "legacy_app": {
+          "case": "seed/seed.sql. A password and an SSH key, either enough to sign in, and SELECT on app.events WITH GRANT OPTION.",
+          "auth": [
+            "sha256_password",
+            "ssh_key"
+          ],
+          "roles": []
+        },
+        "office_only": {
+          "case": "seed/seed.sql. Password, allowed only from 10.0.0.0/8, role app_reader.",
+          "auth": [
+            "sha256_password"
+          ],
+          "roles": [
+            "app_reader"
+          ],
+          "hosts": [
+            "10.0.0.0/8"
+          ]
+        }
+      },
+      "cloud_managed": {
+        "case": "Made by ClickHouse Cloud, not seed.sql, as of 2026-11-12. Cloud's own users are the ones stored in users_xml; default and sql-console are stored in replicated like the customer's users. Cloud can change the users_xml list without a new service version, so the expectations only require at least one of them. Cloud's roles are stored in replicated too, so only their names tell them apart.",
+        "users_xml": [
+          "availability-monitoring-internal",
+          "backups-internal",
+          "hyperdx-alert-internal",
+          "management-internal",
+          "monitoring-internal",
+          "observability-internal",
+          "operator-cert-internal",
+          "operator-internal",
+          "prometheus-certauth-internal",
+          "prometheus-exporter"
+        ],
+        "replicated_users": [
+          "default",
+          "sql-console"
+        ],
+        "roles": [
+          "clickpipes_system",
+          "default_role",
+          "sql_console_admin",
+          "sql_console_read_only"
+        ]
+      },
+      "roles": {
+        "access_reader": "SHOW ACCESS as far as the default user holds it, plus SELECT on system.grants, system.role_grants, system.settings_profile_elements, and system.quota_limits.",
+        "app_reader": "SELECT on app.*, with the ro_profile settings profile, the reader_quota quota, and the tenant_a row policy.",
+        "user_admin": "CREATE USER, ALTER USER, DROP USER, and ROLE ADMIN on *.*, as far as the default user holds them. Cloud withholds them on its own sql-console users."
+      }
+    }
+  },
+  "terms": {
+    "account_kinds": {
+      "member": "member"
+    },
+    "roles": {
+      "Admin": "super_admin",
+      "Member": "none",
+      "Service Reader": "none",
+      "Billing": "none",
+      "sandbox-auditor": "none",
+      "epack-collector": "admin"
+    },
+    "login_methods": {
+      "password": "local",
+      "sso": "sso"
+    },
+    "mfa_methods": {
+      "totp": "mfa"
+    },
+    "network_sources": {
+      "0.0.0.0/0": "any",
+      "203.0.113.0/24": "limited"
+    },
+    "workspace_credential_permissions": {
+      "Admin": "full",
+      "epack-collector": "write",
+      "sandbox-auditor": "read",
+      "no_roles": "read"
+    }
+  }
+}
+

@@ -38,7 +38,7 @@ The ClickHouse Cloud API reports the following for each service, and the collect
 - A key never expires when it has no expiry date.
 - A key is unused when it was never used or was last used more than 90 days before the run.
 - A key is unrestricted when it holds the Admin role and its IP access list admits any address. A key with another role or a narrower IP access list is restricted.
-- A key has write access when it holds the Admin role.
+- A key has write access when it holds the Admin role, or console roles that would make a member who held them an admin. When the console roles can't be read, the write access count and share are left out with a `partial` gap.
 - A key is overdue for rotation when it was created more than 90 days before the run.
 
 ## Values ClickHouse Cloud does not report
