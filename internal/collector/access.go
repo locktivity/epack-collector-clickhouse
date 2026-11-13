@@ -2,7 +2,6 @@ package collector
 
 import (
 	"encoding/json"
-	"fmt"
 	"slices"
 	"strings"
 	"time"
@@ -280,8 +279,7 @@ func matchesResource(resource, want string) bool {
 // admin. roles, listed with rolesErr, say what each role allows. When they
 // could not be read, whether a key with another role has write access is
 // unknown, and the write access count and its percentage are left out with
-// a partial gap. When a key's time cannot be read, that count and its
-// percentage are left out with a partial gap.
+// a partial gap.
 func accessCredentials(gaps gapLog, keys []APIKey, roles []clickhouse.Role, rolesErr error, now time.Time, audit bool) *AccessCredentials {
 	cutoff := now.Add(-staleAfter)
 	byID := map[string]clickhouse.Role{}
@@ -289,7 +287,7 @@ func accessCredentials(gaps gapLog, keys []APIKey, roles []clickhouse.Role, role
 		byID[r.ID] = r
 	}
 	var total, neverExpiring, unused, unrestricted, writeAccess, overdue int
-	var unusedUnread, overdueUnread, writeUnknown int
+	var writeUnknown int
 	for _, k := range keys {
 		if k.State != "enabled" || (k.ExpiresAt != nil && passed(*k.ExpiresAt, now)) {
 			continue
@@ -310,20 +308,8 @@ func accessCredentials(gaps gapLog, keys []APIKey, roles []clickhouse.Role, role
 			}
 			writeAccess += count(administers(held))
 		}
-		if k.LastUsedAt == nil {
-			unused++
-		} else if before, ok := earlier(*k.LastUsedAt, cutoff); !ok {
-			unusedUnread++
-		} else {
-			unused += count(before)
-		}
-		if k.CreatedAt == nil {
-			overdueUnread++
-		} else if before, ok := earlier(*k.CreatedAt, cutoff); !ok {
-			overdueUnread++
-		} else {
-			overdue += count(before)
-		}
+		unused += count(k.LastUsedAt == nil || earlier(*k.LastUsedAt, cutoff))
+		overdue += count(earlier(*k.CreatedAt, cutoff))
 	}
 	out := &AccessCredentials{
 		CredentialsPresent: total > 0,
@@ -346,44 +332,18 @@ func accessCredentials(gaps gapLog, keys []APIKey, roles []clickhouse.Role, role
 			gaps.partial("/credentials/write_access_credential_count", writeUnknown, rolesErr)
 		}
 	}
-	if unusedUnread == 0 {
-		out.UnusedPct = percent(unused, total, componentsdk.RoundUp)
-		if audit {
-			out.UnusedCredentialCount = &unused
-		}
-	} else {
-		keyTimeGap(gaps, audit, "/credentials/unused", unusedUnread, "usedAt")
-	}
-	if overdueUnread == 0 {
-		out.RotationOverduePct = percent(overdue, total, componentsdk.RoundUp)
-		if audit {
-			out.RotationOverdueCredentialCount = &overdue
-		}
-	} else {
-		keyTimeGap(gaps, audit, "/credentials/rotation_overdue", overdueUnread, "createdAt")
+	out.UnusedPct = percent(unused, total, componentsdk.RoundUp)
+	out.RotationOverduePct = percent(overdue, total, componentsdk.RoundUp)
+	if audit {
+		out.UnusedCredentialCount = &unused
+		out.RotationOverdueCredentialCount = &overdue
 	}
 	return out
 }
 
-// keyTimeGap leaves out the count at prefix+"_credential_count" and the
-// percentage at prefix+"_pct", since unread of the keys have no readable
-// field.
-func keyTimeGap(gaps gapLog, audit bool, prefix string, unread int, field string) {
-	gaps.rec.Helper()
-	err := componentsdk.CodeError(componentsdk.CodeInvalidResponse,
-		fmt.Errorf("%s: %d of the listed keys have no %s, or one that is not an RFC 3339 time", clickhouse.OpListKeys, unread, field))
-	if audit {
-		gaps.partial(prefix+"_credential_count", unread, err)
-	}
-	gaps.partial(prefix+"_pct", unread, err)
-}
-
-// earlier reports whether the RFC 3339 time at is before cutoff. ok is false
-// when at cannot be read.
-func earlier(at string, cutoff time.Time) (before, ok bool) {
-	t, err := time.Parse(time.RFC3339, at)
-	if err != nil {
-		return false, false
-	}
-	return t.Before(cutoff), true
+// earlier reports whether the RFC 3339 time at, which the client has
+// checked, is before cutoff.
+func earlier(at string, cutoff time.Time) bool {
+	t, _ := time.Parse(time.RFC3339, at)
+	return t.Before(cutoff)
 }

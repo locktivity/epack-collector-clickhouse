@@ -93,6 +93,7 @@ Some values are left out every time their condition holds:
 |-------|------|------|
 | `members` | `permission_denied` | The key's role lacks `control-plane:organization:manage`. |
 | `console_roles` | `permission_denied` | The key's role lacks `control-plane:organization:manage`. |
+| `api_keys` | `permission_denied` | The Cloud API lists no keys. The key the collector signs in with is always one, so its role lacks `control-plane:organization:view-api-keys`. |
 | `organization.sso_enabled` | `unsupported` | Always. ClickHouse Cloud has no API that reports SAML SSO. |
 | `members.mfa_enabled_count` | `unsupported` | Whenever the members are read. ClickHouse Cloud has no API that reports a member's MFA. |
 | `members` and `admins` in the access-posture file | `permission_denied` | The key's role lacks `control-plane:organization:manage`. |

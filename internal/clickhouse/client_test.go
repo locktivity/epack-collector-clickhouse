@@ -3,6 +3,7 @@ package clickhouse
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"io"
 	"net/http"
 	"strconv"
@@ -94,18 +95,21 @@ func TestDatabaseErrorCodes(t *testing.T) {
 	}
 }
 
-// sqlAnswer answers every query with body and keeps the last query it got.
+// sqlAnswer answers every request with body and keeps the last query it
+// got. A Cloud API GET sends none.
 type sqlAnswer struct {
 	body  string
 	query string
 }
 
 func (a *sqlAnswer) RoundTrip(req *http.Request) (*http.Response, error) {
-	sent, err := io.ReadAll(req.Body)
-	if err != nil {
-		return nil, err
+	if req.Body != nil {
+		sent, err := io.ReadAll(req.Body)
+		if err != nil {
+			return nil, err
+		}
+		a.query = string(sent)
 	}
-	a.query = string(sent)
 	return &http.Response{
 		StatusCode: http.StatusOK,
 		Header:     http.Header{"Content-Type": []string{"application/json; charset=UTF-8"}},
@@ -116,28 +120,32 @@ func (a *sqlAnswer) RoundTrip(req *http.Request) (*http.Response, error) {
 
 // TestGrantsReadSourceAndWildcard checks that the grants query reads
 // access_object and is_wildcard. Without them, READ on S3 and READ on URL
-// look the same, and so do grants on sales*.* and sales.*. The last row
+// look the same, and so do grants on sales*.* and sales.*. The last grant
 // comes from a server that has neither column.
 func TestGrantsReadSourceAndWildcard(t *testing.T) {
 	row := func(access, database, extra string) string {
 		return `{"user_name": null, "role_name": "loader", "access_type": "` + access + `", "database": ` + database +
 			`, "table": null, "column": null, "is_partial_revoke": 0, "grant_option": 0` + extra + `, "user_storage": ""}`
 	}
-	answer := &sqlAnswer{body: `{"data": [` + strings.Join([]string{
+	newer := &sqlAnswer{body: sqlResult(grantColumns+`, {"name": "access_object", "type": "String"}, {"name": "is_wildcard", "type": "Bool"}`,
 		row("READ", "null", `, "access_object": "S3", "is_wildcard": 0`),
 		row("READ", "null", `, "access_object": "URL", "is_wildcard": 0`),
 		row("SELECT", `"sales"`, `, "access_object": "", "is_wildcard": 1`),
 		row("SELECT", `"sales"`, `, "access_object": "", "is_wildcard": 0`),
-		row("SELECT", `"sales"`, ``),
-	}, ",") + `], "rows": 5}`}
-	client := &http.Client{Transport: answer}
-	grants, err := NewDatabase(client, client, "kit.us-east-1.aws.clickhouse.cloud", "epack_collector", "pw").Grants(context.Background())
-	if err != nil {
-		t.Fatal(err)
+	)}
+	older := &sqlAnswer{body: sqlResult(grantColumns, row("SELECT", `"sales"`, ``))}
+	var grants []Grant
+	for _, answer := range []*sqlAnswer{newer, older} {
+		client := &http.Client{Transport: answer}
+		read, err := NewDatabase(client, client, "kit.us-east-1.aws.clickhouse.cloud", "epack_collector", "pw").Grants(context.Background())
+		if err != nil {
+			t.Fatal(err)
+		}
+		grants = append(grants, read...)
 	}
 	for _, column := range []string{"access_object", "is_wildcard"} {
-		if !strings.Contains(answer.query, column) {
-			t.Errorf("the grants query does not select %s:\n%s", column, answer.query)
+		if !strings.Contains(newer.query, column) {
+			t.Errorf("the grants query does not select %s:\n%s", column, newer.query)
 		}
 	}
 	text := func(s *string) string {
@@ -160,6 +168,77 @@ func TestGrantsReadSourceAndWildcard(t *testing.T) {
 		if got := text(g.AccessObject) + " " + flag(g.IsWildcard); got != want[i] {
 			t.Errorf("grant %d: access_object and is_wildcard read as %q, want %q", i, got, want[i])
 		}
+	}
+}
+
+// TestQueryRowsMatchTheirMeta checks that a row that leaves out a column
+// its meta lists, holds one the meta does not, or holds null in a column
+// that is not Nullable, makes the answer invalid. Read as it stands, the
+// first would give a grant to a customer's user no storage, and so count it
+// as the customer's own, and the last would read a grant option as false.
+func TestQueryRowsMatchTheirMeta(t *testing.T) {
+	full := `{"user_name": "app", "role_name": null, "access_type": "SELECT", "database": null, "table": null, "column": null, "is_partial_revoke": 0, "grant_option": 1, "user_storage": "local_directory"}`
+	for name, body := range map[string]string{
+		"a column left out": sqlResult(grantColumns, strings.Replace(full, `, "user_storage": "local_directory"`, "", 1)),
+		"an extra column":   sqlResult(grantColumns, strings.Replace(full, `}`, `, "extra": 1}`, 1)),
+		"a null flag":       sqlResult(grantColumns, strings.Replace(full, `"grant_option": 1`, `"grant_option": null`, 1)),
+		"a null storage":    sqlResult(grantColumns, strings.Replace(full, `"local_directory"`, `null`, 1)),
+		"no meta":           `{"data": [` + full + `], "rows": 1}`,
+	} {
+		t.Run(name, func(t *testing.T) {
+			client := &http.Client{Transport: &sqlAnswer{body: body}}
+			_, err := NewDatabase(client, client, "kit.us-east-1.aws.clickhouse.cloud", "epack_collector", "pw").Grants(context.Background())
+			if code := componentsdk.Classify(err); code != componentsdk.CodeInvalidResponse {
+				t.Errorf("read with error %v, coded %q, want invalid_response", err, code)
+			}
+		})
+	}
+	client := &http.Client{Transport: &sqlAnswer{body: sqlResult(grantColumns, full)}}
+	if _, err := NewDatabase(client, client, "kit.us-east-1.aws.clickhouse.cloud", "epack_collector", "pw").Grants(context.Background()); err != nil {
+		t.Errorf("a row that matches its meta was not read: %v", err)
+	}
+}
+
+// grantColumns is the meta of the grants query on a server too old to have
+// access_object and is_wildcard.
+const grantColumns = `{"name": "user_name", "type": "Nullable(String)"}, {"name": "role_name", "type": "Nullable(String)"}, {"name": "access_type", "type": "String"}, ` +
+	`{"name": "database", "type": "Nullable(String)"}, {"name": "table", "type": "Nullable(String)"}, {"name": "column", "type": "Nullable(String)"}, ` +
+	`{"name": "is_partial_revoke", "type": "UInt8"}, {"name": "grant_option", "type": "UInt8"}, {"name": "user_storage", "type": "String"}`
+
+// sqlResult is a FORMAT JSON result with the columns in meta and rows.
+func sqlResult(meta string, rows ...string) string {
+	return `{"meta": [` + meta + `], "data": [` + strings.Join(rows, ",") + fmt.Sprintf(`], "rows": %d}`, len(rows))
+}
+
+// TestListKeysRejectsKeysItCannotRead checks that a key the collector would
+// have to guess about makes the list invalid, and that an empty list counts
+// as hidden: the key the collector signs in with is always listed.
+func TestListKeysRejectsKeysItCannotRead(t *testing.T) {
+	key := `{"id": "k1", "name": "k", "state": "enabled", "createdAt": "2026-10-01T09:00:00Z", "usedAt": "2026-10-20T08:00:00Z", "expireAt": null,
+		"assignedRoles": [{"roleId": "r1", "roleName": "Admin", "roleType": "system"}], "ipAccessList": [{"source": "0.0.0.0/0"}]}`
+	for name, tc := range map[string]struct {
+		keys string
+		want componentsdk.Code
+	}{
+		"no createdAt":        {strings.Replace(key, `"createdAt": "2026-10-01T09:00:00Z", `, "", 1), componentsdk.CodeInvalidResponse},
+		"usedAt not a time":   {strings.Replace(key, `"2026-10-20T08:00:00Z"`, `"yesterday"`, 1), componentsdk.CodeInvalidResponse},
+		"a role with no name": {strings.Replace(key, `"roleName": "Admin", `, "", 1), componentsdk.CodeInvalidResponse},
+		"a role with no type": {strings.Replace(key, `"roleType": "system"`, `"roleType": null`, 1), componentsdk.CodeInvalidResponse},
+		"no ipAccessList":     {strings.Replace(key, `, "ipAccessList": [{"source": "0.0.0.0/0"}]`, ``, 1), componentsdk.CodeInvalidResponse},
+		"an entry no source":  {strings.Replace(key, `{"source": "0.0.0.0/0"}`, `{"description": "x"}`, 1), componentsdk.CodeInvalidResponse},
+		"no keys":             {``, componentsdk.CodePermissionDenied},
+	} {
+		t.Run(name, func(t *testing.T) {
+			client := &http.Client{Transport: &sqlAnswer{body: `{"status": 200, "result": [` + tc.keys + `]}`}}
+			_, err := NewCloud(client, "org", "id", "secret").ListKeys(context.Background())
+			if code := componentsdk.Classify(err); code != tc.want {
+				t.Errorf("listed with error %v, coded %q, want %q", err, code, tc.want)
+			}
+		})
+	}
+	client := &http.Client{Transport: &sqlAnswer{body: `{"status": 200, "result": [` + key + `]}`}}
+	if _, err := NewCloud(client, "org", "id", "secret").ListKeys(context.Background()); err != nil {
+		t.Errorf("a readable key was not listed: %v", err)
 	}
 }
 

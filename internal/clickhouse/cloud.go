@@ -12,7 +12,9 @@ import (
 	"net/http"
 	"net/url"
 	"regexp"
+	"slices"
 	"strings"
+	"time"
 
 	"github.com/locktivity/epack/componentsdk"
 )
@@ -196,8 +198,31 @@ const MembersDocs = "https://clickhouse.com/docs/products/cloud/api-reference/us
 // enough, and an organization always has at least one member, its Admin.
 var ErrMembersHidden = errors.New(OpListMembers + ": the API returned no members, and an organization always has at least one")
 
+// AdminRole is the system role with every permission in the organization.
+const AdminRole = "Admin"
+
+// validRoles reports whether each role names its ID, its name, and whether
+// it is a system role or a custom one.
+func validRoles(roles []AssignedRole) bool {
+	for _, r := range roles {
+		if r.RoleID == "" || r.RoleName == "" || (r.RoleType != "system" && r.RoleType != "custom") {
+			return false
+		}
+	}
+	return true
+}
+
+// validTime reports whether at is an RFC 3339 time, as the API reference
+// says each of its timestamps is.
+func validTime(at string) bool {
+	_, err := time.Parse(time.RFC3339, at)
+	return err == nil
+}
+
 // ListMembers lists the organization's members. An empty list is
-// ErrMembersHidden, coded permission_denied, never an answer.
+// ErrMembersHidden, coded permission_denied, never an answer. Nor is a list
+// where no member holds the system Admin role: an organization always has
+// its Admin, and a list without one would count no admins.
 func (c *Cloud) ListMembers(ctx context.Context) ([]Member, error) {
 	var env struct {
 		Result []Member `json:"result"`
@@ -212,10 +237,20 @@ func (c *Cloud) ListMembers(ctx context.Context) ([]Member, error) {
 	if len(env.Result) == 0 {
 		return nil, componentsdk.ResponseError(resp, componentsdk.CodeError(componentsdk.CodePermissionDenied, ErrMembersHidden))
 	}
+	admins := 0
 	for _, m := range env.Result {
-		if m.Email == "" || m.AssignedRoles == nil {
-			return nil, componentsdk.ResponseError(resp, invalidResponse(OpListMembers, "lists a member with no email or no assignedRoles"))
+		if m.Email == "" || m.AssignedRoles == nil || !validRoles(m.AssignedRoles) {
+			return nil, componentsdk.ResponseError(resp, invalidResponse(OpListMembers, "lists a member with no email, or with assignedRoles that are missing or name no role"))
 		}
+		for _, r := range m.AssignedRoles {
+			if r.RoleType == "system" && r.RoleName == AdminRole {
+				admins++
+				break
+			}
+		}
+	}
+	if admins == 0 {
+		return nil, componentsdk.ResponseError(resp, invalidResponse(OpListMembers, "lists no member who holds the Admin role, and an organization always has one"))
 	}
 	return env.Result, nil
 }
@@ -233,15 +268,19 @@ func (c *Cloud) ListInvitations(ctx context.Context) ([]Invitation, error) {
 		return nil, componentsdk.ResponseError(resp, invalidResponse(OpListInvitations, "has no list of invitations"))
 	}
 	for _, inv := range env.Result {
-		if inv.Email == "" || inv.ExpireAt == "" || inv.AssignedRoles == nil {
-			return nil, componentsdk.ResponseError(resp, invalidResponse(OpListInvitations, "lists an invitation with no email, expireAt, or assignedRoles"))
+		if inv.Email == "" || !validTime(inv.ExpireAt) || inv.AssignedRoles == nil || !validRoles(inv.AssignedRoles) {
+			return nil, componentsdk.ResponseError(resp, invalidResponse(OpListInvitations, "lists an invitation with no email, an expireAt that is not a time, or assignedRoles that are missing or name no role"))
 		}
 	}
 	return env.Result, nil
 }
 
+// ErrKeysHidden is the error ListKeys returns when the API lists no keys.
+// The key the collector signs in with is always one of them.
+var ErrKeysHidden = errors.New(OpListKeys + ": the API returned no keys, and the key the collector signs in with is always one")
+
 // ListKeys lists every API key, oldest first, following nextCursor from page
-// to page.
+// to page. An empty list is ErrKeysHidden, coded permission_denied.
 func (c *Cloud) ListKeys(ctx context.Context) ([]APIKey, error) {
 	var keys []APIKey
 	cursor := ""
@@ -262,12 +301,21 @@ func (c *Cloud) ListKeys(ctx context.Context) ([]APIKey, error) {
 			return nil, componentsdk.ResponseError(resp, invalidResponse(OpListKeys, "has no list of keys"))
 		}
 		for _, k := range env.Result {
-			if k.Name == "" || (k.State != "enabled" && k.State != "disabled") || k.AssignedRoles == nil || k.IPAccessList == nil {
-				return nil, componentsdk.ResponseError(resp, invalidResponse(OpListKeys, "lists a key with no name, state, assignedRoles, or ipAccessList"))
+			if k.Name == "" || (k.State != "enabled" && k.State != "disabled") || k.AssignedRoles == nil || !validRoles(k.AssignedRoles) {
+				return nil, componentsdk.ResponseError(resp, invalidResponse(OpListKeys, "lists a key with no name or state, or with assignedRoles that are missing or name no role"))
+			}
+			if !validTime(k.CreatedAt) || (k.ExpireAt != nil && *k.ExpireAt != "" && !validTime(*k.ExpireAt)) || (k.UsedAt != nil && !validTime(*k.UsedAt)) {
+				return nil, componentsdk.ResponseError(resp, invalidResponse(OpListKeys, "lists a key with no createdAt, or a createdAt, expireAt, or usedAt that is not a time"))
+			}
+			if k.IPAccessList == nil || slices.ContainsFunc(k.IPAccessList, func(e IPAccessEntry) bool { return e.Source == "" }) {
+				return nil, componentsdk.ResponseError(resp, invalidResponse(OpListKeys, "lists a key with no ipAccessList, or an entry with no source"))
 			}
 		}
 		keys = append(keys, env.Result...)
 		if env.NextCursor == nil || *env.NextCursor == "" {
+			if len(keys) == 0 {
+				return nil, componentsdk.ResponseError(resp, componentsdk.CodeError(componentsdk.CodePermissionDenied, ErrKeysHidden))
+			}
 			return keys, nil
 		}
 		if *env.NextCursor == cursor {
@@ -300,8 +348,8 @@ func (c *Cloud) ListRoles(ctx context.Context) ([]Role, error) {
 		return nil, componentsdk.ResponseError(resp, componentsdk.CodeError(componentsdk.CodePermissionDenied, ErrRolesHidden))
 	}
 	for _, r := range env.Result {
-		if r.Name == "" || r.Type == "" {
-			return nil, componentsdk.ResponseError(resp, invalidResponse(OpListRoles, "lists a role with no name or type"))
+		if r.Name == "" || r.Type == "" || r.Actors == nil {
+			return nil, componentsdk.ResponseError(resp, invalidResponse(OpListRoles, "lists a role with no name, type, or actors"))
 		}
 	}
 	return env.Result, nil

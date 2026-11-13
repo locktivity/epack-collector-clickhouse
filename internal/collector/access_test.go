@@ -236,40 +236,6 @@ func TestAccessCredentialsBelowAuditHaveNoCounts(t *testing.T) {
 	}
 }
 
-func TestAccessCredentialsUnreadableTimes(t *testing.T) {
-	now := time.Date(2026, 10, 22, 12, 0, 0, 0, time.UTC)
-	keys := []APIKey{
-		{Name: "no-created", State: "enabled", LastUsedAt: stringPtr("not a time")},
-		{Name: "ok", State: "enabled", NeverUsed: true, CreatedAt: stringPtr("2026-10-01T00:00:00Z")},
-	}
-	rec := &componentsdk.Recorder{}
-	doc := accessJSON(t, &AccessPosture{Credentials: accessCredentials(gapLog{rec: rec}, keys, nil, nil, now, true)})
-	creds := doc["credentials"].(map[string]any)
-	for _, field := range []string{"unused_credential_count", "unused_pct", "rotation_overdue_credential_count", "rotation_overdue_pct"} {
-		if v, ok := creds[field]; ok {
-			t.Errorf("%s is %v, want it left out", field, v)
-		}
-	}
-	if creds["credential_count"] != float64(2) {
-		t.Errorf("credential_count is %v, want 2", creds["credential_count"])
-	}
-	var pointers []string
-	for _, g := range rec.Gaps() {
-		if g.Status != componentsdk.GapPartial || g.Code != componentsdk.CodeInvalidResponse || g.Unmeasured != 1 {
-			t.Errorf("gap %+v, want a partial invalid_response gap with 1 unmeasured", g)
-		}
-		pointers = append(pointers, g.Pointer)
-	}
-	slices.Sort(pointers)
-	want := []string{
-		"/credentials/rotation_overdue_credential_count", "/credentials/rotation_overdue_pct",
-		"/credentials/unused_credential_count", "/credentials/unused_pct",
-	}
-	if !slices.Equal(pointers, want) {
-		t.Errorf("gaps at %v, want %v", pointers, want)
-	}
-}
-
 func TestAccessPostureValuesLeftOut(t *testing.T) {
 	now := time.Date(2026, 10, 22, 12, 0, 0, 0, time.UTC)
 	members := []Member{{Email: "a@example.com", Admin: true}}
