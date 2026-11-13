@@ -2,6 +2,7 @@ package collector
 
 import (
 	"encoding/json"
+	"errors"
 	"slices"
 	"strings"
 	"testing"
@@ -151,7 +152,7 @@ func TestAccessCredentialsCountUsableKeys(t *testing.T) {
 			CreatedAt: stringPtr("2025-01-05T09:00:00Z")},
 	}
 	rec := &componentsdk.Recorder{}
-	got := accessCredentials(gapLog{rec: rec}, keys, now, true)
+	got := accessCredentials(gapLog{rec: rec}, keys, nil, nil, now, true)
 	want := map[string]int{
 		"credential_count":                  3,
 		"never_expiring_credential_count":   1,
@@ -190,7 +191,7 @@ func TestAccessCredentialsUnrestrictedNeedsAdminFromAnyAddress(t *testing.T) {
 		{Name: "admin-office", State: "enabled", Admin: true, NeverExpires: true, NeverUsed: true, CreatedAt: created},
 		{Name: "reader-office", State: "enabled", NeverExpires: true, NeverUsed: true, CreatedAt: created},
 	}
-	got := accessCredentials(gapLog{rec: &componentsdk.Recorder{}}, keys, now, true)
+	got := accessCredentials(gapLog{rec: &componentsdk.Recorder{}}, keys, nil, nil, now, true)
 	if *got.UnrestrictedCredentialCount != 1 || *got.UnrestrictedPct.Value != 25 {
 		t.Errorf("unrestricted %d at %d%%, want 1 at 25%%", *got.UnrestrictedCredentialCount, *got.UnrestrictedPct.Value)
 	}
@@ -206,7 +207,7 @@ func TestAccessCredentialsNoUsableKeys(t *testing.T) {
 		"disabled only": {{Name: "off", State: "disabled", NeverExpires: true, CreatedAt: stringPtr("2026-10-01T00:00:00Z")}},
 	} {
 		t.Run(name, func(t *testing.T) {
-			doc := accessJSON(t, &AccessPosture{Credentials: accessCredentials(gapLog{rec: &componentsdk.Recorder{}}, keys, now, true)})
+			doc := accessJSON(t, &AccessPosture{Credentials: accessCredentials(gapLog{rec: &componentsdk.Recorder{}}, keys, nil, nil, now, true)})
 			creds := doc["credentials"].(map[string]any)
 			if creds["credentials_present"] != false || creds["credential_count"] != float64(0) {
 				t.Errorf("credentials %v, want none present and a count of 0", creds)
@@ -223,7 +224,7 @@ func TestAccessCredentialsNoUsableKeys(t *testing.T) {
 func TestAccessCredentialsBelowAuditHaveNoCounts(t *testing.T) {
 	now := time.Date(2026, 10, 22, 12, 0, 0, 0, time.UTC)
 	keys := []APIKey{{Name: "k", State: "enabled", NeverExpires: true, NeverUsed: true, CreatedAt: stringPtr("2026-10-01T00:00:00Z")}}
-	doc := accessJSON(t, &AccessPosture{Credentials: accessCredentials(gapLog{rec: &componentsdk.Recorder{}}, keys, now, false)})
+	doc := accessJSON(t, &AccessPosture{Credentials: accessCredentials(gapLog{rec: &componentsdk.Recorder{}}, keys, nil, nil, now, false)})
 	creds := doc["credentials"].(map[string]any)
 	for field := range creds {
 		if len(field) > 6 && field[len(field)-6:] == "_count" {
@@ -242,7 +243,7 @@ func TestAccessCredentialsUnreadableTimes(t *testing.T) {
 		{Name: "ok", State: "enabled", NeverUsed: true, CreatedAt: stringPtr("2026-10-01T00:00:00Z")},
 	}
 	rec := &componentsdk.Recorder{}
-	doc := accessJSON(t, &AccessPosture{Credentials: accessCredentials(gapLog{rec: rec}, keys, now, true)})
+	doc := accessJSON(t, &AccessPosture{Credentials: accessCredentials(gapLog{rec: rec}, keys, nil, nil, now, true)})
 	creds := doc["credentials"].(map[string]any)
 	for _, field := range []string{"unused_credential_count", "unused_pct", "rotation_overdue_credential_count", "rotation_overdue_pct"} {
 		if v, ok := creds[field]; ok {
@@ -317,5 +318,43 @@ func TestAccessPostureLeavesOutUnreadLists(t *testing.T) {
 		if _, ok := doc[section]; ok {
 			t.Errorf("%s is written although its list was not read", section)
 		}
+	}
+}
+
+// A key whose console role would make a member an admin can administer the
+// organization, so it has write access, though its custom role is a scope
+// narrower than full access, so it stays restricted. Without the roles,
+// whether it has write access is unknown.
+func TestAccessCredentialsWriteAccessFollowsRolePolicies(t *testing.T) {
+	now := time.Date(2026, 10, 22, 12, 0, 0, 0, time.UTC)
+	created := stringPtr("2026-10-01T09:00:00Z")
+	keys := []APIKey{
+		{Name: "manager", State: "enabled", AnyAddress: true, NeverExpires: true, NeverUsed: true, CreatedAt: created, roleIDs: []string{"r-manager"}},
+		{Name: "viewer", State: "enabled", AnyAddress: true, NeverExpires: true, NeverUsed: true, CreatedAt: created, roleIDs: []string{"r-viewer"}},
+		{Name: "admin", State: "enabled", Admin: true, NeverExpires: true, NeverUsed: true, CreatedAt: created, roleIDs: []string{"r-admin"}},
+	}
+	roles := []clickhouse.Role{
+		{ID: "r-manager", Policies: []clickhouse.Policy{{AllowDeny: "ALLOW", Permissions: []string{"control-plane:organization:manage"}, Resources: []string{"organization/org-1"}}}},
+		{ID: "r-viewer", Policies: []clickhouse.Policy{{AllowDeny: "ALLOW", Permissions: []string{"control-plane:organization:view"}, Resources: []string{"organization/org-1"}}}},
+	}
+	got := accessCredentials(gapLog{rec: &componentsdk.Recorder{}}, keys, roles, nil, now, true)
+	if *got.WriteAccessCredentialCount != 2 || *got.UnrestrictedCredentialCount != 0 {
+		t.Errorf("write access %d and unrestricted %d, want 2 and 0", *got.WriteAccessCredentialCount, *got.UnrestrictedCredentialCount)
+	}
+
+	rec := &componentsdk.Recorder{}
+	got = accessCredentials(gapLog{rec: rec}, keys, nil, errors.New("roles refused"), now, true)
+	if got.WriteAccessCredentialCount != nil || got.WriteAccessPct.Read {
+		t.Errorf("write access %v, want it left out", got.WriteAccessCredentialCount)
+	}
+	var pointers []string
+	for _, g := range rec.Gaps() {
+		if g.Status != componentsdk.GapPartial || g.Unmeasured != 2 {
+			t.Errorf("gap %+v, want partial with 2 unmeasured", g)
+		}
+		pointers = append(pointers, g.Pointer)
+	}
+	if want := []string{"/credentials/write_access_credential_count", "/credentials/write_access_pct"}; !slices.Equal(slices.Sorted(slices.Values(pointers)), want) {
+		t.Errorf("gaps %v, want %v", pointers, want)
 	}
 }

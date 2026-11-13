@@ -128,6 +128,9 @@ func readAPIKeys(ctx componentsdk.CollectorContext, cloud *clickhouse.Cloud, gap
 		if k.UsedAt != nil {
 			row.LastUsedAt = timestamp(*k.UsedAt)
 		}
+		for _, r := range k.AssignedRoles {
+			row.roleIDs = append(row.roleIDs, r.RoleID)
+		}
 		row.NeverUsed = row.LastUsedAt == nil
 		out.Inventory[i] = row
 		out.EnabledCount += count(row.State == "enabled")

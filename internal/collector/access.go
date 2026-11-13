@@ -164,7 +164,7 @@ func accessPosture(gaps gapLog, level componentsdk.Level, now time.Time, members
 		out.Members, out.Admins = accessMembers(gaps, members, roles, rolesErr, audit)
 	}
 	if keys != nil {
-		out.Credentials = accessCredentials(gaps, keys, now, audit)
+		out.Credentials = accessCredentials(gaps, keys, roles, rolesErr, now, audit)
 	}
 	for _, v := range accessLeftOut {
 		if v.audit && !audit {
@@ -275,12 +275,21 @@ func matchesResource(resource, want string) bool {
 // 90 days before now counts as unused or overdue for rotation. A key is
 // unrestricted when it holds the system Admin role and can be used from any
 // address. A key with another role, or with an IP access list that leaves
-// out some addresses, is restricted. When a key's time cannot be read, that
-// count and its percentage are left out with a partial gap.
-func accessCredentials(gaps gapLog, keys []APIKey, now time.Time, audit bool) *AccessCredentials {
+// out some addresses, is restricted. A key has write access when it holds
+// the system Admin role, or roles that would make a member who held them an
+// admin. roles, listed with rolesErr, say what each role allows. When they
+// could not be read, whether a key with another role has write access is
+// unknown, and the write access count and its percentage are left out with
+// a partial gap. When a key's time cannot be read, that count and its
+// percentage are left out with a partial gap.
+func accessCredentials(gaps gapLog, keys []APIKey, roles []clickhouse.Role, rolesErr error, now time.Time, audit bool) *AccessCredentials {
 	cutoff := now.Add(-staleAfter)
+	byID := map[string]clickhouse.Role{}
+	for _, r := range roles {
+		byID[r.ID] = r
+	}
 	var total, neverExpiring, unused, unrestricted, writeAccess, overdue int
-	var unusedUnread, overdueUnread int
+	var unusedUnread, overdueUnread, writeUnknown int
 	for _, k := range keys {
 		if k.State != "enabled" || (k.ExpiresAt != nil && passed(*k.ExpiresAt, now)) {
 			continue
@@ -288,7 +297,19 @@ func accessCredentials(gaps gapLog, keys []APIKey, now time.Time, audit bool) *A
 		total++
 		neverExpiring += count(k.NeverExpires)
 		unrestricted += count(k.AnyAddress && k.Admin)
-		writeAccess += count(k.Admin)
+		switch {
+		case k.Admin:
+			writeAccess++
+		case len(k.roleIDs) == 0:
+		case rolesErr != nil:
+			writeUnknown++
+		default:
+			var held []clickhouse.Role
+			for _, id := range k.roleIDs {
+				held = append(held, byID[id])
+			}
+			writeAccess += count(administers(held))
+		}
 		if k.LastUsedAt == nil {
 			unused++
 		} else if before, ok := earlier(*k.LastUsedAt, cutoff); !ok {
@@ -308,13 +329,22 @@ func accessCredentials(gaps gapLog, keys []APIKey, now time.Time, audit bool) *A
 		CredentialsPresent: total > 0,
 		NeverExpiringPct:   percent(neverExpiring, total, componentsdk.RoundUp),
 		UnrestrictedPct:    percent(unrestricted, total, componentsdk.RoundUp),
-		WriteAccessPct:     percent(writeAccess, total, componentsdk.RoundUp),
 	}
 	if audit {
 		out.CredentialCount = &total
 		out.NeverExpiringCredentialCount = &neverExpiring
 		out.UnrestrictedCredentialCount = &unrestricted
-		out.WriteAccessCredentialCount = &writeAccess
+	}
+	if writeUnknown == 0 {
+		out.WriteAccessPct = percent(writeAccess, total, componentsdk.RoundUp)
+		if audit {
+			out.WriteAccessCredentialCount = &writeAccess
+		}
+	} else {
+		gaps.partial("/credentials/write_access_pct", writeUnknown, rolesErr)
+		if audit {
+			gaps.partial("/credentials/write_access_credential_count", writeUnknown, rolesErr)
+		}
 	}
 	if unusedUnread == 0 {
 		out.UnusedPct = percent(unused, total, componentsdk.RoundUp)
