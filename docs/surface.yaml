@@ -3,6 +3,7 @@ spec:
   source: https://api.clickhouse.cloud/v1
   path: the OpenAPI document the API serves at its root
   revision: info.version 1.0, fetched 2026-11-13
+  url: https://api.clickhouse.cloud/v1
   sha256: 702beeaae2d2fd5851ee4d66779470323dca9831af2c5410e0a495b48ef0c328
 scope:
   methods: [get]
