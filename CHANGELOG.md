@@ -2,7 +2,10 @@
 
 ## Unreleased
 
+## v0.2.5
+
 - The Not Collected section of `docs/overview.md` is rendered from `docs/surface.yaml`, which gives a verdict to every read operation of the ClickHouse Cloud API description that the collector's recordings never call, so the list comes from ClickHouse's description rather than from memory. A new `docs/coverage.md` lists what the collector reads, by area, every operation it leaves out with the reason, and the SQL queries to each service that the Cloud API description does not cover.
+- The collector is built on epack v0.12.2.
 
 ## v0.2.4
 
