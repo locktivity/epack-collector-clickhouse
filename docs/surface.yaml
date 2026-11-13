@@ -2,9 +2,9 @@ vendor: ClickHouse Cloud
 spec:
   source: https://api.clickhouse.cloud/v1
   path: the OpenAPI document the API serves at its root
-  revision: info.version 1.0, fetched 2026-11-13
+  revision: info.version 1.0, fetched 2026-11-13 22:30 UTC
   url: https://api.clickhouse.cloud/v1
-  sha256: 702beeaae2d2fd5851ee4d66779470323dca9831af2c5410e0a495b48ef0c328
+  sha256: 8f6d0a7918ca333deb2acc749aaa35423902bc864ef2ee6d49cdc5a6080fc4ba
 scope:
   methods: [get]
 
