@@ -1,6 +1,6 @@
 # ClickHouse Cloud API coverage
 
-What the collector reads of the ClickHouse Cloud API, and what it leaves out, checked against the ClickHouse Cloud API description at revision info.version 1.0, fetched 2026-11-13: https://api.clickhouse.cloud/v1, the OpenAPI document the API serves at its root.
+What the collector reads of the ClickHouse Cloud API, and what it leaves out, checked against the ClickHouse Cloud API description at revision info.version 1.0, fetched 2026-11-13 22:30 UTC: https://api.clickhouse.cloud/v1, the OpenAPI document the API serves at its root.
 
 | | Operations |
 |---|---|
